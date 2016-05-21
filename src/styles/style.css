@@ -1,0 +1,100 @@
+/* Variables */
+$header-bd-color: lightblue;
+$header-height: 37;
+
+/* header */
+.header {
+	height: $header-height;
+	background-color: $header-bd-color;
+
+	input {
+			border-radius: 6px;
+			border-bottom-style: none;
+			border-style: none;
+			color: darkslategrey;
+			width: 150px;
+	}
+
+	/* use for the left side of the header */
+	ol, ul {
+			margin: 2px;
+			margin-top: 8px;
+			padding: 0;
+			list-style-type: none;
+	}
+
+	/* use for the right side of the header */
+	ul {
+			float: right;
+	}
+
+	ol {
+			float: left;
+	}
+
+	li {
+		 display: inline-flex;
+		 margin-right: 5px;
+	}
+
+	a {
+			color:black;
+			text-decoration: none;    
+	}
+
+	a:hover {
+			color: mediumblue;
+	}
+
+	@media (max-width: 600px) {
+			.rp-header1 {
+					display: none;
+			}
+	}
+
+	@media (max-width: 400px) {
+			.rp-header2 {
+					display: none;
+			}
+	}
+
+	.rp-header3 {
+		display: none;
+	}
+
+	@media (max-width: 400px) {
+			.rp-header2 {
+					display: none;
+			}
+			
+			.rp-header3 {
+					display: inline;
+					font-style: italic;
+					font-size: 16px;
+			}
+	}
+}
+
+.widgetheader {
+	background-color: mintcream;
+	border-style: solid;
+	border-width: 1px;
+	height: 25px;
+	width: 100%;
+	border-color: mintcream;
+}
+
+.icon {
+	float: right;
+	margin: 4px;
+}
+
+.widget {
+	border-style: solid;
+	border-width: 1px;
+	border-color: lightgray;
+}
+
+.react-grid-item.react-grid-placeholder { 
+   background: white !important;  
+} 
