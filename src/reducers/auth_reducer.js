@@ -1,6 +1,6 @@
 import * as t from '../types/auth_types';
 import { transaction } from 'mobx';
-import { authStore } from '../stores/auth_store';
+import { authStore, authFormStore } from '../stores/auth_store';
 import { browserHistory } from 'react-router';
 
 export default function(state = {}, action) {
@@ -12,6 +12,7 @@ export default function(state = {}, action) {
         transaction( () => {
           authStore.authenticated = true;
           authStore.name = name;
+          authStore.errorMessage = '';
       })};
       break;
     case t.AUTH_SIGN_IN_UP:
@@ -20,6 +21,7 @@ export default function(state = {}, action) {
         transaction( () => {
           authStore.authenticated = true;
           authStore.name = action.payload.name;
+          authStore.errorMessage = '';
       });
 			browserHistory.push('/feature');
       break;
@@ -29,11 +31,20 @@ export default function(state = {}, action) {
       transaction(() => {
           authStore.authenticated = false;
           authStore.name = '';
+          authStore.errorMessage = '';
+          authFormStore.email = '';
+          authFormStore.name = '';
+          authFormStore.password = '';
+          authFormStore.passwordConfirm = '';
       });
       break;
     case t.AUTH_ERROR:
       transaction(() => {
-          authStore.errorMessage = action.payload;
+          if (typeof action.payload === 'object') {
+            authStore.errorMessage = action.payload.error;
+          } else {
+            authStore.errorMessage = action.payload;
+          }
           authStore.authenticated = false;
           authStore.name = '';
       });

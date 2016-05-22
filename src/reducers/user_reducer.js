@@ -30,7 +30,11 @@ export default function(state = {}, action) {
       store.page = action.payload.slice(store.pageStart,store.pageEnd);
       break;    
     case t.USER_ERROR:
-      store.error = action.payload;
+      if (typeof action.payload === 'object') {
+        store.error = action.payload["error"];
+      } else {
+        store.error = action.payload;
+      }
       break;    
   }
   return state;

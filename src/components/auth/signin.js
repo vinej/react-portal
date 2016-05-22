@@ -23,6 +23,10 @@ class Signin extends Component {
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
 	}
 
+	componentWillMount() {
+    this.props.authSignOut();
+  }
+
 	handleFormSubmit( event ) {
 		event.preventDefault();
 		this.props.authSignIn( authFormStore  );
@@ -39,7 +43,7 @@ class Signin extends Component {
 		if (authStore.errorMessage) {
 			return (
 				<div className="alert alert-danger">
-					<strong>Oops!</strong> {authStore.errorMessage}
+					<strong>Oops! </strong><span>{authStore.errorMessage}</span>
 				</div>
 			);
 		}

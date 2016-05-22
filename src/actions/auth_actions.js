@@ -30,7 +30,7 @@ export function authSignOut() {
 	return { type: t.AUTH_SIGN_OUT };
 }
 
-export function authError(store, error) {
+export function authError(error) {
 	return {
 		type: t.AUTH_ERROR, 
 		payload :	error 

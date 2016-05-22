@@ -4,18 +4,12 @@ export var authStore = {
 	@observable email : "",
 	@observable name : "",
 	@observable authenticated : false,
-	@observable errorMessage : '',
-	@observable message : ''
+	@observable errorMessage : ''
 }
 
 export var authFormStore = {
 	@observable email : "",
 	@observable name : "",
 	@observable password : "",
-	@observable passwordConfirm : "",
-
-	@observable emailError : "",
-	@observable nameError : "",
-	@observable passwordError : "",
-	@observable passwordConformError : ""
+	@observable passwordConfirm : ""
 }

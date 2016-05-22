@@ -11,12 +11,17 @@ class Signup extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
   
+  componentWillMount() {
+    this.props.authSignOut();
+  }
+
   handleFormSubmit( event ) {
     event.preventDefault();
     this.props.authSignUp( authFormStore  );
   }
 
   handleOnChange( event ) {
+    // don't need actions for input field. 
     authFormStore[event.target.name] = event.target.value;
   }
 
@@ -24,7 +29,7 @@ class Signup extends Component {
     if (authStore.errorMessage) {
       return (
         <div className="alert alert-danger">
-          <strong>Oops!</strong> {authStore.errorMessage}
+          <strong>Oops! </strong><span>{authStore.errorMessage}</span>
         </div>
       );
     }
@@ -41,7 +46,6 @@ class Signup extends Component {
               onChange={ this.handleOnChange }
               value={ authFormStore.email}
           />
-          {authFormStore.emailError && <div className="error">{authFormStore.emailError}</div>}
         </fieldset>
         <fieldset className="form-group">
           <label>Password:</label>
@@ -50,7 +54,6 @@ class Signup extends Component {
                   type="password"
                   onChange={ this.handleOnChange }
                   value={ authFormStore.password } />
-          {authFormStore.passwordError && <div className="error">{authFormStore.passwordError}</div>}
         </fieldset>
         <fieldset className="form-group">
           <label>Confirm Password:</label>
@@ -59,7 +62,6 @@ class Signup extends Component {
                   onChange={ this.handleOnChange }
                   type="password" 
                   value={ authFormStore.passwordConfirm} />
-          {authFormStore.passwordConfirmError && <div className="error">{authFormStore.passwordConfirmError}</div>}
         </fieldset>
         <fieldset className="form-group">
           <label>Name:</label>
@@ -74,36 +76,4 @@ class Signup extends Component {
     );
   }
 }
-
-// function validate(authStore) {
-//   var isError = false;
-
-//   if (!authFormUser.email) {
-//     authFormUser.emailError = 'Please enter an email';
-//     isError = true;
-//   }
-
-//   if (!authFormUser.password) {
-//     authFormUser.passwordError = 'Please enter a password';
-//     isError = true;
-//   }
-
-//   if (!authFormUser.name) {
-//     authFormUser.nameError = 'Please enter a name';
-//     isError = true;
-//   }
-
-//   if (!authFormUser.passwordConfirm) {
-//     authFormUser.passwordConfirmError = 'Please enter a password confirmation';
-//     isError = true;
-//   }
-
-//   if (authFormUser.password !== authFormUser.passwordConfirm) {
-//     authFormUser.passwordError= 'Passwords must match';
-//     isError = true;
-//   }
-
-//   return isError;
-// }
-
 export default connect(null, actions)(Signup);
