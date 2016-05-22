@@ -37,4 +37,6 @@ dist
 
 # Mac files
 .DS_Store
-src/reducers/auth_reducer.js
+
+bundle.js
+web.config
