@@ -24,7 +24,7 @@ export default function(state = {}, action) {
         authStore.name = action.payload.name;
         authStore.errorMessage = '';
       });
-			browserHistory.push('/feature');
+			browserHistory.push('/dashboard');
       break;
     case t.AUTH_SIGN_OUT:
     	localStorage.removeItem('token');

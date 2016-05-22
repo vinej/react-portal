@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
+import { authCheckToken } from './actions/auth_actions';
+import { logger } from './middleware';
+import reducers from './reducers';
 
 import App from './components/app';
 import Dashboard from './components/dashboard';
@@ -14,10 +17,7 @@ import Feature from './components/feature';
 import Users from './components/users';
 import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
-import reducers from './reducers';
-import { authCheckToken } from './actions/auth_actions';
-import { logger } from './middleware';
-//import { userStore } from './store/user_store';
+
 require("../src/styles/style.css");
 require("../node_modules/react-grid-layout/css/styles.css")
 require("../node_modules/react-resizable/css/styles.css")
@@ -40,7 +40,7 @@ ReactDOM.render(
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
-        <Route path="dashboard" component={Dashboard} />
+        <Route path="dashboard" component={RequireAuth(Dashboard)} />
         <Route path="feature" component={RequireAuth(Feature)} />
       </Route>
     </Router>

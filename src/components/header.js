@@ -13,9 +13,6 @@ class Header extends Component {
         <li className="nav-item" key={1}>
           <Link className="nav-link" to="/signout">Sign Out</Link>
         </li>,
-        <li className="nav-item" key={2}>
-          <Link className="nav-link" to="/dashboard">DashBoard</Link>
-        </li>
       ];
     } else {
       // show a link to sign in or sign up
@@ -33,7 +30,7 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-light">
-        <Link to="/" className="navbar-brand">React Portal: Welcome {authStore.name}</Link>
+        <Link to="/" className="navbar-brand">React Board: Welcome {authStore.name}</Link>
         <ul className="nav navbar-nav">
           {this.renderLinks()}
         </ul>
