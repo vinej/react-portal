@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
-import reduxPromise from 'redux-promise';
 import { authCheckToken } from './actions/auth_actions';
 import { logger } from './middleware';
 import reducers from './reducers';
@@ -26,7 +25,7 @@ require("../node_modules/react-resizable/css/styles.css")
 // if you want a logger for all action
 //const createStoreWithMiddleware = applyMiddleware(logger, reduxThunk)(createStore);
  
-const createStoreWithMiddleware = applyMiddleware(reduxPromise, reduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 // the redux store is not really use in the application
 // we only use redux to have a flux implementation with

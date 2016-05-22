@@ -13,21 +13,25 @@ export default function(state = {}, action) {
       store.page = store.users.slice(store.pageStart,store.pageEnd);
       break;
     case t.USER_PREVIOUS_PAGE:
-      store.pageStart = Math.max(store.pageStart - store.pageSize,0);
-      store.pageEnd = Math.max(store.pageEnd - store.pageSize, store.pageStart + store.pageSize);
-      // only page is observable, don't need a transaction
-      store.page = store.users.slice(store.pageStart,store.pageEnd);
+        if (store.pageStart > 0) {
+          store.pageStart = Math.max(store.pageStart - store.pageSize,0);
+          store.pageEnd = Math.max(store.pageEnd - store.pageSize, store.pageStart + store.pageSize);
+          // only page is observable, don't need a transaction
+          store.page = store.users.slice(store.pageStart,store.pageEnd);
+        }
       break;
     case t.USER_NEXT_PAGE:
-      store.pageStart = store.pageStart + store.pageSize;
-      store.pageEnd = store.pageEnd + store.pageSize;
-      // only page is observable, don't need a transaction
-      store.page = store.users.slice(store.pageStart,store.pageEnd);
+      if (store.pageEnd < store.users.length - 1) {
+        store.pageStart = store.pageStart + store.pageSize;
+        store.pageEnd = store.pageEnd + store.pageSize;
+        // only page is observable, don't need a transaction
+        store.page = store.users.slice(store.pageStart,store.pageEnd);
+      }
       break;
     case t.USER_SET_ALL:
       store.users = action.payload;
       // only page is observable, don't need a transaction
-      store.page = action.payload.slice(store.pageStart,store.pageEnd);
+      store.page = store.users.slice(store.pageStart,store.pageEnd);
       break;    
     case t.USER_ERROR:
       if (typeof action.payload === 'object') {
