@@ -15,11 +15,11 @@ export default function(state = {}, action) {
       })};
       break;
     case t.AUTH_SIGN_IN_UP:
-	localStorage.setItem('token', action.payload.token);
-	localStorage.setItem('name', action.payload.name);
-        transaction( () => {
-          authStore.authenticated = true;
-          authStore.name = action.payload.name;
+			localStorage.setItem('token', action.payload.token);
+			localStorage.setItem('name', action.payload.name);
+      transaction( () => {
+      	authStore.authenticated = true;
+      	authStore.name = action.payload.name;
       });
 			browserHistory.push('/feature');
       break;
@@ -27,18 +27,17 @@ export default function(state = {}, action) {
     	localStorage.removeItem('token');
 	    localStorage.removeItem('name');
       transaction(() => {
-          authStore.authenticated = false;
-          authStore.name = '';
+        authStore.authenticated = false;
+        authStore.name = '';
       });
       break;
     case t.AUTH_ERROR:
       transaction(() => {
-          authStore.errorMessage = action.payload;
-          authStore.authenticated = false;
-          authStore.name = '';
+        authStore.errorMessage = action.payload;
+        authStore.authenticated = false;
+        authStore.name = '';
       });
       break;
   }
-
   return state;
 }
