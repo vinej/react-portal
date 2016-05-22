@@ -30,7 +30,7 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-light">
-        <Link to="/" className="navbar-brand">React Board: Welcome {authStore.name}</Link>
+        <Link to="/" className="navbar-brand">React Portal: Welcome {authStore.name}</Link>
         <ul className="nav navbar-nav">
           {this.renderLinks()}
         </ul>
