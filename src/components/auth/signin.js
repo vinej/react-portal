@@ -23,10 +23,6 @@ class Signin extends Component {
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
 	}
 
-	componentWillMount() {
-    this.props.authSignOut();
-  }
-
 	handleFormSubmit( event ) {
 		event.preventDefault();
 		this.props.authSignIn( authFormStore  );

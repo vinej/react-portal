@@ -10,10 +10,6 @@ class Signup extends Component {
     super();
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
-  
-  componentWillMount() {
-    this.props.authSignOut();
-  }
 
   handleFormSubmit( event ) {
     event.preventDefault();

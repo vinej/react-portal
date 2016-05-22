@@ -13,6 +13,7 @@ export default function(state = {}, action) {
           authStore.authenticated = true;
           authStore.name = name;
           authStore.errorMessage = '';
+          browserHistory.push('/dashboard');
         })
       };
       break;
