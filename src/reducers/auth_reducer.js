@@ -16,58 +16,44 @@ export default function(state = {}, action) {
       })};
       break;
     case t.AUTH_SIGN_IN_UP:
-<<<<<<< HEAD
-				localStorage.setItem('token', action.payload.token);
-				localStorage.setItem('name', action.payload.name);
-        transaction( () => {
-          authStore.authenticated = true;
-          authStore.name = action.payload.name;
-          authStore.errorMessage = '';
-=======
 			localStorage.setItem('token', action.payload.token);
 			localStorage.setItem('name', action.payload.name);
       transaction( () => {
-      	authStore.authenticated = true;
-      	authStore.name = action.payload.name;
->>>>>>> origin/master
+        authStore.authenticated = true;
+        authStore.name = action.payload.name;
+        authStore.errorMessage = '';
       });
 			browserHistory.push('/feature');
       break;
     case t.AUTH_SIGN_OUT:
     	localStorage.removeItem('token');
 	    localStorage.removeItem('name');
-      transaction(() => {
-<<<<<<< HEAD
-          authStore.authenticated = false;
-          authStore.name = '';
-          authStore.errorMessage = '';
-          authFormStore.email = '';
-          authFormStore.name = '';
-          authFormStore.password = '';
-          authFormStore.passwordConfirm = '';
-=======
+      transaction(() => 
         authStore.authenticated = false;
         authStore.name = '';
->>>>>>> origin/master
+        authStore.errorMessage = '';
+        authFormStore.email = '';
+        authFormStore.name = '';
+        authFormStore.password = '';
+        authFormStore.passwordConfirm = '';
       });
       break;
     case t.AUTH_ERROR:
       transaction(() => {
-<<<<<<< HEAD
-          if (typeof action.payload === 'object') {
-            authStore.errorMessage = action.payload.error;
-          } else {
-            authStore.errorMessage = action.payload;
-          }
-          authStore.authenticated = false;
-          authStore.name = '';
-=======
+        if (typeof action.payload === 'object') {
+          authStore.errorMessage = action.payload.error;
+        } else {
+          authStore.errorMessage = action.payload;
+        }
+        authStore.authenticated = false;
+        authStore.name = '';
         authStore.errorMessage = action.payload;
         authStore.authenticated = false;
         authStore.name = '';
->>>>>>> origin/master
       });
       break;
   }
   return state;
 }
+
+
