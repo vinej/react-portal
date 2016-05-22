@@ -16,12 +16,20 @@ export default function(state = {}, action) {
       })};
       break;
     case t.AUTH_SIGN_IN_UP:
+<<<<<<< HEAD
 				localStorage.setItem('token', action.payload.token);
 				localStorage.setItem('name', action.payload.name);
         transaction( () => {
           authStore.authenticated = true;
           authStore.name = action.payload.name;
           authStore.errorMessage = '';
+=======
+			localStorage.setItem('token', action.payload.token);
+			localStorage.setItem('name', action.payload.name);
+      transaction( () => {
+      	authStore.authenticated = true;
+      	authStore.name = action.payload.name;
+>>>>>>> origin/master
       });
 			browserHistory.push('/feature');
       break;
@@ -29,6 +37,7 @@ export default function(state = {}, action) {
     	localStorage.removeItem('token');
 	    localStorage.removeItem('name');
       transaction(() => {
+<<<<<<< HEAD
           authStore.authenticated = false;
           authStore.name = '';
           authStore.errorMessage = '';
@@ -36,10 +45,15 @@ export default function(state = {}, action) {
           authFormStore.name = '';
           authFormStore.password = '';
           authFormStore.passwordConfirm = '';
+=======
+        authStore.authenticated = false;
+        authStore.name = '';
+>>>>>>> origin/master
       });
       break;
     case t.AUTH_ERROR:
       transaction(() => {
+<<<<<<< HEAD
           if (typeof action.payload === 'object') {
             authStore.errorMessage = action.payload.error;
           } else {
@@ -47,9 +61,13 @@ export default function(state = {}, action) {
           }
           authStore.authenticated = false;
           authStore.name = '';
+=======
+        authStore.errorMessage = action.payload;
+        authStore.authenticated = false;
+        authStore.name = '';
+>>>>>>> origin/master
       });
       break;
   }
-
   return state;
 }
