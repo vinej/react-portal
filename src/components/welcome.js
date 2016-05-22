@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default () => <div>Welcome to React Board 0.01</div>;
+export default () => <div>Welcome to React POrtal 0.01</div>;
