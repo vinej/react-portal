@@ -17,7 +17,7 @@
   "repository" : {
     "type" : "git",
     "url" : "https://github.com/vinej/reactboard.git"
-  }
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.9.0",
