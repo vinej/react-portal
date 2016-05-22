@@ -5,9 +5,10 @@ An exemple DashBoard application using React / Redux and Mobx
 * npm install
 * npm start
 
-note: you need to install 'reactboardserver' to run the application
+Notes: 
+* You need to install 'reactboardserver' to run the application
 
-Note: This example is built with the help of Stephen Grider course 'Advanced React with Redux' (excellent) and some Internet information about Mobx.  
+* This example is built with the help of Stephen Grider course 'Advanced React with Redux' (excellent) and some Internet information about Mobx.  
 
 ## Goal
 
