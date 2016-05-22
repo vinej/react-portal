@@ -4,7 +4,6 @@ import  UserStore from '../stores/user_store';
 import * as actions from '../actions/user_actions';
 import { connect } from 'react-redux';
 import User from './user';
-//import {AgGridReact} from 'ag-grid-react';
 
 @observer  // need observer when we add, delete rows
 class Users extends Component {
@@ -39,11 +38,5 @@ class Users extends Component {
     )
   }
 };
-
-// function mapStateToProps(state) {
-//   return {
-//     page : state.auth.page
-//   }
-// }
 export default connect(null, actions)(Users);
 

@@ -19,6 +19,8 @@ The goal is to experiment using React/Redux/Mobx in the same application
 I'm sure there is a better way to have a flux pattern with Mobx to use mutable data!, but I like Redux and Mobx. 
 Why not use both ?
 
+JYV
+
 
 
 
