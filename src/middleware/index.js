@@ -1,14 +1,6 @@
 export const logger = store => next => action => {
   console.log(action);
-  //console.info('dispatching', action);
-  //if (action.type ==  AUTH_USER) {
-  //  console.log('current state', store.getState());
-  //}
   let result = next(action);
-  //if (action.type ==  AUTH_USER) {
-  //  console.log('next state', store.getState());
-  //}
-  //console.groupEnd(action.type);
   return result;
 };
  
@@ -20,12 +12,6 @@ export const crashReporter = store => next => action => {
     return next(action);
   } catch (err) {
     console.error('Caught an exception!', err);
-    // Raven.captureException(err, {
-    //   extra: {
-    //     action,
-    //     state: store.getState()
-    //   }
-    // });
     throw err;
   }
 };
