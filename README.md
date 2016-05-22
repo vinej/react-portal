@@ -9,8 +9,6 @@ note: you need to install 'reactboardserver' to run the application
 
 ## Goal
 
-This example is built with the help of Stephen Grider course 'Advanced React with Redux' (excellent) and some Internet information about Mobx.
-
 The goal is to experiment using React/Redux/Mobx in the same application
 * Redux manages the flux pattern
 * Mobx manages the stores with the observable pattern
