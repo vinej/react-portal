@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './header';
 import Dashboard from './dashboard';
-import DevTools from 'mobx-react-devtools';
+// ACTIVATE this tools to see the refreeh of components
+//import DevTools from 'mobx-react-devtools';
 
 class App extends Component {
   render() {
@@ -9,7 +10,8 @@ class App extends Component {
       <div>
         <Header className="widgetheader"/>
         {this.props.children}
-        <DevTools />
+				{ /* ACTIVATE this tools to see the refreeh of components */ }
+        { /* <DevTools /> */ }
       </div>
     );
   }

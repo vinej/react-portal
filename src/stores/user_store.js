@@ -10,7 +10,7 @@ export default class UserStore {
 	
 	users = [];
 	pageStart = 0;
-	pageEnd = 9;
+	pageEnd = 10;
 	pageSize = 10;
 }
 
