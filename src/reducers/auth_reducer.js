@@ -34,10 +34,6 @@ export default function(state = {}, action) {
         authStore.authenticated = false;
         authStore.name = '';
         authStore.errorMessage = '';
-        authFormStore.email = '';
-        authFormStore.name = '';
-        authFormStore.password = '';
-        authFormStore.passwordConfirm = '';
       });
       break;
     case t.AUTH_ERROR:
@@ -49,11 +45,10 @@ export default function(state = {}, action) {
         }
         authStore.authenticated = false;
         authStore.name = '';
-        authStore.errorMessage = action.payload;
-        authStore.authenticated = false;
-        authStore.name = '';
       });
       break;
+    case t.AUTH_VALIDATE_SIGN_UP:
+      store.validateSignUp();
   }
   return state;
 }

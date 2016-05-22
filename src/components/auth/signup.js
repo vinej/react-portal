@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import * as actions from '../../actions/auth_actions';
-import  { authStore, authFormStore } from '../../stores/auth_store';
+import  { authFormStore,  authStore } from '../../stores/auth_store';
 import { connect } from 'react-redux';
 
 @observer
 class Signup extends Component {
   constructor() {
     super();
+    authFormStore.reset();
+    authStore.errorMessage = '';
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleFormSubmit( event ) {
     event.preventDefault();
-    this.props.authSignUp( authFormStore  );
+    if (authFormStore.isValidateSignUp()) {
+      console.log("submit");
+      this.props.authSignUp( authFormStore );
+    }
   }
 
   handleOnChange( event ) {
@@ -31,20 +36,31 @@ class Signup extends Component {
     }
   }
 
+  renderError(error) {
+    return (
+      <span>
+        <span className='text-danger'>{error}</span>
+        <i className="fa fa-exclamation text-danger" />
+      </span>
+    );
+  }
+ 
   render() {
     return (
       <form onSubmit={ this.handleFormSubmit }>
         <fieldset className="form-group">
-          <label>Email:</label>
+          <label>Email:</label>&nbsp;
+          { authFormStore.emailError && this.renderError(authFormStore.emailError) }
           <input 
               className="form-control" 
               name="email"
               onChange={ this.handleOnChange }
-              value={ authFormStore.email}
+              value={ authFormStore.email }
           />
         </fieldset>
         <fieldset className="form-group">
-          <label>Password:</label>
+          <label>Password:</label>&nbsp;
+          { authFormStore.passwordError && this.renderError(authFormStore.passwordError) }
           <input  className="form-control" 
                   name="password" 
                   type="password"
@@ -52,7 +68,8 @@ class Signup extends Component {
                   value={ authFormStore.password } />
         </fieldset>
         <fieldset className="form-group">
-          <label>Confirm Password:</label>
+          <label>Confirm Password:</label>&nbsp;
+          {authFormStore.passwordConfirmError && this.renderError(authFormStore.passwordConfirmError) }
           <input  className="form-control" 
                   name="passwordConfirm" 
                   onChange={ this.handleOnChange }
@@ -60,7 +77,8 @@ class Signup extends Component {
                   value={ authFormStore.passwordConfirm} />
         </fieldset>
         <fieldset className="form-group">
-          <label>Name:</label>
+          <label>Name:</label>&nbsp;
+          {authFormStore.nameError && this.renderError(authFormStore.nameError) }
           <input  className="form-control" 
                   name="name"
                   onChange={ this.handleOnChange }

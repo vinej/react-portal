@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import { authStore } from '../../stores/auth_store';
-import { authFormStore } from '../../stores/auth_store';
+import { authFormStore, authStore } from '../../stores/auth_store';
 import * as actions from '../../actions/auth_actions';
 import { connect } from 'react-redux';
 
@@ -9,6 +8,7 @@ class Field extends Component {
 	render() {
 		return (<fieldset className="form-group">
 					<label>{this.props.label}</label>
+
 					<input  name={this.props.name} className="form-control" 
 									onChange={ this.props.change }/>
 				</fieldset>
@@ -25,7 +25,9 @@ class Signin extends Component {
 
 	handleFormSubmit( event ) {
 		event.preventDefault();
-		this.props.authSignIn( authFormStore  );
+    if (authFormStore.isValidateSignIn()) {
+			this.props.authSignIn( authFormStore  );
+		}
 	}
 
 	handleOnChange( event ) {
@@ -45,12 +47,30 @@ class Signin extends Component {
 		}
 	}
 
+  renderError(error) {
+    return (
+      <span>
+        <span className='text-danger'>{error}</span>
+        <i className="fa fa-exclamation text-danger" />
+      </span>
+    );
+  }
+
 	render() {
 		return (
 			<form onSubmit={ this.handleFormSubmit }>
-			  <Field name="email" value={authFormStore.email} label="Email:" change={ this.handleOnChange }/>
 				<fieldset className="form-group">
-					<label>Password:</label>
+					<label>Email:</label>&nbsp;
+          { authFormStore.emailError && this.renderError(authFormStore.emailError) }
+					<input  name="email" 
+									className="form-control"
+									value={ authFormStore.email }
+									onChange={ this.handleOnChange } />
+				</fieldset>
+
+				<fieldset className="form-group">
+					<label>Password:</label>&nbsp;
+          { authFormStore.passwordError && this.renderError(authFormStore.passwordError) }
 					<input  name="password" 
 									type="password" 
 									className="form-control"

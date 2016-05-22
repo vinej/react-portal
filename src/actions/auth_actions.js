@@ -30,6 +30,20 @@ export function authSignOut() {
 	return { type: t.AUTH_SIGN_OUT };
 }
 
+export function authValidateSignUp(store) {
+	return { 
+		type: t.AUTH_VALIDATE_SIGN_UP,
+		store: store 
+	};
+}
+
+export function authValidateSignIn(store) {
+	return { 
+		type: t.AUTH_VALIDATE_SIGN_IN,
+		store: store 
+	};
+}
+
 export function authError(error) {
 	return {
 		type: t.AUTH_ERROR, 
