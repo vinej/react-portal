@@ -1,12 +1,12 @@
-# reactboard
-An exemple DashBoard application using React / Redux and Mobx
+# react-portal
+A portal exemple using React / Redux and Mobx
 
 ## Installation
 * npm install
 * npm start
 
 Notes: 
-* You need to install 'reactboardserver' to run the application
+* You need to install 'react-portal=server' to run the application
 
 * This example is built with the help of Stephen Grider course 'Advanced React with Redux' (excellent) and some Internet information about Mobx.  
 
