@@ -13,7 +13,8 @@ export default function(state = {}, action) {
           authStore.authenticated = true;
           authStore.name = name;
           authStore.errorMessage = '';
-      })};
+        })
+      };
       break;
     case t.AUTH_SIGN_IN_UP:
 			localStorage.setItem('token', action.payload.token);
@@ -28,7 +29,7 @@ export default function(state = {}, action) {
     case t.AUTH_SIGN_OUT:
     	localStorage.removeItem('token');
 	    localStorage.removeItem('name');
-      transaction(() => 
+      transaction(() => {
         authStore.authenticated = false;
         authStore.name = '';
         authStore.errorMessage = '';
