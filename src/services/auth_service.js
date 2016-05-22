@@ -6,7 +6,7 @@ class AuthService {
 	signIn(dispatch, { email, password }) {
 		axios.post(`${ROOT_URL}/signin`, { email, password })
 		.then(response => {
-				dispatch(authSignInUp(response.data.token, response.data.name)); 
+			dispatch(authSignInUp(response.data.token, response.data.name)); 
 		})
 		.catch(response => dispatch(authError(response.data)));
 	};
@@ -14,7 +14,7 @@ class AuthService {
 	signUp(dispatch, { email, password, name }) {
 		axios.post(`${ROOT_URL}/signup`, { email, password, name })
 		.then(response => {
-				dispatch(authSignInUp(response.data.token, response.data.name)); 
+			dispatch(authSignInUp(response.data.token, response.data.name)); 
 		})
 		.catch(response => dispatch(authError(response.data)));
 	};
