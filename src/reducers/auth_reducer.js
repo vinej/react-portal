@@ -15,8 +15,8 @@ export default function(state = {}, action) {
       })};
       break;
     case t.AUTH_SIGN_IN_UP:
-				localStorage.setItem('token', action.payload.token);
-				localStorage.setItem('name', action.payload.name);
+	localStorage.setItem('token', action.payload.token);
+	localStorage.setItem('name', action.payload.name);
         transaction( () => {
           authStore.authenticated = true;
           authStore.name = action.payload.name;
