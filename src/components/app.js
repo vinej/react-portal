@@ -5,16 +5,16 @@ import Dashboard from './dashboard';
 //import DevTools from 'mobx-react-devtools';
 
 class App extends Component {
-	render() {
-		return (
-			<div>
-				<Header className="widgetheader"/>
-				{this.props.children}
-				{ /* ACTIVATE this tools to see the refreeh of components */ }
-				{ /* <DevTools /> */ }
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <Header className="widgetheader"/>
+        {this.props.children}
+        { /* ACTIVATE this tools to see the refreeh of components */ }
+        { /* <DevTools /> */ }
+      </div>
+    );
+  }
 }
 
 export default App;

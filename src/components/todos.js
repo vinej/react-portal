@@ -8,35 +8,35 @@ import Todo from './todo';
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
 
-	constructor() {
-		super();
-		this.store = TodoStore.create();
-	}
+  constructor() {
+    super();
+    this.store = TodoStore.create();
+  }
 
-	componentWillMount() {
-		this.props.todoGetAll(this.store);
-	}
+  componentWillMount() {
+    this.props.todoGetAll(this.store);
+  }
 
-	render() {
-		return ( 
-			<div>
-				<table className='table table-hoover' style={{ height: 400}}>
-					<thead >
-						<tr><th>Description</th><th>Status</th><th>DEL</th></tr>
-					</thead>
-					{/* note: always need a key */} 
-					<tbody>
-						{ this.store.page.map( todo => 
-							<Todo key={todo._id} todo={todo} mstore={this.store} />
-							)
-						}
-					</tbody>
-				</table>
-				<button onClick={ () => this.props.todoPreviousPage(this.store) }>prev</button>
-				<button onClick={ () => this.props.todoNextPage(this.store) }>next</button>
-			</div>
-		)
-	}
+  render() {
+    return ( 
+      <div>
+        <table className='table table-hoover' style={{ height: 400}}>
+          <thead >
+            <tr><th>Description</th><th>Status</th><th>DEL</th></tr>
+          </thead>
+          {/* note: always need a key */} 
+          <tbody>
+            { this.store.page.map( todo => 
+              <Todo key={todo._id} todo={todo} mstore={this.store} />
+              )
+            }
+          </tbody>
+        </table>
+        <button onClick={ () => this.props.todoPreviousPage(this.store) }>prev</button>
+        <button onClick={ () => this.props.todoNextPage(this.store) }>next</button>
+      </div>
+    )
+  }
 };
 export default connect(null, actions)(Todos);
 

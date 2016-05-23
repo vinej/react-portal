@@ -1,19 +1,19 @@
 export const logger = store => next => action => {
-	console.log(action);
-	let result = next(action);
-	return result;
+  console.log(action);
+  let result = next(action);
+  return result;
 };
  
 /**
  * Sends crash reports as state is updated and listeners are notified.
  */
 export const crashReporter = store => next => action => {
-	try {
-		return next(action);
-	} catch (err) {
-		console.error('Caught an exception!', err);
-		throw err;
-	}
+  try {
+    return next(action);
+  } catch (err) {
+    console.error('Caught an exception!', err);
+    throw err;
+  }
 };
 
 /**
@@ -21,18 +21,18 @@ export const crashReporter = store => next => action => {
  * Makes `dispatch` return a function to cancel the timeout in this case.
  */
 export const timeoutScheduler = store => next => action => {
-	if (!action.meta || !action.meta.delay) {
-		return next(action);
-	}
+  if (!action.meta || !action.meta.delay) {
+    return next(action);
+  }
 
-	let timeoutId = setTimeout(
-		() => next(action),
-		action.meta.delay
-	);
+  let timeoutId = setTimeout(
+    () => next(action),
+    action.meta.delay
+  );
 
-	return function cancel() {
-		clearTimeout(timeoutId);
-	};
+  return function cancel() {
+    clearTimeout(timeoutId);
+  };
 };
 
 /**
@@ -41,38 +41,38 @@ export const timeoutScheduler = store => next => action => {
  * this case.
  */
 export const rafScheduler = store => next => {
-	let queuedActions = [];
-	let frame = null;
+  let queuedActions = [];
+  let frame = null;
 
-	function loop() {
-		frame = null;
-		try {
-			if (queuedActions.length) {
-				next(queuedActions.shift());
-			}
-		} finally {
-			maybeRaf();
-		}
-	}
+  function loop() {
+    frame = null;
+    try {
+      if (queuedActions.length) {
+        next(queuedActions.shift());
+      }
+    } finally {
+      maybeRaf();
+    }
+  }
 
-	function maybeRaf() {
-		if (queuedActions.length && !frame) {
-			frame = requestAnimationFrame(loop);
-		}
-	}
+  function maybeRaf() {
+    if (queuedActions.length && !frame) {
+      frame = requestAnimationFrame(loop);
+    }
+  }
 
-	return action => {
-		if (!action.meta || !action.meta.raf) {
-			return next(action);
-		}
+  return action => {
+    if (!action.meta || !action.meta.raf) {
+      return next(action);
+    }
 
-		queuedActions.push(action);
-		maybeRaf();
+    queuedActions.push(action);
+    maybeRaf();
 
-		return function cancel() {
-			queuedActions = queuedActions.filter(a => a !== action);
-		};
-	};
+    return function cancel() {
+      queuedActions = queuedActions.filter(a => a !== action);
+    };
+  };
 };
 
 /**
@@ -81,11 +81,11 @@ export const rafScheduler = store => next => {
  * The promise is returned from `dispatch` so the caller may handle rejection.
  */
 export const vanillaPromise = store => next => action => {
-	if (typeof action.then !== 'function') {
-		return next(action);
-	}
+  if (typeof action.then !== 'function') {
+    return next(action);
+  }
 
-	return Promise.resolve(action).then(store.dispatch);
+  return Promise.resolve(action).then(store.dispatch);
 };
 
 /**
@@ -97,21 +97,21 @@ export const vanillaPromise = store => next => action => {
  * For convenience, `dispatch` will return the promise so the caller can wait.
  */
 export const readyStatePromise = store => next => action => {
-	if (!action.promise) {
-		return next(action);
-	}
+  if (!action.promise) {
+    return next(action);
+  }
 
-	function makeAction(ready, data) {
-		let newAction = Object.assign({}, action, { ready }, data);
-		delete newAction.promise;
-		return newAction;
-	}
+  function makeAction(ready, data) {
+    let newAction = Object.assign({}, action, { ready }, data);
+    delete newAction.promise;
+    return newAction;
+  }
 
-	next(makeAction(false));
-	return action.promise.then(
-		result => next(makeAction(true, { result })),
-		error => next(makeAction(true, { error }))
-	);
+  next(makeAction(false));
+  return action.promise.then(
+    result => next(makeAction(true, { result })),
+    error => next(makeAction(true, { error }))
+  );
 };
 
 /**
@@ -124,7 +124,7 @@ export const readyStatePromise = store => next => action => {
  * `dispatch` will return the return value of the dispatched function.
  */
 export const thunk = store => next => action =>
-	typeof action === 'function' ?
-		action(store.dispatch, store.getState) :
-		next(action);
+  typeof action === 'function' ?
+    action(store.dispatch, store.getState) :
+    next(action);
 

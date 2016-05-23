@@ -1,21 +1,21 @@
 .widgetheader {
-	background-color: mintcream;
-	border-style: solid;
-	border-width: 1px;
-	height: 25px;
-	width: 100%;
-	border-color: mintcream;
+  background-color: mintcream;
+  border-style: solid;
+  border-width: 1px;
+  height: 25px;
+  width: 100%;
+  border-color: mintcream;
 }
 
 .icon {
-	float: right;
-	margin: 4px;
+  float: right;
+  margin: 4px;
 }
 
 .widget {
-	border-style: solid;
-	border-width: 1px;
-	border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
 }
 
 .react-grid-item.react-grid-placeholder { 
