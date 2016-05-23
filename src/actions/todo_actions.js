@@ -71,7 +71,7 @@ export function todoSetAll(store, data) {
 export function todoError(store, error) {
 	return {
 		type: t.TODO_ERROR, 
- 	  store : store,
+		store : store,
 		payload :	error 
 	}
 }
