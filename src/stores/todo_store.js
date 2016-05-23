@@ -1,22 +1,14 @@
-import { observable } from 'mobx';
-import CrudStore from './crud_store';
+import BaseStore from './base_store';
+import { todoService } from '../services/todo_service';
 
-export default class TodoStore extends CrudStore {
+export default class TodoStore extends BaseStore {
   static create() {
     return new TodoStore()
   }
-}
 
-/**
- * [authFormStore is used to fill up the sign in / sign up form]
- * @type {Object}
- */
-export var todoFormStore = {
-  @observable description : "",
-  @observable startDate   : Date.now,
-  @observable endDate     : Date.now,
-  @observable status      : "waiting",
-  @observable category    : "standard",
-  @observable done        : false,
-  @observable color       : 'green'
+  constructor() {
+    super();
+    this.service = todoService;
+    this.name = 'todo';
+  }
 }

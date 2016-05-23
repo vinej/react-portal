@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import  UserStore from '../stores/user_store';
-import * as actions from '../actions/user_actions';
+import * as actions from '../actions/base_actions';
 import { connect } from 'react-redux';
 import User from './user';
 
@@ -14,7 +14,7 @@ class Users extends Component {
   }
 
   componentWillMount() {
-    this.props.userGetAll(this.store);
+    this.props.storeGetAll(this.store);
   }
 
   render() {
@@ -32,8 +32,8 @@ class Users extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => this.props.userPreviousPage(this.store) }>prev</button>
-        <button onClick={ () => this.props.userNextPage(this.store) }>next</button>
+        <button onClick={ () => this.props.storePreviousPage(this.store) }>prev</button>
+        <button onClick={ () => this.props.storeNextPage(this.store) }>next</button>
       </div>
     )
   }

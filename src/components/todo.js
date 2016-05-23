@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import * as actions from '../actions/todo_actions';
+import * as actions from '../actions/base_actions';
 import { connect } from 'react-redux';
 
 @observer // need observer to update a row when a note is modified
@@ -11,7 +11,7 @@ class Todo extends Component {
     }
 
     handleDelete(todo) {
-      this.props.todoDelete(this.props.mstore, todo);
+      this.props.storeDelete(this.props.mstore, todo);
     } 
 
     render() {

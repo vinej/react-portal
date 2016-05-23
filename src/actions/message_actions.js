@@ -9,14 +9,14 @@ export function messageFetch() {
 
 export function messageSet(message) {
   return {
-      type: t.MESSAGE_SET,
-      payload: message
-    }
+    type: t.MESSAGE_SET,
+    payload: message
+  }
 }
 
 export function messageError(error) {
   return {
-      type: t.MESSAGE_ERROR,
-      payload: error
-    }
+    type: t.MESSAGE_ERROR,
+    payload: error
+  }
 }

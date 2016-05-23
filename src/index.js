@@ -26,7 +26,7 @@ require("../node_modules/react-resizable/css/styles.css")
 // if you want a logger for all action
 //const createStoreWithMiddleware = applyMiddleware(logger, reduxThunk)(createStore);
  
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(logger,reduxThunk)(createStore);
 
 // the redux store is not really use in the application
 // we only use redux to have a flux implementation with

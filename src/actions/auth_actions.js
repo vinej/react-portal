@@ -3,13 +3,13 @@ import { authService } from '../services/auth_service';
 
 export function authSignIn({ email, password }) {
   return function(dispatch) {
-      authService.signIn(dispatch, { email, password });
+    authService.signIn(dispatch, { email, password });
   };
 }
 
 export function authSignUp({ email, password, name }) {
   return function(dispatch) {
-      authService.signUp(dispatch, { email, password, name });
+    authService.signUp(dispatch, { email, password, name });
   };
 }
 

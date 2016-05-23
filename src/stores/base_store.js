@@ -1,6 +1,11 @@
 import { observable } from 'mobx';
 
-export default class CrudStore {
+export default class BaseStore {
+  constructor() {
+    this.name = 'need_to_be_set_by_extend_class';
+    this.service = null;
+  }
+
   @observable page = [];
   @observable error = '';
   
@@ -23,25 +28,12 @@ export default class CrudStore {
     const idx = this.records.findIndex( (r) => r._id === record._id );
     this.records[idx] = record;
     this.setCurrentPage();
-
-    //for(var i = 0; i < records.length; i++) {
-    //  if (records[i]._id == record._id) {
-    //    records[i] = record;
-    //    break; //Stop this loop, we found it!
-    // }
   }
 
   delete(record) {
     const idx = this.records.findIndex( (r) => r._id === record._id );
     this.records.splice(idx,1);
     this.setCurrentPage();
-
-    //for(var i = 0; i < records.length; i++) {
-    // if (records[i]._id == record._id) {
-    //    records.splice(i,1);
-    //    this.setCurrentPage();
-    //    break; //Stop this loop, we found it!
-    // }
   }
 
   setCurrentPage() {

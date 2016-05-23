@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import  TodoStore from '../stores/todo_store';
-import * as actions from '../actions/todo_actions';
+import * as actions from '../actions/base_actions';
 import { connect } from 'react-redux';
 import Todo from './todo';
 
@@ -14,7 +14,7 @@ class Todos extends Component {
   }
 
   componentWillMount() {
-    this.props.todoGetAll(this.store);
+    this.props.storeGetAll(this.store);
   }
 
   render() {
@@ -32,8 +32,8 @@ class Todos extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => this.props.todoPreviousPage(this.store) }>prev</button>
-        <button onClick={ () => this.props.todoNextPage(this.store) }>next</button>
+        <button onClick={ () => this.props.storePreviousPage(this.store) }>prev</button>
+        <button onClick={ () => this.props.storeNextPage(this.store) }>next</button>
       </div>
     )
   }
