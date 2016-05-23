@@ -25,7 +25,7 @@ export function userDelete(store,user) {
 
 export function userGetAll(store) {
 	return function(dispatch) {
-		userService.getAll(store, dispatch);
+		userService.getAll(dispatch,store);
 	};	
 } 
 

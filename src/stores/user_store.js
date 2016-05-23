@@ -1,16 +1,8 @@
-import { observable } from 'mobx';
+import CrudStore from './crud_store';
 
-export default class UserStore {
+export default class UserStore extends CrudStore {
 	static create() {
 		return new UserStore()
 	}
-
-	@observable page = [];
-	@observable error = '';
-	
-	users = [];
-	pageStart = 0;
-	pageEnd = 10;
-	pageSize = 10;
 }
 

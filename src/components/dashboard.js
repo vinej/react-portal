@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import ReactGridLayout from 'react-grid-layout';
 import Users from './users';
+import Todos from './todos';
 import Widget from './widget';
 
 class Dashboard extends Component {
 	render() {
 		var layout = [
   	  	{i: 'a', x: 0, y: 0, w: 4, h: 21},
-  	  	{i: 'b', x: 4, y: 0, w: 3, h: 3},
-    		{i: 'c', x: 7, y: 0, w: 2, h: 2}
+  	  	{i: 'b', x: 4, y: 0, w: 3, h: 21},
+    		{i: 'c', x: 7, y: 0, w: 2, h: 3}
 		];
 
 		return (
@@ -19,15 +20,15 @@ class Dashboard extends Component {
           </Widget>
         </div>
     		<div key={'b'} className="widget">
+          <Widget  title="My Todos">
+            <Todos />
+          </Widget>
+        </div>
+    		<div key={'c'} className="widget">
           <Widget  title="My Notes">
             <div >- implement this </div>
           </Widget>
-          </div>
-    		<div key={'c'} className="widget">
-          <Widget  title="My Todos">
-            <div >- implement this </div>
-          </Widget>
-          </div>
+        </div>
   		</ReactGridLayout>
   	);
 	}

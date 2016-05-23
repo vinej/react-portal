@@ -20,6 +20,7 @@ class Field extends Component {
 class Signin extends Component {
 	constructor() {
 		super();
+		authFormStore.reset();
 		this.handleFormSubmit = this.handleFormSubmit.bind(this)
 	}
 

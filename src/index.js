@@ -18,7 +18,8 @@ import Users from './components/users';
 import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
 
-require("../src/styles/style.css");
+require("./helpers/string.js");
+require("./styles/style.css");
 require("../node_modules/react-grid-layout/css/styles.css")
 require("../node_modules/react-resizable/css/styles.css")
 

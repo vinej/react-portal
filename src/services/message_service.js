@@ -5,7 +5,7 @@ import { messageSet, messageError } from '../actions/message_actions';
 class MessageService {	
 	fetchMessage(dispatch) {
 		axios.get(ROOT_URL, {
-			headers: { authorization: localStorage.getItem('token') }
+			headers: { Authorization: localStorage.getItem('token') }
 		})
 		.then(response => {
 			dispatch(messageSet(response.data.message));

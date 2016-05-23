@@ -16,7 +16,6 @@ class Signup extends Component {
   handleFormSubmit( event ) {
     event.preventDefault();
     if (authFormStore.isValidateSignUp()) {
-      console.log("submit");
       this.props.authSignUp( authFormStore );
     }
   }
