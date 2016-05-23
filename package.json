@@ -1,6 +1,6 @@
 {
-  "name": "reactboard",
-  "version": "1.0.0",
+  "name": "react-portal",
+  "version": "0.1.2",
   "description": "A DashBoard design with React and Mobx",
   "main": "index.js",
   "scripts": {
