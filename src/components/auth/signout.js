@@ -11,5 +11,4 @@ class Signout extends Component {
     return <div>Sorry to see you go...</div>;
   }
 }
-
 export default connect(null, actions)(Signout);

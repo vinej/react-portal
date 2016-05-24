@@ -11,7 +11,7 @@ export default function(state = {}, action) {
   switch(action.type) {
     case t.TODO_SET_ALL:
       // do something special with this one
-      // add fake todo if payload is empty
+      // add fake todos if payload is empty
       if (action.payload.length == 0) {
         console.log("todo empty");
         var list = [];
@@ -20,7 +20,7 @@ export default function(state = {}, action) {
         }
         action.payload = list;
       }
-      break; // do the base action
+      break; // do the base action, do not return
     case t.TODO_VALIDATE:
       // do something special with this one
       // TODO

@@ -38,7 +38,6 @@ export var authFormStore = {
   },
 
   isValidateSignUp : function() {
-    console.log("validate");
     transaction( () => {
       this.isError = false;
       this.emailError = '';
@@ -71,7 +70,6 @@ export var authFormStore = {
   },
 
   isValidateSignIn : function() {
-    console.log("validate");
     transaction( () => {
       this.isError = false;
       this.emailError = '';

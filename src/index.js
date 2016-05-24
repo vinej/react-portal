@@ -26,15 +26,15 @@ require("../node_modules/react-resizable/css/styles.css")
 
 // if you want a logger for all action
 //const createStoreWithMiddleware = applyMiddleware(logger, reduxThunk)(createStore);
- 
 const createStoreWithMiddleware = applyMiddleware(logger,reduxThunk)(createStore);
 
-// the redux store is not really use in the application
+// the redux store is not really use in this application
 // we only use redux to have a flux implementation with
 // middleware, actions, reducers. stores are really managed
-// by mobx. It's really the dispatch that we use
+// by mobx.
 const store = createStoreWithMiddleware(reducers);
-// check the current user info
+
+// check the current user info : token
 store.dispatch(authCheckToken());
 
 // simulate a external event like socketio

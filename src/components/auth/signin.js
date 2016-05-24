@@ -7,11 +7,10 @@ import { connect } from 'react-redux';
 class Field extends Component {
   render() {
     return (<fieldset className="form-group">
-          <label>{this.props.label}</label>
-
-          <input  name={this.props.name} className="form-control" 
-                  onChange={ this.props.change }/>
-        </fieldset>
+      <label>{this.props.label}</label>
+      <input  name={this.props.name} className="form-control" 
+        onChange={ this.props.change }/>
+      </fieldset>
     );
   }
 }
