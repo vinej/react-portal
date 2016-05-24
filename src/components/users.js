@@ -7,14 +7,18 @@ import User from './user';
 
 @observer  // need observer when we add, delete rows
 class Users extends Component {
-
   constructor() {
     super();
-    this.store = UserStore.create();
+    this.store = UserStore.mount();
   }
 
   componentWillMount() {
     this.props.storeGetAll(this.store);
+  }
+
+  componentWillUnmount() {
+    UserStore.unmount(this.store);
+    this.store = null;
   }
 
   render() {

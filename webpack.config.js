@@ -9,15 +9,15 @@ module.exports = {
   module: {
     loaders: [
     {
-        // JSX REACT transpiler
-        test: /\.js$/,
-        include: path.join(__dirname, 'src'),
-        loader: 'babel'
+      // JSX REACT transpiler
+      test: /\.js$/,
+      include: path.join(__dirname, 'src'),
+      loader: 'babel'
     },
     {
-        // SASS transpiler
-        test: /(\.css|\.scss)$/,
-        loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+      // SASS transpiler
+      test: /(\.css|\.scss)$/,
+      loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
     },
     // file loaders
     {test: /.eot(\?v=\d+.\d+.\d+)?$/, loader: "file"},
@@ -27,5 +27,9 @@ module.exports = {
     {test: /\.(jpe?g|png|gif)$/i, loaders: ['file']},
     {test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'},
    ]
-  }
+  },
+  plugins: [
+    // minify output
+    //new webpack.optimize.UglifyJsPlugin()
+  ]
 }

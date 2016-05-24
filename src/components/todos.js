@@ -7,14 +7,17 @@ import Todo from './todo';
 
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
-
   constructor() {
     super();
-    this.store = TodoStore.create();
+    this.store = TodoStore.mount();
   }
 
   componentWillMount() {
     this.props.storeGetAll(this.store);
+  }
+
+  componentWillUnmount() {
+    TodoStore.unmount(this.store);
   }
 
   render() {

@@ -17,6 +17,7 @@ import Feature from './components/feature';
 import Users from './components/users';
 import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
+import { simulateEvent} from './helpers/simulate_event';
 
 require("./helpers/string.js");
 require("./styles/style.css");
@@ -31,10 +32,16 @@ const createStoreWithMiddleware = applyMiddleware(logger,reduxThunk)(createStore
 // the redux store is not really use in the application
 // we only use redux to have a flux implementation with
 // middleware, actions, reducers. stores are really managed
-// by mobx
+// by mobx. It's really the dispatch that we use
 const store = createStoreWithMiddleware(reducers);
 // check the current user info
 store.dispatch(authCheckToken());
+
+// simulate a external event like socketio
+// to execute any action.
+// note: maybe find a better way to do that with Redux
+simulateEvent.setDispatch(store.dispatch);
+simulateEvent.simulateNextPage();
 
 ReactDOM.render(
   <Provider store={store}>
@@ -50,3 +57,5 @@ ReactDOM.render(
     </Router>
   </Provider>
   , document.querySelector('#app'));
+
+
