@@ -38,7 +38,6 @@ With React/Mobx/Dispatch
 
 ### Dashboard example
 
-![alt tag](https://github.com/vinej/react-portal/edit/master/dashboard.png)
 
 JYV
 
