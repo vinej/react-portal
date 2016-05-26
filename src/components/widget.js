@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class Widget extends Component {
   render() {
@@ -15,4 +14,4 @@ class Widget extends Component {
     );
   }
 }
-export default connect()(Widget);
+export default Widget;

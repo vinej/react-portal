@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import  UserStore from '../stores/user_store';
-import * as actions from '../actions/base_actions';
-import { connect } from 'react-redux';
+import { storeGetAll, storePreviousPage, storeNextPage } from '../actions/base_actions';
 import User from './user';
+import { dispatch } from '../helpers/dispatcher';
+
 
 @observer  // need observer when we add, delete rows
 class Users extends Component {
@@ -13,7 +14,7 @@ class Users extends Component {
   }
 
   componentWillMount() {
-    this.props.storeGetAll(this.store);
+    dispatch(storeGetAll(this.store));
   }
 
   componentWillUnmount() {
@@ -36,11 +37,11 @@ class Users extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => this.props.storePreviousPage(this.store) }>prev</button>
-        <button onClick={ () => this.props.storeNextPage(this.store) }>next</button>
+        <button onClick={ () => dispatch(storePreviousPage(this.store)) }>prev</button>
+        <button onClick={ () => dispatch(storeNextPage(this.store)) }>next</button>
       </div>
     )
   }
 };
-export default connect(null, actions)(Users);
+export default Users;
 

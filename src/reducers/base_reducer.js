@@ -1,4 +1,4 @@
-export function reduceBaseAction(action) {
+export function reduceBaseAction(action, next) {
   const store = action.store;
   const idx = action.type.indexOf("_");
   const type = action.type.substring(idx+1);

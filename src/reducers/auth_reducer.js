@@ -3,7 +3,7 @@ import { transaction } from 'mobx';
 import { authStore, authFormStore } from '../stores/auth_store';
 import { browserHistory } from 'react-router';
 
-export default function(state = {}, action) {
+export default function(action, next) {
   switch(action.type) {
     case t.AUTH_CHECK_TOKEN:
       const token = localStorage.getItem('token');
@@ -16,7 +16,7 @@ export default function(state = {}, action) {
           browserHistory.push('/dashboard');
         })
       };
-      break;
+      return next(null, action);
     case t.AUTH_SIGN_IN_UP:
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('name', action.payload.name);
@@ -26,7 +26,7 @@ export default function(state = {}, action) {
         authStore.errorMessage = '';
       });
       browserHistory.push('/dashboard');
-      break;
+      return next(null, action);
     case t.AUTH_SIGN_OUT:
       localStorage.removeItem('token');
       localStorage.removeItem('name');
@@ -35,7 +35,7 @@ export default function(state = {}, action) {
         authStore.name = '';
         authStore.errorMessage = '';
       });
-      break;
+      return next(null, action);
     case t.AUTH_ERROR:
       transaction(() => {
         if (typeof action.payload === 'object') {
@@ -46,11 +46,12 @@ export default function(state = {}, action) {
         authStore.authenticated = false;
         authStore.name = '';
       });
-      break;
+      return next(null, action);
     case t.AUTH_VALIDATE_SIGN_UP:
       store.validateSignUp();
+      return next(null, action);
   }
-  return state;
+  return next(null, action);
 }
 
 

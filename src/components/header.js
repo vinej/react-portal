@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { observer } from "mobx-react";
-import { connect } from 'react-redux';
+import { observer } from "mobx-react";;
 import { Link } from 'react-router';
 import { authStore } from '../stores/auth_store';
 

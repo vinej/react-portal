@@ -1,11 +1,9 @@
 import { storeNextPage } from '../actions/base_actions';
 import { registerStore } from '../stores/register_store';
+import { dispatch } from '../helpers/dispatcher';
+
 
 class SimulateEvent {
-  setDispatch(dispatch) {
-    this.dispatch = dispatch;
-  }
-
   setIntervalX(callback, delay, repetitions) {
     var x = 0;
     var intervalID = window.setInterval(function () {
@@ -21,7 +19,7 @@ class SimulateEvent {
       // do it for all 'user' stores
       const stores = registerStore.getAll('user');
       stores.forEach( (store) => 
-        this.dispatch( storeNextPage(store)) )
+        dispatch( storeNextPage(store)) )
     }, 2000, 5);
   }
 }

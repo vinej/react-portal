@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import { authStore } from '../../stores/auth_store';
 
-
 @observer
 export default function(ComposedComponent) {
   class Authentication extends Component {

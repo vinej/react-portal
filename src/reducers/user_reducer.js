@@ -1,9 +1,11 @@
 import * as t from '../types/user_types';
 import { reduceBaseAction } from './base_reducer';
 
-export default function(state = {}, action) {
+export default function(action, next) {
 
-  if (!action.type.startsWith("user_")) { return state; }
+  if (!action.type.startsWith("user_")) { 
+    return next(null, action);
+  }
 
   // do the specific actions first, this way
   // you can easily override the base action
@@ -11,10 +13,10 @@ export default function(state = {}, action) {
   switch(action.type) {
     case t.USER_VALIDATE:
       // do something special with this one
-      return state;
+      return next(null, action);
   }
   
   reduceBaseAction(action);
 
-  return state;
+  return next(null, action);
 }

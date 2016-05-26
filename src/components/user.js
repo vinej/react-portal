@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import * as actions from '../actions/user_actions';
-import { connect } from 'react-redux';
+import { dispatch } from '../helpers/dispatcher';
+
 
 @observer // need observer to update a row when a note is modified
 class User extends Component {
@@ -11,7 +12,7 @@ class User extends Component {
   }
 
   handleDelete(user) {
-    this.props.userDelete(this.props.mstore, user);
+    dispatch(actions.userDelete(this.props.mstore, user));
   } 
 
   render() {
@@ -26,4 +27,4 @@ class User extends Component {
     );
   }
 };
-export default connect(null, actions)(User);
+export default User;

@@ -1,9 +1,11 @@
 import * as t from '../types/todo_types';
 import { reduceBaseAction } from './base_reducer';
 
-export default function(state = {}, action) {
+export default function(action, next) {
 
-  if (!action.type.startsWith("todo_")) { return state; }
+  if (!action.type.startsWith("todo_")) { 
+    return next(null, action);
+  }
 
   // do the specific action first, this way
   // you can easily override the base action
@@ -13,7 +15,6 @@ export default function(state = {}, action) {
       // do something special with this one
       // add fake todos if payload is empty
       if (action.payload.length == 0) {
-        console.log("todo empty");
         var list = [];
         for(var i = 0; i < 100; i++) {
           list.push( { "_id": `${i}`, "description":`Fake todo ${i}`, "status":"waiting" } );
@@ -24,9 +25,9 @@ export default function(state = {}, action) {
     case t.TODO_VALIDATE:
       // do something special with this one
       // TODO
-      return state;
+      return next(null, action);
   }
 
   reduceBaseAction(action)
-  return state;
+  return next(null, action);
 }

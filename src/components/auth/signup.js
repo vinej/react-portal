@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import * as actions from '../../actions/auth_actions';
+import { authSignUp } from '../../actions/auth_actions';
 import  { authFormStore,  authStore } from '../../stores/auth_store';
-import { connect } from 'react-redux';
+import { dispatch } from '../../helpers/dispatcher';
 
 @observer
 class Signup extends Component {
@@ -16,7 +16,7 @@ class Signup extends Component {
   handleFormSubmit( event ) {
     event.preventDefault();
     if (authFormStore.isValidateSignUp()) {
-      this.props.authSignUp( authFormStore );
+      dispatch(authSignUp( authFormStore ));
     }
   }
 
@@ -89,4 +89,4 @@ class Signup extends Component {
     );
   }
 }
-export default connect(null, actions)(Signup);
+export default Signup;
