@@ -1,6 +1,6 @@
 # react-portal
 
-A portal exemple using React, Mobx and a Flux pattern inspired by Redux
+A portal application using React, Mobx and a Flux pattern inspired by Redux
 
 ## Installation
 * install nodejs
@@ -35,6 +35,10 @@ With React/Mobx/Dispatch
 * Stores attributes are observables with the @observable decorator
 * Stores are singletons or standard classes
 * Standard classes stores are passed as parameter to the action creator to keep the independance of the components. In a dashboard, the same component could be used multiple times and each component will have its own store to implement local filtering, sorting, etc...
+
+### Dashboard example
+
+![alt tag](https://github.com/vinej/react-portal/edit/master/dashboard.png)
 
 JYV
 
