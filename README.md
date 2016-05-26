@@ -36,9 +36,6 @@ With React/Mobx/Dispatch
 * Stores are singletons or standard classes
 * Standard classes stores are passed as parameter to the action creator to keep the independance of the components. In a dashboard, the same component could be used multiple times and each component will have its own store to implement local filtering, sorting, etc...
 
-### Dashboard example
-
-
 JYV
 
 
