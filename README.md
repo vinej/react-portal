@@ -26,7 +26,7 @@ With React/Mobx/Dispatch
 * Components use 'dispatch' to dispatch action creator
 * Components use stores directly (not need to use MapStateToProps)
 * Components use stores in read only mode when the flux pattern is needed
-* Components use stores in read/write mode (it's the exception) for input fields. There is no plus value to go through each reducer for every key stroke during input. Il you want to be 100% flux pattern, you could launch an action creator at every change value
+* Components use stores in read/write mode (it's the exception) for input fields. There is no value to go through each reducer for every key stroke during input. If you want to be 100% flux pattern, you could launch an action creator at every change value
 * Stores attributes are observables with the @observable decorator
 * Stores are singletons or standard classes
 * Standard classes stores are passed as parameter to the action creator to keep the independance of the components. In a dashboard, the same component could be used multiple times and each component will have its own store to implement local filtering, sorting, etc...
