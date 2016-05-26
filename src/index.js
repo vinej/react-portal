@@ -25,7 +25,6 @@ dispatch(authCheckToken());
 
 // simulate a external event like socketio
 // to execute any action.
-// note: maybe find a better way to do that with Redux
 simulateEvent.simulateNextPage();
 
 ReactDOM.render(
