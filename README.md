@@ -15,6 +15,10 @@ Notes:
 
 The goal is to experiment using React/Mobx and a Flux pattern like Redux
 
+## Why use a Flux pattern with Mobx
+
+There is no an obligation to use a Flux pattern with Mobx if your application is simple. During the last year, I worked on a Dashboard implementation and the customer asked me to audit all actions from the users. If you have a Flux pattern, it's very easy to do : you just add a middleware. Without it, it could become complexe to implement it. Then, you must use a Flux pattern when you know that you will deal with this kind of feature.
+
 ## Compare  React/Redux with React/Mobx/Dispatch
 
 With React/Mobx/Dispatch
