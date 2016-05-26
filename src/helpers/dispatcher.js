@@ -43,17 +43,8 @@ class Dispatcher {
     this.middlewares.push(middleware);
   }
 
-  getDispatch() {
-    if (this.dispatch == null) {
-      this.buildDispatch(); 
-    }
-    return this.dispatch;
-  }
-
   buildDispatch() {
-    this.all = [...this.middlewares, ...this.reducers];
-    //this.dispatch = this.compose(all);
-    //this.dispatch = seq(...this.middlewares, ...this.reducers);
+    this.all = [...this.middlewares, ...this.reducers];;
   }
 
   next(err, result) {
@@ -66,7 +57,6 @@ class Dispatcher {
   }
 
   dispatch(action) {
-    var result = action;
     for(var i = 0; i < this.all.length; i++) {
       action = this.all[i](action, this.next);
       if (!action) break;
