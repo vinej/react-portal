@@ -3,6 +3,7 @@
 A portal exemple using React, Mobx and a Flux pattern inspired by Redux
 
 ## Installation
+* install nodejs
 * npm install
 * npm start
 
