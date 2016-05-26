@@ -1,6 +1,6 @@
 # react-portal
 
-A portal application using React, Mobx and a Flux pattern inspired by Redux
+A portal example using React, Mobx and a Flux pattern inspired by Redux
 
 ## Installation
 * install nodejs
