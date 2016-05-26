@@ -2,12 +2,15 @@ import { messageService } from '../services/message_service';
 import * as t from '../types/message_types';
 
 export function messageFetch() {
-  return function(dispatch) {
-    messageService.fetchMessage(dispatch);
-  };
+  return {
+    type: t.MESSAGE_FETCH,
+    payload: function(dispatch) {
+      messageService.fetchMessage(dispatch, messageFetchIt, messageError);
+    }
+  }
 }
 
-export function messageSet(message) {
+export function messageFetchIt(message) {
   return {
     type: t.MESSAGE_SET,
     payload: message

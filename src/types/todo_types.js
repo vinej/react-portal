@@ -1,4 +1,4 @@
-export const TODO_SET_ALL       = 'todo_set_all';
+export const TODO_GET_ALL       = 'todo_get_all';
 export const TODO_DELETE        = 'todo_delete';
 export const TODO_ADD           = 'todo_add';
 export const TODO_UPDATE        = 'todo_update';

@@ -2,15 +2,21 @@ import * as t from '../types/auth_types';
 import { authService } from '../services/auth_service';
 
 export function authSignIn({ email, password }) {
-  return function(dispatch) {
-    authService.signIn(dispatch, { email, password });
-  };
+  return {
+    type: t.AUTH_SIGN_IN_,
+    payload: function(dispatch) {
+      authService.signIn(dispatch, { email, password }, authSignInIt, authError);
+    }
+  }
 }
 
 export function authSignUp({ email, password, name }) {
-  return function(dispatch) {
-    authService.signUp(dispatch, { email, password, name });
-  };
+  return {
+    type: t.AUTH_SIGN_UP_,
+    payload : function(dispatch) {
+      authService.signUp(dispatch, { email, password, name }, authSignUpIt, authError);
+    }
+  }
 }
 
 export function authCheckToken() {
@@ -19,9 +25,16 @@ export function authCheckToken() {
   };
 }
 
-export function authSignInUp(token, name) {
+export function authSignInIt(token, name) {
   return {
-    type: t.AUTH_SIGN_IN_UP,
+    type: t.AUTH_SIGN_IN,
+    payload: { token, name }
+  };
+}
+
+export function authSignUpIt(token, name) {
+  return {
+    type: t.AUTH_SIGN_UP,
     payload: { token, name }
   };
 }

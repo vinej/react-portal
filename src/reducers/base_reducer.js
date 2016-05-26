@@ -19,7 +19,7 @@ export function reduceBaseAction(action, next) {
     case 'previous_page':
       store.previousPage();
       break;
-    case 'set_all':
+    case 'get_all':
       store.setAll(action.payload);
       break;
   }

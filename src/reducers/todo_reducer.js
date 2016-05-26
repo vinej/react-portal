@@ -11,7 +11,7 @@ export default function(action, next) {
   // you can easily override the base action
   const store = action.store;
   switch(action.type) {
-    case t.TODO_SET_ALL:
+    case t.TODO_GET_ALL:
       // do something special with this one
       // add fake todos if payload is empty
       if (action.payload.length == 0) {

@@ -3,7 +3,7 @@ import { messageStore } from '../stores/message_store';
 
 export default function(action, next) {
   switch(action.type) {
-    case t.MESSAGE_SET:
+    case t.MESSAGE_FETCH:
       messageStore.message = action.payload;
       return next(null, action);
     case t.MESSAGE_ERROR:

@@ -1,30 +1,8 @@
+import { thunk, logger } from '../middleware';
 import authReducer from '../reducers/auth_reducer';
 import userReducer from '../reducers/user_reducer';
 import todoReducer from '../reducers/todo_reducer';
 import messageReducer from '../reducers/message_reducer';
-
-function thunk(action, next) {
-  if (typeof action === 'function') {
-    return action(dispatch);
-  } else {
-    return next(null, action);
-  }
-}
-
-function logger(action, next) {
-  if (typeof action !== 'function') {
-    console.log("action", action);
-  }
-  return next(null, action);
-}
-
-function actiontag(action, next) {
-  if (typeof action !== 'function') {
-    action.tag = 1;
-    console.log("action", action.type);
-  }
-  return next(null, action);
-}
 
 class Dispatcher {
   constructor() {
@@ -65,9 +43,11 @@ class Dispatcher {
 }
 
 export let dispatcher = new Dispatcher();
-//dispatcher.addMiddleware(actiontag)
-//dispatcher.addMiddleware(logger)
+// logger first
+dispatcher.addMiddleware(logger)
+// Thunk second
 dispatcher.addMiddleware(thunk)
+// The order of reducers is not important
 dispatcher.addReducer(authReducer)
 dispatcher.addReducer(messageReducer)
 dispatcher.addReducer(userReducer)
@@ -75,7 +55,3 @@ dispatcher.addReducer(todoReducer)
 dispatcher.buildDispatch();
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)
-
-
-
-

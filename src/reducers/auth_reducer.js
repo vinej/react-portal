@@ -17,7 +17,8 @@ export default function(action, next) {
         })
       };
       return next(null, action);
-    case t.AUTH_SIGN_IN_UP:
+    case t.AUTH_SIGN_IN:
+    case t.AUTH_SIGN_UP:
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('name', action.payload.name);
       transaction( () => {
