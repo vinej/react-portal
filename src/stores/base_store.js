@@ -3,7 +3,9 @@ import { observable } from 'mobx';
 export default class BaseStore {
   constructor() {
     this.name = 'need_to_be_set_by_extend_class';
-    this.service = null;
+    this.service = null;  // need to be set by the extend class
+                          // it's use by the base action to know
+                          // witch service to call
   }
 
   @observable page = [];
@@ -38,7 +40,6 @@ export default class BaseStore {
 
   setCurrentPage() {
     this.page = this.records.slice(this.pageStart,this.pageEnd);
-    console.log(this.page);
   }
 
   nextPage() {
