@@ -15,6 +15,9 @@ import Welcome from './components/welcome';
 import { simulateEvent} from './helpers/simulate_event';
 import { dispatch } from './helpers/dispatcher';
 
+// launch the web socket service client side
+require("./services/wss_service");
+
 require("./helpers/string.js");
 require("./styles/style.css");
 require("../node_modules/react-grid-layout/css/styles.css")
@@ -22,10 +25,6 @@ require("../node_modules/react-resizable/css/styles.css")
 
 // check the current user info : token
 dispatch(authCheckToken());
-
-// simulate a external event like socketio
-// to execute any action.
-simulateEvent.simulateNextPage();
 
 ReactDOM.render(
   <Router history={browserHistory}>
@@ -40,4 +39,10 @@ ReactDOM.render(
   </Router>
   , document.querySelector('#app'));
 
-
+//const socket = require('socket.io-client')("http://localhost:3090/socketio");
+//socket.withCredentials = false;
+// socket.on('connect', function() {
+//    socket.on('action', function(data) { console.log(data) } );
+//    socket.on('disconnect', function() { console.log('disconnect') } );
+//     });
+//     

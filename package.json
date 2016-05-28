@@ -1,6 +1,6 @@
 {
   "name": "react-portal",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Dashboard application with React/Mobx and a Flux pattern inspired by Redux",
   "main": "index.js",
   "scripts": {
@@ -46,6 +46,9 @@
     "react": "15.0.2",
     "react-dom": "15.0.2",
     "react-grid-layout": "0.12.3",
-    "react-router": "2.4.1"
+    "react-router": "2.4.1",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6",
+    "ws": "^1.1.0"
   }
 }

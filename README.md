@@ -10,6 +10,10 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 Notes: 
 * You need to install 'react-portal-server' to run the application
 
+* There are 2 servers 
+  * the REST server on port 3090        npm run dev
+  * the WebSocket server on port 5000   npm run wss
+
 * This example is built with the help of Stephen Grider course 'Advanced React with Redux' (excellent) and some Internet information about Mobx.  
 
 ## Goal
