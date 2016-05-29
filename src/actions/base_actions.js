@@ -1,3 +1,18 @@
+export function storeEditForm(store, component) {
+  return  {
+    type: `${store.name}_edit_form`,
+    store: store,
+    payload: component 
+  }
+}
+
+export function storeCancelForm(store) {
+  return  {
+    type: `${store.name}_cancel_form`,
+    store: store
+  }
+}
+
 export function storeNextPage(store) {
   return {
     type: `${store.name}_next_page`,

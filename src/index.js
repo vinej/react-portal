@@ -4,12 +4,12 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { authCheckToken, authSetActions } from './actions/auth_actions';
 
 import App from './components/app';
-import Dashboard from './components/dashboard';
+import Dashboard from './components/dashboard/dashboard';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import Feature from './components/feature';
-import Users from './components/users';
+import Users from './components/user/users';
 import RequireAuth from './components/auth/require_auth';
 import Welcome from './components/welcome';
 import { simulateEvent} from './helpers/simulate_event';

@@ -10,11 +10,11 @@ export var authStore = {
   actions : [],
 
   isActionAvailable : function(actiontype) {
-    //return true
-    if (actiontype.endsWith("_")) {
-      actiontype = actiontype.substr(0, actiontype.length - 1);
-    }
-    return this.actions.indexOf(actiontype) > -1
+    return true
+    // if (actiontype.endsWith("_")) {
+    //   actiontype = actiontype.substr(0, actiontype.length - 1);
+    // }
+    // return this.actions.indexOf(actiontype) > -1
   }
 }
 

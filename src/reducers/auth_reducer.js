@@ -8,7 +8,6 @@ import { dispatch } from '../helpers/dispatcher';
 export default function(action, next) {
   switch(action.type) {
     case t.AUTH_SET_ACTIONS:
-      console.log('actions reduce', action.payload)
       transaction( () => {
         authStore.isActionInit = true;
         authStore.actions = action.payload;

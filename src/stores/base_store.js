@@ -22,7 +22,10 @@ export default class BaseStore {
   }
 
   add(record) {
-    records.unshit();
+    this.records.push(record);
+    if (this.pageEnd < this.pageSize) {
+      this.pageEnd = this.pageEnd + 1
+    }
     this.setCurrentPage();
   }
 

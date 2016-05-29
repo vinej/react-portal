@@ -1,4 +1,4 @@
-import { thunk, logger, authorization } from '../middleware';
+import { thunk, logger, authorization, editCancelForm } from '../middleware';
 import authReducer from '../reducers/auth_reducer';
 import userReducer from '../reducers/user_reducer';
 import todoReducer from '../reducers/todo_reducer';
@@ -49,6 +49,8 @@ dispatcher.addMiddleware(logger)
 dispatcher.addMiddleware(authorization)
 //thunk third
 dispatcher.addMiddleware(thunk)
+// edit / cancel form
+dispatcher.addMiddleware(editCancelForm)
 
 // The order of reducers is not important
 dispatcher.addReducer(authReducer)

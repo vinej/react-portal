@@ -1,5 +1,7 @@
 import { AUTH_CHECK_TOKEN, AUTH_SET_ACTIONS } from '../types/auth_types'
 import { authStore } from '../stores/auth_store'
+import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 
 export function thunk(action, next) {
   if (typeof action.payload === 'function') {
@@ -24,6 +26,19 @@ export function authorization(action, next) {
   if ( action && action.type && !action.type.startsWith("auth_") && 
       !authStore.isActionAvailable(action.type)) {
     return next("Access denied", action);
+  } else {
+    return next(null, action);
+  }
+}
+
+export function editCancelForm(action, next) {
+  const idx = action.type.indexOf("_")
+  const type = action.type.substring(idx+1)
+
+  if (type === 'cancel_form') {
+    ReactDOM.render( <span />, document.querySelector('#popup'))
+  } else if (type === 'edit_form') {
+    ReactDOM.render( action.payload , document.querySelector('#popup'))
   } else {
     return next(null, action);
   }

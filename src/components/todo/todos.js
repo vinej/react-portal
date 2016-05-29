@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import  TodoStore from '../stores/todo_store';
-import { storeGetAll, storePreviousPage, storeNextPage } from '../actions/base_actions';
+import  TodoStore from '../../stores/todo_store';
+import { storeGetAll, storePreviousPage, storeNextPage, storeEditForm } from '../../actions/base_actions';
 import Todo from './todo';
-import { dispatch } from '../helpers/dispatcher';
+import { dispatch } from '../../helpers/dispatcher';
+import TodoForm from './todo_form';
 
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
@@ -25,7 +26,7 @@ class Todos extends Component {
       <div>
         <table className='table table-hoover' style={{ height: 400}}>
           <thead >
-            <tr><th>Description</th><th>Status</th><th>DEL</th></tr>
+            <tr><th><i className="fa fa-edit" /></th><th>Description</th><th>Status</th><th><i className="fa fa-trash" /></th></tr>
           </thead>
           {/* note: always need a key */} 
           <tbody>
@@ -37,6 +38,10 @@ class Todos extends Component {
         </table>
         <button onClick={ () => dispatch(storePreviousPage(this.store)) }>prev</button>
         <button onClick={ () => dispatch(storeNextPage(this.store)) }>next</button>
+        <button onClick={ () => {
+          var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
+          dispatch(storeEditForm(this.store, component))
+          }}>add</button>
       </div>
     )
   }

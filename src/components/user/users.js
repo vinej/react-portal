@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import  UserStore from '../stores/user_store';
-import { storeGetAll, storePreviousPage, storeNextPage } from '../actions/base_actions';
+import  UserStore from '../../stores/user_store';
+import { storeGetAll, storePreviousPage, storeNextPage } from '../../actions/base_actions';
 import User from './user';
-import { dispatch } from '../helpers/dispatcher';
+import { dispatch } from '../../helpers/dispatcher';
 
 
 @observer  // need observer when we add, delete rows

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactGridLayout from 'react-grid-layout';
-import Users from './users';
-import Todos from './todos';
+import Users from '../user/users';
+import Todos from '../todo/todos';
 import Widget from './widget';
 
 class Dashboard extends Component {

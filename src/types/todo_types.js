@@ -5,3 +5,5 @@ export const TODO_UPDATE        = 'todo_update';
 export const TODO_NEXT_PAGE     = "todo_next_page";
 export const TODO_PREVIOUS_PAGE = "todo_previous_page";
 export const TODO_ERROR         = "todo_error";
+export const TODO_EDIT_FORM     = "todo_edit_form";
+export const TODO_CANCEL_FORM   = "todo_cancel_form";

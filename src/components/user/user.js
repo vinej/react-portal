@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import * as actions from '../actions/user_actions';
-import { dispatch } from '../helpers/dispatcher';
+import * as actions from '../../actions/user_actions';
+import { dispatch } from '../../helpers/dispatcher';
 
 
 @observer // need observer to update a row when a note is modified

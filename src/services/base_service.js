@@ -10,7 +10,7 @@ export default class BaseService {
   add(store, entity, next, err) {
     axios.post(`${API_URL}/${this.service}?${PARAMETERS()}`, entity, HEADERS())
     .then(response => {
-      dispatch(next(store, entity)); 
+      dispatch(next(store, response.data)); 
     })
     .catch(response => dispatch(err(store, response.data)));
   };
