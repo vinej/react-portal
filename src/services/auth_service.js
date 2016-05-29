@@ -27,7 +27,7 @@ class AuthService {
 
   isActionAvailable(action) {
     return true;
-    // Activate this code when all tre security will be implemented
+    // Activate this code when all the security will be implemented
     // if (this.isInit === false) {
     //   this.getActions(action, this.isActionAvailable);
     // }
