@@ -4,7 +4,18 @@ export var authStore = {
   @observable email : "",
   @observable name : "",
   @observable authenticated : false,
-  @observable errorMessage : ''
+  @observable errorMessage : '',
+
+  isActionInit : false,
+  actions : [],
+
+  isActionAvailable : function(actiontype) {
+    //return true
+    if (actiontype.endsWith("_")) {
+      actiontype = actiontype.substr(0, actiontype.length - 1);
+    }
+    return this.actions.indexOf(actiontype) > -1
+  }
 }
 
 /**

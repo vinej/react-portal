@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { authCheckToken } from './actions/auth_actions';
+import { authCheckToken, authSetActions } from './actions/auth_actions';
 
 import App from './components/app';
 import Dashboard from './components/dashboard';
@@ -23,26 +23,24 @@ require("./styles/style.css");
 require("../node_modules/react-grid-layout/css/styles.css")
 require("../node_modules/react-resizable/css/styles.css")
 
+var render = function() { 
+  ReactDOM.render(
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Welcome} />
+        <Route path="signin" component={Signin} />
+        <Route path="signout" component={Signout} />
+        <Route path="signup" component={Signup} />
+        <Route path="dashboard" component={RequireAuth(Dashboard)} />
+        <Route path="feature" component={RequireAuth(Feature)} />
+      </Route>
+    </Router>
+    , document.querySelector('#app'));
+}
+
 // check the current user info : token
-dispatch(authCheckToken());
-
-ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Welcome} />
-      <Route path="signin" component={Signin} />
-      <Route path="signout" component={Signout} />
-      <Route path="signup" component={Signup} />
-      <Route path="dashboard" component={RequireAuth(Dashboard)} />
-      <Route path="feature" component={RequireAuth(Feature)} />
-    </Route>
-  </Router>
-  , document.querySelector('#app'));
-
-//const socket = require('socket.io-client')("http://localhost:3090/socketio");
-//socket.withCredentials = false;
-// socket.on('connect', function() {
-//    socket.on('action', function(data) { console.log(data) } );
-//    socket.on('disconnect', function() { console.log('disconnect') } );
-//     });
-//     
+// we must fetch the user actions before rendering
+// the DASHBOARD. Then we pass the render function
+// to the set actions
+dispatch(authCheckToken(render));
+  

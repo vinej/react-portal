@@ -1,6 +1,23 @@
 import * as t from '../types/auth_types';
 import { authService } from '../services/auth_service';
 
+export function authSetActions(render) {
+  return {
+    type: t.AUTH_SET_ACTIONS,
+    payload: function() {
+      authService.setActions(render, authSetActionsIt , authError);
+    }
+  }
+}
+
+export function authSetActionsIt(render, actions) {
+  return {
+    type: t.AUTH_SET_ACTIONS,
+    render: render,
+    payload: actions
+  }
+}
+
 export function authSignIn({ email, password }) {
   return {
     type: t.AUTH_SIGN_IN_,
@@ -19,9 +36,10 @@ export function authSignUp({ email, password, name }) {
   }
 }
 
-export function authCheckToken() {
+export function authCheckToken(render) {
   return {
-    type: t.AUTH_CHECK_TOKEN
+    type: t.AUTH_CHECK_TOKEN,
+    render: render
   };
 }
 

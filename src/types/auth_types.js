@@ -1,4 +1,5 @@
 export const AUTH_CHECK_TOKEN       = 'auth_check_token';
+export const AUTH_SET_ACTIONS       = 'auth_set_actions';
 export const AUTH_SIGN_IN_UP        = 'auth_sign_in_up';
 export const AUTH_SIGN_IN           = 'auth_sign_in';
 export const AUTH_SIGN_UP           = 'auth_sign_up';

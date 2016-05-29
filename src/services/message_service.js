@@ -6,7 +6,7 @@ import { dispatch } from '../helpers/dispatcher';
 
 class MessageService {  
   fetchMessage(next, err) {
-    axios.get(`${ROOT_URL}?${PARAMETERS}`, HEADERS())
+    axios.get(`${ROOT_URL}?${PARAMETERS()}`, HEADERS())
     .then(response => {
       dispatch(next(response.data.message));
     })

@@ -2,9 +2,23 @@ import * as t from '../types/auth_types';
 import { transaction } from 'mobx';
 import { authStore, authFormStore } from '../stores/auth_store';
 import { browserHistory } from 'react-router';
+import { authSetActions } from '../actions/auth_actions';
+import { dispatch } from '../helpers/dispatcher';
 
 export default function(action, next) {
   switch(action.type) {
+    case t.AUTH_SET_ACTIONS:
+      console.log('actions reduce', action.payload)
+      transaction( () => {
+        authStore.isActionInit = true;
+        authStore.actions = action.payload;
+      })
+      // now we can render
+      if (action.render) {
+        action.render();
+      }
+      browserHistory.push('/dashboard');
+      return next(null, action);
     case t.AUTH_CHECK_TOKEN:
       const token = localStorage.getItem('token');
       if (token) {
@@ -13,10 +27,15 @@ export default function(action, next) {
           authStore.authenticated = true;
           authStore.name = name;
           authStore.errorMessage = '';
-          browserHistory.push('/dashboard');
+          dispatch(authSetActions(action.render))
         })
-      };
-      return next(null, action);
+      } else {
+        // render but goto home
+        action.render();
+        browserHistory.push('/');
+        //return next(null, action);
+      }
+      return next(null, action);      
     case t.AUTH_SIGN_IN:
     case t.AUTH_SIGN_UP:
       localStorage.setItem('token', action.payload.token);
@@ -26,8 +45,9 @@ export default function(action, next) {
         authStore.name = action.payload.name;
         authStore.errorMessage = '';
       });
-      browserHistory.push('/dashboard');
-      return next(null, action);
+      dispatch(authSetActions())
+      return next(null, action);      
+      //return next(null, action);
     case t.AUTH_SIGN_OUT:
       localStorage.removeItem('token');
       localStorage.removeItem('name');
@@ -47,6 +67,7 @@ export default function(action, next) {
         authStore.authenticated = false;
         authStore.name = '';
       });
+      browserHistory.push('/signin');
       return next(null, action);
     case t.AUTH_VALIDATE_SIGN_UP:
       store.validateSignUp();

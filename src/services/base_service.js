@@ -8,7 +8,7 @@ export default class BaseService {
   }
 
   add(store, entity, next, err) {
-    axios.post(`${API_URL}/${this.service}?${PARAMETERS}`, entity, HEADERS())
+    axios.post(`${API_URL}/${this.service}?${PARAMETERS()}`, entity, HEADERS())
     .then(response => {
       dispatch(next(store, entity)); 
     })
@@ -16,7 +16,7 @@ export default class BaseService {
   };
 
   delete(store, entity, next, err) {
-    axios.delete(`${API_URL}/${this.service}/${entity._id}?${PARAMETERS}`, HEADERS())
+    axios.delete(`${API_URL}/${this.service}/${entity._id}?${PARAMETERS()}`, HEADERS())
     .then(response => {
       dispatch(next(store, entity)); 
     })
@@ -24,7 +24,7 @@ export default class BaseService {
   };
 
   update(store, entity, next, err) {
-    axios.put(`${API_URL}/${this.service}?${PARAMETERS}`, entity, HEADERS())
+    axios.put(`${API_URL}/${this.service}?${PARAMETERS()}`, entity, HEADERS())
     .then(response => {
       dispatch(next(store, entity)); 
     })
@@ -32,7 +32,7 @@ export default class BaseService {
   };
 
   getAll(store, next, err) {
-    axios.get(`${API_URL}/${this.service}?${PARAMETERS}`, HEADERS())
+    axios.get(`${API_URL}/${this.service}?${PARAMETERS()}`, HEADERS())
     .then(response => {
         dispatch(next(store, response.data));
     })
