@@ -4,8 +4,8 @@ import * as t from '../types/message_types';
 export function messageFetch() {
   return {
     type: t.MESSAGE_FETCH,
-    payload: function(dispatch) {
-      messageService.fetchMessage(dispatch, messageFetchIt, messageError);
+    payload: function() {
+      messageService.fetchMessage(messageFetchIt, messageError);
     }
   }
 }

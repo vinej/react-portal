@@ -16,7 +16,7 @@ import { simulateEvent} from './helpers/simulate_event';
 import { dispatch } from './helpers/dispatcher';
 
 // launch the web socket service client side
-require("./services/wss_service");
+//require("./services/wss_service");
 
 require("./helpers/string.js");
 require("./styles/style.css");

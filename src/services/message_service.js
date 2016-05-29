@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { ROOT_URL } from './const_service';
+import { ROOT_URL, HEADERS, PARAMETERS } from './const_service';
 import { messageSet, messageError } from '../actions/message_actions';
+import { dispatch } from '../helpers/dispatcher';
+
 
 class MessageService {  
-  fetchMessage(dispatch, next, err) {
-    axios.get(ROOT_URL, {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
+  fetchMessage(next, err) {
+    axios.get(`${ROOT_URL}?${PARAMETERS}`, HEADERS())
     .then(response => {
       dispatch(next(response.data.message));
     })

@@ -15,8 +15,8 @@ export function storePreviousPage(store) {
 export function storeDelete(store, record) {
   return {
     type: `${store.name}_delete_`,
-    payload: function(dispatch) {
-      store.service.delete(dispatch, store, record, storeDeleteIt, storeError);
+    payload: function() {
+      store.service.delete(store, record, storeDeleteIt, storeError);
     }
   }
 }
@@ -32,8 +32,8 @@ export function storeDeleteIt(store, record) {
 export function storeUpdate(store, record) {
   return {
     type: `${store.name}_update_`,
-    payload: function(dispatch) {
-      store.service.update(dispatch, store, record, storeUpdateIt, storeError);
+    payload: function() {
+      store.service.update(store, record, storeUpdateIt, storeError);
     }
   }
 }
@@ -49,8 +49,8 @@ export function storeUpdateIt(store, record) {
 export function storeAdd(store, record) {
   return {
     type: `${store.name}_add_`,
-    payload: function(dispatch) {
-      store.service.add(dispatch, store, record, storeAddIt, storeError);
+    payload: function() {
+      store.service.add(store, record, storeAddIt, storeError);
     }
   }
 }
@@ -66,8 +66,8 @@ export function storeAddIt(store, record) {
 export function storeGetAll(store) {
   return {
     type: `${store.name}_get_all_`,
-    payload: function(dispatch) {
-      store.service.getAll(dispatch, store, storeGetAllIt, storeError);
+    payload: function() {
+      store.service.getAll(store, storeGetAllIt, storeError);
     }
   }
 } 

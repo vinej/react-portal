@@ -1,45 +1,38 @@
 import axios from 'axios';
-import { ROOT_URL } from './const_service';
+import { API_URL, HEADERS, PARAMETERS } from './const_service';
+import { dispatch } from '../helpers/dispatcher';
 
 export default class BaseService {
   constructor() {
     this.service = "need_to_be_set_by_the_extend_class";
   }
 
-  add(dispatch, store, entity, next, err) {
-    axios.post(`${ROOT_URL}/${this.service}`, entity, {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
+  add(store, entity, next, err) {
+    axios.post(`${API_URL}/${this.service}?${PARAMETERS}`, entity, HEADERS())
     .then(response => {
       dispatch(next(store, entity)); 
     })
     .catch(response => dispatch(err(store, response.data)));
   };
 
-  delete(dispatch, store, entity, next, err) {
-    axios.delete(`${ROOT_URL}/${this.service}/${entity._id}`, {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
+  delete(store, entity, next, err) {
+    axios.delete(`${API_URL}/${this.service}/${entity._id}?${PARAMETERS}`, HEADERS())
     .then(response => {
       dispatch(next(store, entity)); 
     })
     .catch(response => dispatch(err(store, response.data)));
   };
 
-  update(dispatch, store, entity, next, err) {
-    axios.put(`${ROOT_URL}/${this.service}`, entity, {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
+  update(store, entity, next, err) {
+    axios.put(`${API_URL}/${this.service}?${PARAMETERS}`, entity, HEADERS())
     .then(response => {
       dispatch(next(store, entity)); 
     })
     .catch(response => dispatch(err(store, response.data)));
   };
 
-  getAll(dispatch, store, next, err) {
-    axios.get(`${ROOT_URL}/${this.service}`, {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
+  getAll(store, next, err) {
+    axios.get(`${API_URL}/${this.service}?${PARAMETERS}`, HEADERS())
     .then(response => {
         dispatch(next(store, response.data));
     })

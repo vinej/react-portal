@@ -1,4 +1,4 @@
-import { thunk, logger } from '../middleware';
+import { thunk, logger, authorization } from '../middleware';
 import authReducer from '../reducers/auth_reducer';
 import userReducer from '../reducers/user_reducer';
 import todoReducer from '../reducers/todo_reducer';
@@ -45,8 +45,11 @@ class Dispatcher {
 export let dispatcher = new Dispatcher();
 // logger first
 dispatcher.addMiddleware(logger)
-// Thunk second
+// Autorization second
+dispatcher.addMiddleware(authorization)
+//thunk third
 dispatcher.addMiddleware(thunk)
+
 // The order of reducers is not important
 dispatcher.addReducer(authReducer)
 dispatcher.addReducer(messageReducer)

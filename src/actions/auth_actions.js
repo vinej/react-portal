@@ -4,8 +4,8 @@ import { authService } from '../services/auth_service';
 export function authSignIn({ email, password }) {
   return {
     type: t.AUTH_SIGN_IN_,
-    payload: function(dispatch) {
-      authService.signIn(dispatch, { email, password }, authSignInIt, authError);
+    payload: function() {
+      authService.signIn({ email, password }, authSignInIt, authError);
     }
   }
 }
@@ -13,8 +13,8 @@ export function authSignIn({ email, password }) {
 export function authSignUp({ email, password, name }) {
   return {
     type: t.AUTH_SIGN_UP_,
-    payload : function(dispatch) {
-      authService.signUp(dispatch, { email, password, name }, authSignUpIt, authError);
+    payload : function() {
+      authService.signUp({ email, password, name }, authSignUpIt, authError);
     }
   }
 }
