@@ -21,3 +21,17 @@
 .react-grid-item.react-grid-placeholder { 
    background: white !important;  
 } 
+
+.popup {
+  position: absolute;
+  width: 50%;
+  height: 250px;
+  left: 50%;
+  top: 100px;
+  margin: 0 0 0 -25%;
+  background: white;
+  z-index: 10000;
+  visibility: hidden;
+  border-color: lightgray;
+  border-style: solid;
+}

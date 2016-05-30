@@ -83,7 +83,9 @@ class TodoForm extends Component {
         </fieldset>
         {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Save</button>
-        <button onClick={ () => dispatch(storeCancelForm(this.props.mstore)) } className="btn btn-danger">Cancel</button>
+        <button onClick={ (event) => {
+          event.preventDefault();
+          dispatch(storeCancelForm(this.props.mstore)) }} className="btn btn-danger">Cancel</button>
       </form>
     );
   }

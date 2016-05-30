@@ -37,7 +37,9 @@ export function editCancelForm(action, next) {
 
   if (type === 'cancel_form') {
     ReactDOM.render( <span />, document.querySelector('#popup'))
+    document.querySelector('#popup').style.visibility='hidden';
   } else if (type === 'edit_form') {
+    document.querySelector('#popup').style.visibility='visible';
     ReactDOM.render( action.payload , document.querySelector('#popup'))
   } else {
     return next(null, action);

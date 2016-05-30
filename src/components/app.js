@@ -9,7 +9,7 @@ class App extends Component {
       <div>
         <Header className="widgetheader"/>
         {this.props.children}
-        <DevTools />
+        
       </div>
     );
   }
