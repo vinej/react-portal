@@ -59,6 +59,7 @@ class TodoForm extends Component {
   render() {
     return (
       <form onSubmit={ this.handleFormSubmit }>
+        <div className="popupHeader"><strong>Todo</strong></div>
         <fieldset className="form-group">
           <label>Description:</label>&nbsp;
           { this.formStore.descriptionError && this.renderError(this.formStore.descriptionError) }

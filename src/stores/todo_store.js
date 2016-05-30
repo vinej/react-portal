@@ -19,6 +19,15 @@ export default class TodoStore extends BaseStore {
     this.name = 'todo';
   }
 
+  static getEditFormDimension() {
+    return {
+      width: '40%',
+      height: '245',
+      left: '60%',
+      top: '110'
+    }
+  }
+
   static createTodo() {
     return {
       description : "",

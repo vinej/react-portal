@@ -2,6 +2,8 @@ import { AUTH_CHECK_TOKEN, AUTH_SET_ACTIONS } from '../types/auth_types'
 import { authStore } from '../stores/auth_store'
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
+import { popupStore } from '../stores/popup_store';
+import { transaction } from 'mobx';
 
 export function thunk(action, next) {
   if (typeof action.payload === 'function') {
@@ -37,10 +39,16 @@ export function editCancelForm(action, next) {
 
   if (type === 'cancel_form') {
     ReactDOM.render( <span />, document.querySelector('#popup'))
-    document.querySelector('#popup').style.visibility='hidden';
+    popupStore.setVisible(false)
   } else if (type === 'edit_form') {
-    document.querySelector('#popup').style.visibility='visible';
-    ReactDOM.render( action.payload , document.querySelector('#popup'))
+    transaction( () => {
+      popupStore.setVisible(true)
+      popupStore.width = action.payload.dimension.width;
+      popupStore.height = action.payload.dimension.height;
+      popupStore.left = action.payload.dimension.left;
+      popupStore.top = action.payload.dimension.top;
+    });
+    ReactDOM.render( action.payload.component , document.querySelector('#popup'))
   } else {
     return next(null, action);
   }

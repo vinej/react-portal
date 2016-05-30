@@ -1,8 +1,8 @@
-export function storeEditForm(store, component) {
+export function storeEditForm(store, component, dimension) {
   return  {
     type: `${store.name}_edit_form`,
     store: store,
-    payload: component 
+    payload: { component, dimension }
   }
 }
 

@@ -11,6 +11,7 @@ class Todos extends Component {
   constructor() {
     super();
     this.store = TodoStore.mount();
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   componentWillMount() {
@@ -19,6 +20,13 @@ class Todos extends Component {
 
   componentWillUnmount() {
     TodoStore.unmount(this.store);
+  }
+
+
+
+  handleAdd() {
+    var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
+    dispatch(storeEditForm(this.store, component, TodoStore.getEditFormDimension()))
   }
 
   render() {
@@ -38,10 +46,7 @@ class Todos extends Component {
         </table>
         <button onClick={ () => dispatch(storePreviousPage(this.store)) }>prev</button>
         <button onClick={ () => dispatch(storeNextPage(this.store)) }>next</button>
-        <button onClick={ () => {
-          var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
-          dispatch(storeEditForm(this.store, component))
-          }}>add</button>
+        <button onClick={ () => this.handleAdd() }>add</button>
       </div>
     )
   }
