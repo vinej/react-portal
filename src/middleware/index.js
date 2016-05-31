@@ -38,11 +38,13 @@ export function editCancelForm(action, next) {
   const type = action.type.substring(idx+1)
 
   if (type === 'cancel_form') {
-    var mid = `#popup${popupStore.getCurrentId()-1}`;
-    console.log(mid)
-    ReactDOM.render( <span />, document.querySelector(mid))
+    //var mid = `#popup${popupStore.getCurrentId()-1}`;
+    //ReactDOM.render( <span />, document.querySelector(mid))
     popupStore.close()
   } else if (type === 'edit_form') {
+    // show the popup
+    popupStore.show()
+    // fill the div with the component
     const store = popupStore.getCurrentStore()
     transaction( () => {
       store.width = action.payload.dimension.width;
@@ -50,8 +52,16 @@ export function editCancelForm(action, next) {
       store.left = action.payload.dimension.left;
       store.top = action.payload.dimension.top;
     });
-    ReactDOM.render( action.payload.component , document.querySelector(`#popup${popupStore.getCurrentId()}`))
-    popupStore.show()
+    // we need a setTimeout, because witout it the
+    // render of the component will be done before 
+    // the render of the div that will contains the
+    // component. 1 millisecond is enouf to let the
+    // other render to finish
+    setTimeout( () => 
+      ReactDOM.render( 
+        action.payload.component , 
+        document.querySelector(`#popup${popupStore.getCurrentId()}`)),
+    1)
   } else {
     return next(null, action);
   }

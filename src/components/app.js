@@ -4,7 +4,9 @@ import Header from './header'
 import Dashboard from './dashboard/dashboard'
 import DevTools from 'mobx-react-devtools'
 import { popupStore } from '../stores/popup_store'
+import { observer } from "mobx-react";
 
+@observer
 class App extends Component {
   render() {
     return (
@@ -16,6 +18,7 @@ class App extends Component {
         </div>
         <Header className="widgetheader"/>
         {this.props.children}
+        <DevTools />
       </div>
     )
   }

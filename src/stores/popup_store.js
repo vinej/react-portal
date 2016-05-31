@@ -1,15 +1,11 @@
 import { observable } from 'mobx';
 
 class PopupStore {
-  constructor() {
-    this.current = 0
-    this.max = 5;
-    this.popupStores = []
 
-    for(var i=0; i < this.max; i++) {
-      this.popupStores[i] = PopupStore.createStore()
-      this.popupStores[i].id = i
-    }
+  @observable popupStores = []
+
+  constructor() {
+    this.current = -1
   }
 
   getCurrentId() {
@@ -25,19 +21,20 @@ class PopupStore {
   }
 
   show() {
-    // hide de previous 
-    if (this.current > 0) {
+    this.current = this.current + 1
+    if (this.current > 1) {
       this.popupStores[this.current - 1].visibility = 'hidden';
     }
+    this.popupStores.push(PopupStore.createStore())
+    this.popupStores[this.current].id = this.current
     this.popupStores[this.current].visibility = 'visible';
-    this.current = this.current + 1
   }
 
   close() {
     this.current = this.current - 1
-    this.popupStores[this.current].visibility = 'hidden';
-    if (this.current > 0) {
-      this.popupStores[this.current-1].visibility = 'visible';
+    this.popupStores.pop()
+    if (this.current > -1) {
+      this.popupStores[this.current].visibility = 'visible';
     }
   }
 
