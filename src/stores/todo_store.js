@@ -22,9 +22,9 @@ export default class TodoStore extends BaseStore {
   static getEditFormDimension() {
     return {
       width: '40%',
-      height: '245',
+      height: '245px',
       left: '60%',
-      top: '110'
+      top: '110px'
     }
   }
 

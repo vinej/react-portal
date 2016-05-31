@@ -38,17 +38,20 @@ export function editCancelForm(action, next) {
   const type = action.type.substring(idx+1)
 
   if (type === 'cancel_form') {
-    ReactDOM.render( <span />, document.querySelector('#popup'))
-    popupStore.setVisible(false)
+    var mid = `#popup${popupStore.getCurrentId()-1}`;
+    console.log(mid)
+    ReactDOM.render( <span />, document.querySelector(mid))
+    popupStore.close()
   } else if (type === 'edit_form') {
+    const store = popupStore.getCurrentStore()
     transaction( () => {
-      popupStore.setVisible(true)
-      popupStore.width = action.payload.dimension.width;
-      popupStore.height = action.payload.dimension.height;
-      popupStore.left = action.payload.dimension.left;
-      popupStore.top = action.payload.dimension.top;
+      store.width = action.payload.dimension.width;
+      store.height = action.payload.dimension.height;
+      store.left = action.payload.dimension.left;
+      store.top = action.payload.dimension.top;
     });
-    ReactDOM.render( action.payload.component , document.querySelector('#popup'))
+    ReactDOM.render( action.payload.component , document.querySelector(`#popup${popupStore.getCurrentId()}`))
+    popupStore.show()
   } else {
     return next(null, action);
   }
