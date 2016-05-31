@@ -7,7 +7,7 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * A boilerplate for React/Mobx and a REST server
 * A full CRUD TODO example : view -> action -> middleware -> service(ajax call) ->  reducer -> store -> view
 * Authentification with a JWT token
-* Authorization (which actions the use can do)
+* Authorization (which actions the user can do)
 * A dispatcher
 * Middleware (logger, thunk, autorization, popup)
 * Form validations
