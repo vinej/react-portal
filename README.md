@@ -11,6 +11,8 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * A dispatcher
 * Middleware (logger, thunk, autorization, popup)
 * Form validations
+* Popup form 
+* Tab Bar (not completed)
 
 ## Installation
 * install nodejs
