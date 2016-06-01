@@ -16,6 +16,12 @@
   border-bottom-color: lightgray;
 }
 
+.tabbar {
+  display: inline-block;
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
 .icon {
   float: right;
   margin: 4px;

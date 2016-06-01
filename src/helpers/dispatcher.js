@@ -1,4 +1,9 @@
-import { thunk, logger, authorization, editCancelForm } from '../middleware';
+import { thunkMiddleware } from '../middlewares/thunk_middleware';
+import { loggerMiddleware } from '../middlewares/logger_middleware';
+import { authorizationMiddleware } from '../middlewares/authorization_middleware';
+import { popupMiddleware } from '../middlewares/popup_middleware';
+import { tabBarMiddleware } from '../middlewares/tabbar_middleware';
+
 import authReducer from '../reducers/auth_reducer';
 import userReducer from '../reducers/user_reducer';
 import todoReducer from '../reducers/todo_reducer';
@@ -44,13 +49,15 @@ class Dispatcher {
 
 export let dispatcher = new Dispatcher();
 // logger first
-dispatcher.addMiddleware(logger)
+dispatcher.addMiddleware(loggerMiddleware)
 // Autorization second
-dispatcher.addMiddleware(authorization)
+dispatcher.addMiddleware(authorizationMiddleware)
 //thunk third
-dispatcher.addMiddleware(thunk)
+dispatcher.addMiddleware(thunkMiddleware)
 // edit / cancel form
-dispatcher.addMiddleware(editCancelForm)
+dispatcher.addMiddleware(popupMiddleware)
+
+dispatcher.addMiddleware(tabBarMiddleware)
 
 // The order of reducers is not important
 dispatcher.addReducer(authReducer)

@@ -3,7 +3,10 @@ import { transaction } from 'mobx';
 import { authStore, authFormStore } from '../stores/auth_store';
 import { browserHistory } from 'react-router';
 import { authSetActions } from '../actions/auth_actions';
+import { storeEditTab } from '../actions/base_actions';
 import { dispatch } from '../helpers/dispatcher';
+import Dashboard from '../components/dashboard/dashboard'
+import React, { Component } from 'react';
 
 export default function(action, next) {
   switch(action.type) {
@@ -16,8 +19,12 @@ export default function(action, next) {
       if (action.render) {
         action.render();
       }
-      browserHistory.push('/dashboard');
-      return next(null, action);
+      browserHistory.push('/main');
+      setTimeout( () => {
+        var component = <Dashboard />
+        dispatch(storeEditTab(null, component, 'Dashboard'))
+      }, 1)
+      return next(null, action);     
     case t.AUTH_CHECK_TOKEN:
       const token = localStorage.getItem('token');
       if (token) {

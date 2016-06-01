@@ -13,6 +13,36 @@ export function storeCancelForm(store) {
   }
 }
 
+export function storeEditTab(store, component, title) {
+  if (!store) {
+    store = { name : 'na'}    
+  }
+  return  {
+    type: `${store.name}_edit_tab`,
+    store: store,
+    payload: { component, title }
+  }
+}
+
+export function storeCancelTab(store) {
+  if (!store) {
+    store = { name : 'na'}    
+  }
+  return  {
+    type: `${store.name}_cancel_tab`
+  }
+}
+
+export function storeSelectTab(store, id) {
+  if (!store) {
+    store = { name : 'na'}    
+  }
+  return  {
+    type: `${store.name}_select_tab`,
+    payload: id
+  }
+}
+
 export function storeNextPage(store) {
   return {
     type: `${store.name}_next_page`,

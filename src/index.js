@@ -5,6 +5,7 @@ import { authCheckToken, authSetActions } from './actions/auth_actions';
 
 import App from './components/app';
 import Dashboard from './components/dashboard/dashboard';
+import Main from './components/main';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
@@ -31,6 +32,7 @@ var render = function() {
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
+        <Route path="main" component={RequireAuth(Main)} />
         <Route path="dashboard" component={RequireAuth(Dashboard)} />
         <Route path="feature" component={RequireAuth(Feature)} />
       </Route>

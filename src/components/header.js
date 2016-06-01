@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { observer } from "mobx-react";;
 import { Link } from 'react-router';
 import { authStore } from '../stores/auth_store';
+import TabBar from './tabbar/tabbar'
 
 @observer
 class Header extends Component {
@@ -33,6 +34,7 @@ class Header extends Component {
         <ul className="nav navbar-nav">
           {this.renderLinks()}
         </ul>
+        <TabBar />
       </nav>
     );
   }
