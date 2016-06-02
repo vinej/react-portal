@@ -16,22 +16,23 @@ class TabBar extends Component {
 
   handleOnChange(event) {
     console.log('onchange', event)
-    tabBarStore.currentTab = event.target.value
-    dispatch(storeSelectTab(null, event.target.value))
+    dispatch(storeSelectTab(tabBarStore.getCurrentStore(), event.target.value))
   }
 
   handleOnClose(event) {
-    dispatch(storeCancelTab(tabBarStore.currentTab))
+    dispatch(storeCancelTab(tabBarStore.getCurrentStore()))
   }
 
   render() {
     return (
       <span className='nav-item tabbar'>
-        <a onClick={ this.handleOnClose }> Close tab -> </a>
-        <select onChange={ this.handleOnChange } >
-        { tabBarStore.getStores().map( store => 
-          <option _id={store.id} key={store.id} value={store.id}>{store.title}</option> )
-        }
+        <a onClick={ this.handleOnClose }> Close this tab -> </a>
+        <select onChange={ this.handleOnChange } value={tabBarStore.current}>
+          <option _id="-1" key="-1" disabled="true">Choose a tab</option>
+          { tabBarStore.getStores().map( (store, idx) => 
+            <option _id={idx} key={idx} value={idx}>{store.title}</option>
+            )
+          } 
         </select>
       </span>
     )

@@ -6,7 +6,7 @@ class Tab extends Component {
   render() {
     return (
       <div className="tab" id={`tab${this.props._id}`} 
-            style={{ visibility : this.props.store.visibility }} /> 
+            style={{ display : this.props.store.display }} /> 
     )
   }
 }

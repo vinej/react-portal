@@ -9,10 +9,10 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * Authentification with a JWT token
 * Authorization (which actions the user can do)
 * A dispatcher
-* Middleware (logger, thunk, autorization, popup)
+* Middleware (logger, thunk, autorization, popup, tabbar)
 * Form validations
 * Popup form 
-* Tab Bar (not completed)
+* Tab Bar 
 
 ## Installation
 * install nodejs

@@ -7,14 +7,14 @@ export function tabBarMiddleware(action, next) {
   const type = action.type.substring(idx+1)
 
   if (type === 'cancel_tab') {
-    setTimeout( () => tabBarStore.close(action.payload), 1)
+    setTimeout( () => tabBarStore.close(), 1)
   } else if (type === 'edit_tab') {
     tabBarStore.show(action.payload.title)
     setTimeout( () => 
       ReactDOM.render( 
         action.payload.component , 
         document.querySelector(`#tab${tabBarStore.getCurrentId()}`)),
-    100)
+    1)
   } else if (type === 'select_tab') {
     tabBarStore.select(action.payload)
   } else {

@@ -1,12 +1,8 @@
-import { observable } from 'mobx';
+import { observable, action, transaction } from 'mobx';
 
 class TabBarStore {
   @observable tabBarStores = []
-
-  constructor() {
-    this.currentTab = -1
-    this.current = -1
-  }
+  @observable current = -1
 
   getCurrentId() {
     return this.current
@@ -20,34 +16,44 @@ class TabBarStore {
     return this.tabBarStores
   }
 
+  @action
   select(id) {
-    
+    console.log('select',id)
+    this.tabBarStores[this.current].display = 'none';
+    this.tabBarStores[id].display = 'block';
+    this.current = Number(id)
   }
 
+  @action
   show(title) {
-    this.current = this.current + 1
-    this.currentTab = this.current
-    if (this.current > 1) {
-      this.tabBarStores[this.current - 1].visibility = 'hidden';
+    if (this.current > -1) {
+      this.tabBarStores[this.current].display = 'none';
     }
     this.tabBarStores.push(TabBarStore.createStore())
+    this.current = this.tabBarStores.length - 1
     this.tabBarStores[this.current].id = this.current
-    this.tabBarStores[this.current].title = title
-    this.tabBarStores[this.current].visibility = 'visible';
+    this.tabBarStores[this.current].title = title ? title : 'na'
+    this.tabBarStores[this.current].display = 'block';
   }
 
-  close(id) {
-    this.current = this.current - 1
-    this.currentTab = this.current
-    this.tabBarStores.splice(id,1)
-    this.select(this.current)
+  @action
+  close() {
+    this.tabBarStores.splice(this.current,1)
+    this.current = this.tabBarStores.length - 1
+    if (this.current == -1 && this.tabBarStores.length > 0) {
+      this.current = 0  
+    }
+    // change the ID of the other tab
+    if (this.current > -1) {
+      this.tabBarStores[this.current].display = 'block'
+    }
   }
 
   static createStore() {
     return {
-      @observable visibility : 'hidden',
+      @observable display : 'none',
       @observable title : '',
-      id : 0,
+      id : 0
     }      
   }
 }

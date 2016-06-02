@@ -8,7 +8,7 @@ class Popup extends Component {
   render() {
     return (
       <div className="popup" id={`popup${this.props._id}`} style={ { 
-        visibility : this.props.store.visibility, 
+        display : this.props.store.display, 
         height : this.props.store.height, 
         width : this.props.store.width,
         left : this.props.store.left,
