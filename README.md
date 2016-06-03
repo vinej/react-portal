@@ -28,9 +28,9 @@ Notes:
 
 * This example is built with the help of Stephen Grider course 'Advanced React with Redux' (excellent) and some Internet information about Mobx.  
 
-## Goal
+## Goals
 
-The goal is to experiment using React/Mobx and a Flux pattern like Redux
+The first goal is to experiment using React/Mobx and a Flux pattern like Redux. The second goal is to implement enough features to have a base Framework to start a real project. After one month of testing and implementing real features with the flux pattern I can say that Mobx fulfills my expectations. 
 
 ## Why use a Flux pattern with Mobx
 
