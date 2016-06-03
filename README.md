@@ -41,13 +41,15 @@ There is no obligation to use a Flux pattern with Mobx if your application is si
 With React/Mobx/Dispatch
 
 * Stores use mutable data
-* Stores are updated through reducers
-  * I kept the same name as Redux, but they are not really reducers. I have to find a better term !
+* Stores contain actions with Mobx @action decorator
+* Stores actions are called through reducers and middlewares to update the data
+  * I kept the same name as Redux, but they are not really reducers. I have to find a better term (maybe switcher) !
 * Components are refreshed with Mobx @obserser decorator
-* Components use 'dispatch' to dispatch action creator
-* Components use stores directly (not need to use MapStateToProps)
-* Components must use stores in read only mode
-* Components use stores in read/write mode (it's the exception) for input fields. There is no value to go through each reducer for every key stroke during input. If you want to follow at 100% the flux pattern, you could launch an action creator at every change value
+* Components use 'dispatch' function to dispatch actions creator
+* Components use stores data directly (not need to use MapStateToProps)
+ * like that you know the difference between stores' data and props
+* Components must use stores' data in read only mode
+* Components use stores' data in read/write mode (it's the exception) for input fields. There is no value to go through each reducer for every key stroke during input. If you want to follow at 100% the flux pattern, you could dispatch an action creator at every change value
 * Stores attributes are observables with the @observable decorator
 * Stores are singletons or standard classes
 * Standard classes stores are passed as parameter to the action creator to keep the independance of the components. In a dashboard, the same component could be used multiple times and each component will have its own store to implement local filtering, sorting, etc...
