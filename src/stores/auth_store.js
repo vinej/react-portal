@@ -1,4 +1,11 @@
+import React, { Component } from 'react';
 import { observable, action } from 'mobx';
+import { transaction } from 'mobx';
+import { browserHistory } from 'react-router';
+import { authSetAuthorizations } from '../actions/auth_actions';
+import { storeEditTab } from '../actions/base_actions';
+import { dispatch } from '../helpers/dispatcher';
+import Dashboard from '../components/dashboard/dashboard'
 
 export var authStore = {
   @observable email : "",
@@ -6,8 +13,8 @@ export var authStore = {
   @observable authenticated : false,
   @observable errorMessage : '',
 
-  isActionInit : false,
-  actions : [],
+  isAutorizationInit : false,
+  authorizations : [],
 
   isActionAvailable : function(actiontype) {
     return true
@@ -15,6 +22,76 @@ export var authStore = {
     //   actiontype = actiontype.substr(0, actiontype.length - 1);
     // }
     // return this.actions.indexOf(actiontype) > -1
+  },
+
+  setAuthorizations : function(authorizations, mainComponentsToRender) {
+    transaction( () => {
+      this.isAutorizationInit = true;
+      this.authorizations = authorizations;
+    })
+    // now we can render main, but it could be null
+    // if 
+    if (mainComponentsToRender) {
+      mainComponentsToRender();
+    }
+    browserHistory.push('/main');
+    // now we can create the first tab. The first tab contains the DashBoard
+    setTimeout( () => {
+      var component = <Dashboard />
+      dispatch(storeEditTab(null, component, 'Dashboard'))
+    }, 1)
+  },
+
+  checkToken : function(mainComponentsToRender) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const name = localStorage.getItem('name');
+      transaction( () => {
+        authStore.authenticated = true;
+        authStore.name = name;
+        authStore.errorMessage = '';
+        dispatch(authSetAuthorizations(mainComponentsToRender))
+      })
+    } else {
+      // render the main, but stay on root to 
+      // SignUn or SignUp
+      mainComponentsToRender();
+      browserHistory.push('/');
+    }
+  },
+
+  signInOrUp : function(token, name) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('name', name);
+    transaction( () => {
+      authStore.authenticated = true;
+      authStore.name = name;
+      authStore.errorMessage = '';
+    });
+    dispatch(authSetAuthorizations(null))
+  },
+
+  signOut : function() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    transaction(() => {
+      authStore.authenticated = false;
+      authStore.name = '';
+      authStore.errorMessage = '';
+    });
+  },
+
+  Error : function(error) {
+    transaction(() => {
+      if (typeof error === 'object') {
+        authStore.errorMessage = error.error;
+      } else {
+        authStore.errorMessage = error;
+      }
+      authStore.authenticated = false;
+      authStore.name = '';
+    });
+    browserHistory.push('/signin');
   }
 }
 

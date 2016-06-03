@@ -5,10 +5,10 @@ export default function(action, next) {
   switch(action.type) {
     case t.MESSAGE_FETCH:
       messageStore.message = action.payload;
-      return next(null, action);
+      break;
     case t.MESSAGE_ERROR:
       messageStore.error = action.payload;
-      return next(null, action);
+      break;
   }
   return next(null, action);
 }

@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { observable, action, transaction } from 'mobx';
 
 class TabBarStore {
@@ -25,7 +26,7 @@ class TabBarStore {
   }
 
   @action
-  show(title) {
+  show(title, component) {
     if (this.current > -1) {
       this.tabBarStores[this.current].display = 'none';
     }
@@ -34,6 +35,12 @@ class TabBarStore {
     this.tabBarStores[this.current].id = this.current
     this.tabBarStores[this.current].title = title ? title : 'na'
     this.tabBarStores[this.current].display = 'block';
+
+    // need a set timeout, because the current action must terminate
+    // to re-render of the tabbar. After that it's possible
+    // to render the component into the div
+    setTimeout( () => ReactDOM.render( component , 
+      document.querySelector(`#tab${this.current}`)),1)
   }
 
   @action

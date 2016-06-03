@@ -16,7 +16,7 @@ class App extends Component {
         }
         <Header className="widgetheader"/>
         {this.props.children}
-        <DevTools />
+        {/* <DevTools /> } */}
       </div>
     )
   }

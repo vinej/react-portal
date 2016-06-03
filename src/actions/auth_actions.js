@@ -1,20 +1,20 @@
 import * as t from '../types/auth_types';
 import { authService } from '../services/auth_service';
 
-export function authSetActions(render) {
+export function authSetAuthorizations(mainComponentsToRender) {
   return {
-    type: t.AUTH_SET_ACTIONS,
+    type: t.AUTH_SET_AUTHORIZATIONS,
     payload: function() {
-      authService.setActions(render, authSetActionsIt , authError);
+      authService.setAuthorizations(mainComponentsToRender, authSetAuthorizationsIt , authError);
     }
   }
 }
 
-export function authSetActionsIt(render, actions) {
+export function authSetAuthorizationsIt(mainComponentsToRender, authorizations) {
   return {
-    type: t.AUTH_SET_ACTIONS,
-    render: render,
-    payload: actions
+    type: t.AUTH_SET_AUTHORIZATIONS,
+    render: mainComponentsToRender,
+    payload: authorizations
   }
 }
 
@@ -36,10 +36,10 @@ export function authSignUp({ email, password, name }) {
   }
 }
 
-export function authCheckToken(render) {
+export function authCheckToken(mainComponentsToRender) {
   return {
     type: t.AUTH_CHECK_TOKEN,
-    render: render
+    render: mainComponentsToRender
   };
 }
 

@@ -24,7 +24,7 @@ require("./styles/style.css");
 require("../node_modules/react-grid-layout/css/styles.css")
 require("../node_modules/react-resizable/css/styles.css")
 
-var render = function() { 
+var mainComponentsToRender = function() { 
   ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
@@ -40,9 +40,9 @@ var render = function() {
     , document.querySelector('#app'));
 }
 
-// check the current user info : token
-// we must fetch the user actions before rendering
-// the DASHBOARD. Then we pass the render function
-// to the set actions
-dispatch(authCheckToken(render));
+// check the token of current user 
+// we must fetch the user autorizations before rendering
+// the main. It's for this reason that we pass the function
+// to render to the authCheckToken
+dispatch(authCheckToken(mainComponentsToRender));
   

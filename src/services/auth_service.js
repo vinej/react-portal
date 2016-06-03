@@ -19,7 +19,7 @@ class AuthService {
     .catch(response => dispatch(err(response.data)));
   }
 
-  setActions(render, next, err) {
+  setAuthorizations(render, next, err) {
     axios.get(`${ROOT_URL}/api/actions?${PARAMETERS()}`, HEADERS())
     .then(response => {
       dispatch(next(render, response.data))

@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import ReactDOM from 'react-dom';
 
 class PopupStore {
 
@@ -21,14 +22,30 @@ class PopupStore {
   }
 
   @action
-  show() {
+  show(component, dimension) {
     this.current = this.current + 1
     if (this.current > 1) {
       this.popupStores[this.current - 1].display = 'none';
     }
-    this.popupStores.push(PopupStore.createStore())
-    this.popupStores[this.current].id = this.current
-    this.popupStores[this.current].display = 'block';
+    const store = PopupStore.createStore()
+    this.popupStores.push(store)
+
+    store.id = this.current
+    store.display = 'block';
+    store.width = dimension.width;
+    store.height = dimension.height;
+    store.left = dimension.left;
+    store.top = dimension.top;
+
+    // we need a setTimeout, because without it the
+    // render of the component will be done before 
+    // the render of the div that will contain the
+    // component. 1 millisecond is enough to let the
+    // other render to finish
+    setTimeout( () => 
+      ReactDOM.render( component , 
+        document.querySelector(`#popup${this.current}`)),
+    1)
   }
 
   @action
