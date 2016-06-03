@@ -54,7 +54,8 @@ With React/Mobx/Dispatch
 
 ## Dashboard example
 
-https://cloud.githubusercontent.com/assets/3254214/15592957/e417cbe4-2375-11e6-8f69-e753d58daedc.png
+![dashbard](https://cloud.githubusercontent.com/assets/3254214/15765913/f7248a82-2907-11e6-8148-551b2ac29887.png)
+
 
 JYV
 
