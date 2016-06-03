@@ -1,12 +1,6 @@
 import * as t from '../types/auth_types';
-import { transaction } from 'mobx';
-import { authStore, authFormStore } from '../stores/auth_store';
-import { browserHistory } from 'react-router';
+import { authStore } from '../stores/auth_store';
 import { authSetAuthorizations } from '../actions/auth_actions';
-import { storeEditTab } from '../actions/base_actions';
-import { dispatch } from '../helpers/dispatcher';
-import Dashboard from '../components/dashboard/dashboard'
-import React, { Component } from 'react';
 
 export default function(action, next) {
   switch(action.type) {
