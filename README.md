@@ -46,7 +46,7 @@ With React/Mobx/Dispatch
   * I kept the same name as Redux, but they are not really reducers. I have to find a better term (maybe switcher) !
 * Components are refreshed with Mobx @obserser decorator
 * Components use 'dispatch' function to dispatch actions creator
-* Components use stores data directly (not need to use MapStateToProps)
+* Components use stores' data directly (not need to use MapStateToProps)
  * like that you know the difference between stores' data and props
 * Components must use stores' data in read only mode
 * Components use stores' data in read/write mode (it's the exception) for input fields. There is no value to go through each reducer for every key stroke during input. If you want to follow at 100% the flux pattern, you could dispatch an action creator at every change value
