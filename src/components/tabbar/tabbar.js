@@ -30,7 +30,10 @@ class TabBar extends Component {
           { tabBarStore.getStores().map( (store, idx) => 
             <li onClick={this.handleOnChange}
                 _id={idx} key={idx} value={idx}>{store.title}
-              <a className='fa fa-close fa-sm' onClick={this.handleOnClose} style={{ 'color': 'lightgray'}}></a>
+              <sup><a className='fa fa-close fa-sm' onClick={this.handleOnClose} 
+              style={{ 
+
+                'color': 'lightgray'}}></a></sup>
             </li>
             )
           } 

@@ -82,7 +82,7 @@ ul.tabbar>li.selected {
 }
 
 div.tabbarcontent {
-  border: 1px solid gray;
+  //border: 1px solid gray;
 }
 
 ul { overflow: auto; }
