@@ -17,6 +17,7 @@ export default class TodoStore extends BaseStore {
     super();
     this.service = todoService;
     this.name = 'todo';
+    this.id = 0
   }
 
   static getEditFormDimension() {

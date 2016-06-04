@@ -1,6 +1,13 @@
 class RegisterStore {
+
   constructor() {
-    this.stores = [];
+    this._nextId = 0
+    this.stores = []
+  }
+
+  nextId() {
+    this._nextId = this._nextId + 1
+    return this._nextId
   }
 
   add( store ) {

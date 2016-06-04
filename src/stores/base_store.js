@@ -2,6 +2,7 @@ import { observable } from 'mobx';
 
 export default class BaseStore {
   constructor() {
+    this.key = -1 // key for new records
     this.name = 'need_to_be_set_by_extend_class';
     this.service = null;  // need to be set by the extend class
                           // it's use by the base action to know

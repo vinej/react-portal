@@ -3,6 +3,8 @@ import ReactGridLayout from 'react-grid-layout';
 import Users from '../user/users';
 import Todos from '../todo/todos';
 import Widget from './widget';
+import { dispatch } from '../../helpers/dispatcher';
+import { storeEditTab, storeGetAll } from '../../actions/base_actions';
 
 class Dashboard extends Component {
   render() {
@@ -11,6 +13,7 @@ class Dashboard extends Component {
         {i: 'b', x: 4, y: 0, w: 3, h: 21},
         {i: 'c', x: 7, y: 0, w: 2, h: 3}
     ];
+    var component = <Todos />
 
     return (
       <ReactGridLayout className="layout" layout={layout} cols={12} rowHeight={20} width={1400}>
@@ -19,8 +22,11 @@ class Dashboard extends Component {
             <Users />
           </Widget>
         </div>
-        <div key={'b'} className="widget">
-          <Widget  title="My Todos">
+        <div key={'b'} className="widget" >
+          <Widget  title="My Todos" 
+                onOpenInTab={() => dispatch(storeEditTab(null,component,"Todo"))}
+                onRefresh= {() => dispatch(storeGetAll("todo"))}
+                >
             <Todos />
           </Widget>
         </div>

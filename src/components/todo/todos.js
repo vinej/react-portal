@@ -5,6 +5,7 @@ import { storeGetAll, storePreviousPage, storeNextPage, storeEditForm } from '..
 import Todo from './todo';
 import { dispatch } from '../../helpers/dispatcher';
 import TodoForm from './todo_form';
+import { registerStore } from '../../stores/register_store';
 
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
@@ -22,8 +23,6 @@ class Todos extends Component {
     TodoStore.unmount(this.store);
   }
 
-
-
   handleAdd() {
     var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
     dispatch(storeEditForm(this.store, component, TodoStore.getEditFormDimension()))
@@ -39,7 +38,7 @@ class Todos extends Component {
           {/* note: always need a key */} 
           <tbody>
             { this.store.page.map( todo => 
-              <Todo key={todo._id} todo={todo} mstore={this.store} />
+              <Todo key={registerStore.nextId()} todo={todo} mstore={this.store} />
               )
             }
           </tbody>
