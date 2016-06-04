@@ -1,26 +1,41 @@
+import { registerStore } from '../stores/register_store';
+
 export function reduceBaseAction(action, next) {
   const store = action.store;
   const idx = action.type.indexOf("_");
   const type = action.type.substring(idx+1);
+  var name = null
+  if (typeof store === "string") {
+    name = store
+  } else {
+    name = store.name
+  }
+  const stores = registerStore.getAll(name); 
 
   switch(type) {
     case 'add':
-      store.add(action.payload);
+      // need to update all related stores
+      stores.forEach( (tstore) => tstore.add(action.payload) )
       break;
     case 'delete':
-      store.delete(action.payload);
+      // need to update all related stores
+      stores.forEach( (tstore) => tstore.delete(action.payload) )
       break;
     case 'update':
-      store.update(action.payload);
+      // need to update all related stores
+      stores.forEach( (tstore) => tstore.update(action.payload) )
       break;
     case 'next_page':
+      // ONLY CHANGE THE PAGE OF THE CURRENT STORE
       store.nextPage();
       break;
     case 'previous_page':
+      // ONLY CHANGE THE PAGE OF THE CURRENT STORE
       store.previousPage();
       break;
     case 'get_all':
-      store.setAll(action.payload);
+      // need to update all related stores
+      store.setAll(action.payload)
       break;
   }
 }
