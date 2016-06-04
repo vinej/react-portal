@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { observer } from "mobx-react";
-import TodoStore from '../../stores/todo_store';
-import { storeUpdate, storeAdd, storeCancelForm } from '../../actions/base_actions';
-import { dispatch } from '../../helpers/dispatcher';
+import React, { Component } from 'react'
+import { observer } from "mobx-react"
+import TodoStore from '../../stores/todo_store'
+import { storeUpdate, storeAdd, storeCancelForm } from '../../actions/base_actions'
+import { dispatch } from '../../helpers/dispatcher'
+import ReactDOM from 'react-dom'
 
 @observer
 class TodoForm extends Component {
@@ -15,6 +16,10 @@ class TodoForm extends Component {
 
   componentWillMount() {
     this.formStore = TodoStore.getFormStore(this.props.todo)
+  }
+
+  componentDidMount() {
+    this.refs.nameInput.focus();
   }
 
   handleFormSubmit( event ) {
@@ -63,7 +68,8 @@ class TodoForm extends Component {
         <fieldset className="form-group">
           <label>Description:</label>&nbsp;
           { this.formStore.descriptionError && this.renderError(this.formStore.descriptionError) }
-          <input  name="description" 
+          <input  ref="nameInput"
+                  name="description" 
                   className="form-control"
                   value={ this.formStore.description }
                   onChange={ this.handleOnChange } />

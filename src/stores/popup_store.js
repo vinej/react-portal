@@ -59,7 +59,7 @@ class PopupStore {
 
   static createStore() {
     return {
-      @observable visibility : 'none',
+      @observable display : 'none',
       @observable height : '250px',
       @observable width : '50%',
       @observable left : '50%',
