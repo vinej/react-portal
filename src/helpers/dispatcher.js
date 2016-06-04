@@ -50,13 +50,13 @@ class Dispatcher {
 export let dispatcher = new Dispatcher();
 // logger first
 dispatcher.addMiddleware(loggerMiddleware)
-// Autorization second
+// Authorization second
 dispatcher.addMiddleware(authorizationMiddleware)
 //thunk third
 dispatcher.addMiddleware(thunkMiddleware)
 // edit / cancel form
 dispatcher.addMiddleware(popupMiddleware)
-
+// tabbar management
 dispatcher.addMiddleware(tabBarMiddleware)
 
 // The order of reducers is not important
