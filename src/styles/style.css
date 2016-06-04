@@ -59,3 +59,34 @@
   width: 100%;
   background : rgba(255,255,255,0.6);
 }
+
+ul.tabbar {
+  display: table;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tabbar>li {
+  float: left;
+  padding: 10px;
+  background-color: white;
+}
+
+ul.tabbar>li:hover {
+  background-color: mintcream;
+}
+
+ul.tabbar>li.selected {
+  background-color: blue;
+}
+
+div.tabbarcontent {
+  border: 1px solid gray;
+}
+
+ul { overflow: auto; }
+
+div.content { clear: both; }
+
+

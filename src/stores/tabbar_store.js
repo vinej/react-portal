@@ -58,8 +58,8 @@ class TabBarStore {
 
   static createStore() {
     return {
-      @observable display : 'none',
-      @observable title : '',
+      display : 'none',
+      title : '',
       id : 0
     }      
   }
