@@ -20,33 +20,17 @@ function findStore(store) {
   }
 }
 
-export function pageNext(store) {
-  store = findStore(store)
-  return {
-    type: `${store.name}_next_page`,
-    store: store
-  };
-}
-
-export function pagePrevious(store) {
-  store = findStore(store)
-  return {
-    type: `${store.name}_previous_page`,
-    store: store
-  };
-}
-
-export function pageDeleteRecord(store, record) {
+export function crudDelete(store, record) {
   store = findStore(store)
   return {
     type: `${store.name}_delete_`,
     payload: function() {
-      store.service.delete(store, record, pageDeleteRecordIt, pageError);
+      store.service.delete(store, record, crudDeleteIt, pageError);
     }
   }
 }
 
-export function pageDeleteRecordIt(store, record) {
+export function crudDeleteIt(store, record) {
   return {
     type: `${store.name}_delete`,
     store: store,
@@ -54,17 +38,17 @@ export function pageDeleteRecordIt(store, record) {
   };
 }
 
-export function pageUpdateRecord(store, record) {
+export function crudUpdate(store, record) {
   store = findStore(store)
   return {
     type: `${store.name}_update_`,
     payload: function() {
-      store.service.update(store, record, pageUpdateRecordIt, pageError);
+      store.service.update(store, record, crudUpdateIt, pageError);
     }
   }
 }
 
-export function pageUpdateRecordIt(store, record) {
+export function crudUpdateIt(store, record) {
   return {
     type: `${store.name}_update`,
     store: store,
@@ -72,17 +56,17 @@ export function pageUpdateRecordIt(store, record) {
   };
 }
 
-export function pageAddRecord(store, record) {
+export function crudAdd(store, record) {
   store = findStore(store)
   return {
     type: `${store.name}_add_`,
     payload: function() {
-      store.service.add(store, record, pageAddRecordIt, pageError);
+      store.service.add(store, record, crudAddIt, pageError);
     }
   }
 }
 
-export function pageAddRecordIt(store, record) {
+export function crudAddIt(store, record) {
   return {
     type: `${store.name}_add`,
     store: store,
@@ -90,17 +74,17 @@ export function pageAddRecordIt(store, record) {
   };
 }
 
-export function pageGetAll(store) {
+export function crudGetAll(store) {
   store = findStore(store)
   return {
     type: `${store.name}_get_all_`,
     payload: function() {
-      store.service.getAll(store, pageGetAllIt, pageError);
+      store.service.getAll(store, crudGetAllIt, pageError);
     }
   }
 } 
 
-export function pageGetAllIt(store, data) {
+export function crudGetAllIt(store, data) {
   return {
     type: `${store.name}_get_all`,
     store : store,
