@@ -13,6 +13,7 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * Form validations
 * Popup form 
 * Tab Bar 
+* Dynamic widgets and dashboards (not completed yet)
 
 ## Installation
 * install nodejs
