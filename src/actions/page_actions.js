@@ -46,7 +46,7 @@ export function pageDeleteRecord(store, record) {
   }
 }
 
-export function pageDeleteRecord(store, record) {
+export function pageDeleteRecordIt(store, record) {
   return {
     type: `${store.name}_delete`,
     store: store,
