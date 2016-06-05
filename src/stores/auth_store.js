@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { observable, action, transaction } from 'mobx'
 import { browserHistory } from 'react-router'
 import { authSetAuthorizations } from '../actions/auth_actions'
-import { tabbarShow } from '../actions/tabbar_actions'
+import { tabbarShow, tabbarCloseAll } from '../actions/tabbar_actions'
 import { dispatch } from '../helpers/dispatcher'
 import Dashboard from '../components/dashboard/dashboard'
 
@@ -36,7 +36,7 @@ export var authStore = {
     browserHistory.push('/main')
     // now we can create the first tab. The first tab contains the DashBoard
     setTimeout( () => {
-      var component = <Dashboard />
+      var component = <Dashboard name='my dashboard 1'/>
       dispatch(tabbarShow(component, 'Dashboard'))
     }, 1)
   },
@@ -78,6 +78,7 @@ export var authStore = {
       authStore.name = '';
       authStore.errorMessage = '';
     });
+    dispatch(tabbarCloseAll())
   },
 
   Error : function(error) {

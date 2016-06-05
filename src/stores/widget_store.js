@@ -7,6 +7,8 @@ export default class WidgetStore extends CrudStore {
     super()
     this.service = widgetService
     this.name = 'widget'
+    this.records =  [ { 'name' : 'UsersWidget', 'key' : 'a' },
+                      { 'name' : 'TodosWidget', 'key' : 'b' } ]
   }
 
   static mount(name) {

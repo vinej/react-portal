@@ -1,43 +1,47 @@
 import React, { Component } from 'react'
 import ReactGridLayout from 'react-grid-layout'
-import Users from '../user/users'
-import Todos from '../todo/todos'
-import Widget from './widget'
+import WidgetStore from '../../stores/widget_store'
 import { dispatch } from '../../helpers/dispatcher'
-import { tabbarShow } from '../../actions/tabbar_actions'
-import { pageGetAll } from '../../actions/page_actions'
+import { crudGetAll } from '../../actions/crud_actions'
+
+// need to import all available widgets that can be included into a dashboard
+import UsersWidget from '../widgets/users_widget'
+import TodosWidget from '../widgets/todos_widget'
 
 class Dashboard extends Component {
-  render() {
-    var layout = [
-        {i: 'a', x: 0, y: 0, w: 4, h: 21},
-        {i: 'b', x: 4, y: 0, w: 3, h: 21},
-        {i: 'c', x: 7, y: 0, w: 2, h: 3}
-    ];
-    var component = <Todos />
+  static getWidgetComponent(name) {
+    switch (name) {
+      case 'TodosWidget':
+        return <TodosWidget />
+      case 'UsersWidget':
+        return <UsersWidget />
+    }
+  }
 
+  constructor() {
+    super()
+    this.store = WidgetStore.mount('test')
+  }
+
+  componentWillMount() {
+    //dispatch(crudGetAll(this.store))
+  }
+
+  componentWillUnmount() {
+    WidgetStore.unmount(this.store)
+  }
+
+  render() {
+    var layout = this.store.getLayout()
     return (
       <ReactGridLayout className="layout" layout={layout} cols={12} rowHeight={20} width={1400}>
-        <div key={'a'} className="widget">
-          <Widget title="Users Management">
-            <Users />
-          </Widget>
-        </div>
-        <div key={'b'} className="widget" >
-          <Widget  title="My Todos" 
-                onOpenInTab={() => dispatch(tabbarShow(component,"Todo"))}
-                onRefresh= {() => dispatch(pageGetAll("todo"))}
-                >
-            <Todos />
-          </Widget>
-        </div>
-        <div key={'c'} className="widget">
-          <Widget  title="My Notes">
-            <div >- implement this </div>
-          </Widget>
-        </div>
+        { this.store.records.map( widget => 
+          <div key={widget.key} className="widget">
+            { Dashboard.getWidgetComponent(widget.name) }
+          </div> )
+        }
       </ReactGridLayout>
-    );
+    )
   }
 }
 export default Dashboard;
