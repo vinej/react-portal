@@ -7,6 +7,8 @@ export default class WidgetStore extends CrudStore {
     super()
     this.service = widgetService
     this.name = 'widget'
+
+    // hard code for now, just for testing 
     this.records =  [ { 'name' : 'UsersWidget', 'key' : 'a' },
                       { 'name' : 'TodosWidget', 'key' : 'b' } ]
   }
@@ -21,6 +23,7 @@ export default class WidgetStore extends CrudStore {
   }
 
   getLayout() {
+    // hard code for now, just for testing 
     return [
       {i: 'a', x: 0, y: 0, w: 4, h: 21},
       {i: 'b', x: 4, y: 0, w: 3, h: 21}
