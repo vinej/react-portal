@@ -10,6 +10,7 @@ class TabBar extends Component {
 
   constructor() {
     super()
+    this.handleOnClick = this.handleOnClick.bind(this)
     this.handleOnClose = this.handleOnClose.bind(this)
   }
 
