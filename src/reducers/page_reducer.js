@@ -1,6 +1,6 @@
 import { registerStore } from '../stores/register_store';
 
-export function reduceBaseAction(action, next) {
+export function reducePageAction(action, next) {
   const store = action.store;
   const idx = action.type.indexOf("_");
   const type = action.type.substring(idx+1);

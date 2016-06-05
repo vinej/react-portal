@@ -1,4 +1,4 @@
-import { storeNextPage } from '../actions/base_actions';
+import { pageNext } from '../actions/page_actions';
 import { registerStore } from '../stores/register_store';
 import { dispatch } from '../helpers/dispatcher';
 
@@ -19,7 +19,7 @@ class SimulateEvent {
       // do it for all 'user' stores
       const stores = registerStore.getAll('user');
       stores.forEach( (store) => 
-        dispatch( storeNextPage(store)) )
+        dispatch( pageeNext(store)) )
     }, 2000, 5);
   }
 }

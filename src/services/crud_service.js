@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL, HEADERS, PARAMETERS } from './const_service';
 import { dispatch } from '../helpers/dispatcher';
 
-export default class BaseService {
+export default class CrudService {
   constructor() {
     this.service = "need_to_be_set_by_the_extend_class";
   }

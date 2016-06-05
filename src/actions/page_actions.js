@@ -20,7 +20,7 @@ function findStore(store) {
   }
 }
 
-export function baseNextPage(store) {
+export function pageNext(store) {
   store = findStore(store)
   return {
     type: `${store.name}_next_page`,
@@ -28,7 +28,7 @@ export function baseNextPage(store) {
   };
 }
 
-export function basePreviousPage(store) {
+export function pagePrevious(store) {
   store = findStore(store)
   return {
     type: `${store.name}_previous_page`,
@@ -36,17 +36,17 @@ export function basePreviousPage(store) {
   };
 }
 
-export function baseDelete(store, record) {
+export function pageDeleteRecord(store, record) {
   store = findStore(store)
   return {
     type: `${store.name}_delete_`,
     payload: function() {
-      store.service.delete(store, record, baseDeleteIt, baseError);
+      store.service.delete(store, record, pageDeleteRecordIt, pageError);
     }
   }
 }
 
-export function baseDeleteIt(store, record) {
+export function pageDeleteRecord(store, record) {
   return {
     type: `${store.name}_delete`,
     store: store,
@@ -54,17 +54,17 @@ export function baseDeleteIt(store, record) {
   };
 }
 
-export function baseUpdate(store, record) {
+export function pageUpdateRecord(store, record) {
   store = findStore(store)
   return {
     type: `${store.name}_update_`,
     payload: function() {
-      store.service.update(store, record, baseUpdateIt, baseError);
+      store.service.update(store, record, pageUpdateRecordIt, pageError);
     }
   }
 }
 
-export function baseUpdateIt(store, record) {
+export function pageUpdateRecordIt(store, record) {
   return {
     type: `${store.name}_update`,
     store: store,
@@ -72,17 +72,17 @@ export function baseUpdateIt(store, record) {
   };
 }
 
-export function baseAdd(store, record) {
+export function pageAddRecord(store, record) {
   store = findStore(store)
   return {
     type: `${store.name}_add_`,
     payload: function() {
-      store.service.add(store, record, baseAddIt, baseError);
+      store.service.add(store, record, pageRecordAddIt, pageError);
     }
   }
 }
 
-export function baseAddIt(store, record) {
+export function pageAddRecordIt(store, record) {
   return {
     type: `${store.name}_add`,
     store: store,
@@ -90,17 +90,17 @@ export function baseAddIt(store, record) {
   };
 }
 
-export function baseGetAll(store) {
+export function pageGetAll(store) {
   store = findStore(store)
   return {
     type: `${store.name}_get_all_`,
     payload: function() {
-      store.service.getAll(store, baseGetAllIt, baseError);
+      store.service.getAll(store, pageGetAllIt, pageError);
     }
   }
 } 
 
-export function baseGetAllIt(store, data) {
+export function pageGetAllIt(store, data) {
   return {
     type: `${store.name}_get_all`,
     store : store,
@@ -108,7 +108,7 @@ export function baseGetAllIt(store, data) {
   }
 }
 
-export function baseError(store, error) {
+export function pageError(store, error) {
   return {
     type: `${store.name}_error`,
     store : store,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import TodoStore from '../../stores/todo_store'
-import { baseUpdate, baseAdd } from '../../actions/base_actions'
+import { pageUpdateRecord, pageAddRecord } from '../../actions/page_actions'
 import { popupClose } from '../../actions/popup_actions'
 import { dispatch } from '../../helpers/dispatcher'
 import ReactDOM from 'react-dom'
@@ -28,9 +28,9 @@ class TodoForm extends Component {
     if (this.formStore.isValidate()) {
       var todo = this.formStore.getTodo()
       if (todo._id) {
-        dispatch(baseUpdate(this.props.mstore, todo))
+        dispatch(pageUpdateRecord(this.props.mstore, todo))
       } else {
-        dispatch(baseAdd(this.props.mstore, todo))
+        dispatch(pageAddRecord(this.props.mstore, todo))
       }
       dispatch(popupClose())
     }

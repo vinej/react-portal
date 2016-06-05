@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
 import  UserStore from '../../stores/user_store';
-import { baseGetAll, basePreviousPage, baseNextPage } from '../../actions/base_actions';
+import { pageGetAll, pagePrevious, pageNext } from '../../actions/page_actions';
 import User from './user';
 import { dispatch } from '../../helpers/dispatcher';
 
@@ -14,7 +14,7 @@ class Users extends Component {
   }
 
   componentWillMount() {
-    dispatch(baseGetAll(this.store));
+    dispatch(pageGetAll(this.store));
   }
 
   componentWillUnmount() {
@@ -37,8 +37,8 @@ class Users extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => dispatch(basePreviousPage(this.store)) }>prev</button>
-        <button onClick={ () => dispatch(baseNextPage(this.store)) }>next</button>
+        <button onClick={ () => dispatch(pagePrevious(this.store)) }>prev</button>
+        <button onClick={ () => dispatch(pageNext(this.store)) }>next</button>
       </div>
     )
   }

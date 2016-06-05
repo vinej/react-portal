@@ -1,6 +1,6 @@
 import { observable } from 'mobx';
 
-export default class BaseStore {
+export default class PageStore {
   constructor() {
     this.key = -1 // key for new records
     this.name = 'need_to_be_set_by_extend_class';

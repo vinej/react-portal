@@ -1,7 +1,7 @@
 import axios from 'axios';
-import BaseService from './base_service';
+import CrudService from './crud_service';
 
-class UserService extends BaseService {
+class UserService extends CrudService {
   constructor() {
     super();
     this.service= "users";

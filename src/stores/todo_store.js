@@ -1,9 +1,9 @@
-import BaseStore from './base_store';
+import PageStore from './page_store';
 import { todoService } from '../services/todo_service';
 import { registerStore } from './register_store';
 import { observable, action } from 'mobx';
 
-export default class TodoStore extends BaseStore {
+export default class TodoStore extends PageStore {
   static mount() {
     return registerStore.add( new TodoStore() );
   }
