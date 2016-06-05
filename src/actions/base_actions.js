@@ -1,9 +1,11 @@
 import { registerStore } from '../stores/register_store';
 
+/* base action for store crud actions */
+
 /**
  * The store could be a string or an object
- * A string, means that we must find the ifrst store of that typer
- * A objet, means that it's alread a store objet
+ * A string means that we must find the first store of that type
+ * A objet means that it's already a store objet
  */
 function findStore(store) {
   if (typeof store !== 'string') {
@@ -15,56 +17,6 @@ function findStore(store) {
     } else {
       return store;
     }
-  }
-}
-
-export function storeEditForm(store, component, dimension) {
-  store = findStore(store)
-  return  {
-    type: `${store.name}_edit_form`,
-    store: store,
-    payload: { component, dimension }
-  }
-}
-
-export function storeCancelForm(store) {
-  store = findStore(store)
-  return  {
-    type: `${store.name}_cancel_form`,
-    store: store
-  }
-}
-
-export function storeEditTab(store, component, title) {
-  store = findStore(store)
-  if (!store) {
-    store = { name : 'na'}    
-  }
-  return  {
-    type: `${store.name}_edit_tab`,
-    store: store,
-    payload: { component, title }
-  }
-}
-
-export function storeCancelTab(store) {
-  findStore(store)
-  if (!store) {
-    store = { name : 'na'}    
-  }
-  return  {
-    type: `${store.name}_cancel_tab`
-  }
-}
-
-export function storeSelectTab(store, id) {
-  findStore(store)
-  if (!store) {
-    store = { name : 'na'}    
-  }
-  return  {
-    type: `${store.name}_select_tab`,
-    payload: id
   }
 }
 

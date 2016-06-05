@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import { observable, action } from 'mobx';
-import { transaction } from 'mobx';
-import { browserHistory } from 'react-router';
-import { authSetAuthorizations } from '../actions/auth_actions';
-import { storeEditTab } from '../actions/base_actions';
-import { dispatch } from '../helpers/dispatcher';
+import React, { Component } from 'react'
+import { observable, action, transaction } from 'mobx'
+import { browserHistory } from 'react-router'
+import { authSetAuthorizations } from '../actions/auth_actions'
+import { tabbarShow } from '../actions/tabbar_actions'
+import { dispatch } from '../helpers/dispatcher'
 import Dashboard from '../components/dashboard/dashboard'
 
 export var authStore = {
@@ -26,37 +25,37 @@ export var authStore = {
 
   setAuthorizations : function(authorizations, mainComponentsToRender) {
     transaction( () => {
-      this.isAutorizationInit = true;
-      this.authorizations = authorizations;
+      this.isAutorizationInit = true
+      this.authorizations = authorizations
     })
     // now we can render main, but it could be null
-    // if 
     if (mainComponentsToRender) {
-      mainComponentsToRender();
+      mainComponentsToRender()
     }
-    browserHistory.push('/main');
+    console.log('before main')
+    browserHistory.push('/main')
     // now we can create the first tab. The first tab contains the DashBoard
     setTimeout( () => {
       var component = <Dashboard />
-      dispatch(storeEditTab(null, component, 'Dashboard'))
+      dispatch(tabbarShow(component, 'Dashboard'))
     }, 1)
   },
 
   checkToken : function(mainComponentsToRender) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
     if (token) {
-      const name = localStorage.getItem('name');
+      const name = localStorage.getItem('name')
       transaction( () => {
-        authStore.authenticated = true;
-        authStore.name = name;
-        authStore.errorMessage = '';
+        authStore.authenticated = true
+        authStore.name = name
+        authStore.errorMessage = ''
         dispatch(authSetAuthorizations(mainComponentsToRender))
       })
     } else {
       // render the main, but stay on root to 
       // SignUn or SignUp
-      mainComponentsToRender();
-      browserHistory.push('/');
+      mainComponentsToRender()
+      browserHistory.push('/')
     }
   },
 

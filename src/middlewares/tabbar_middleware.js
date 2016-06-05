@@ -1,20 +1,24 @@
-import { tabBarStore } from '../stores/tabbar_store';
+import * as t from '../types/tabbar_types'
+import { tabBarStore } from '../stores/tabbar_store'
 
-export function tabBarMiddleware(action, next) {
-  const idx = action.type.indexOf("_")
-  const type = action.type.substring(idx+1)
-
-  switch(type) {
-    case 'cancel_tab':
-      tabBarStore.close()
-      break;
-    case 'edit_tab':
-      tabBarStore.show(action.payload.title, action.payload.component)
-      break;
-    case 'select_tab':
-      tabBarStore.select(action.payload)
-      break;
+export function tabbarMiddleware(action, next) {
+  if (!action.type.startsWith("tabbar_")) { 
+    return next(null, action)
   }
-   
-  return next(null, action);
+
+  switch(action.type) {
+    case t.TABBAR_CLOSE:
+      tabBarStore.close(action.payload)
+      break
+    case t.TABBAR_CLOSE_ALL:
+      tabBarStore.closeAll()
+      break
+    case t.TABBAR_SHOW:
+      tabBarStore.show(action.payload.component , action.payload.title)
+      break
+    case t.TABBAR_SELECT:
+      tabBarStore.select(action.payload)
+      break
+  }
+  return next(null, action)
 }

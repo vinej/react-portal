@@ -1,13 +1,13 @@
-import { thunkMiddleware } from '../middlewares/thunk_middleware';
-import { loggerMiddleware } from '../middlewares/logger_middleware';
-import { authorizationMiddleware } from '../middlewares/authorization_middleware';
-import { popupMiddleware } from '../middlewares/popup_middleware';
-import { tabBarMiddleware } from '../middlewares/tabbar_middleware';
+import { thunkMiddleware }          from '../middlewares/thunk_middleware';
+import { loggerMiddleware }         from '../middlewares/logger_middleware';
+import { authorizationMiddleware }  from '../middlewares/authorization_middleware';
+import { popupMiddleware }          from '../middlewares/popup_middleware';
+import { tabbarMiddleware }         from '../middlewares/tabbar_middleware';
 
-import authReducer from '../reducers/auth_reducer';
-import userReducer from '../reducers/user_reducer';
-import todoReducer from '../reducers/todo_reducer';
-import messageReducer from '../reducers/message_reducer';
+import authReducer      from '../reducers/auth_reducer';
+import userReducer      from '../reducers/user_reducer';
+import todoReducer      from '../reducers/todo_reducer';
+import messageReducer   from '../reducers/message_reducer';
 
 class Dispatcher {
   constructor() {
@@ -57,7 +57,7 @@ dispatcher.addMiddleware(thunkMiddleware)
 // edit / cancel form
 dispatcher.addMiddleware(popupMiddleware)
 // tabbar management
-dispatcher.addMiddleware(tabBarMiddleware)
+dispatcher.addMiddleware(tabbarMiddleware)
 
 // The order of reducers is not important
 dispatcher.addReducer(authReducer)

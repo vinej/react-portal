@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import { storeDelete, storeEditForm } from '../../actions/base_actions';
+import { storeDelete } from '../../actions/base_actions';
+import { popupShow } from '../../actions/popup_actions';
 import { dispatch } from '../../helpers/dispatcher';
 import TodoForm from './todo_form';
 import TodoStore from '../../stores/todo_store';
@@ -19,7 +20,7 @@ class Todo extends Component {
 
   handleEdit(todo) {
     var component = <TodoForm mstore={this.props.mstore} todo={todo} />
-    dispatch(storeEditForm(this.props.mstore, component, TodoStore.getEditFormDimension()));
+    dispatch(popupShow(component, TodoStore.getEditFormDimension()));
   }     
 
   render() {

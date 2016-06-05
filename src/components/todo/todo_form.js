@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import TodoStore from '../../stores/todo_store'
-import { storeUpdate, storeAdd, storeCancelForm } from '../../actions/base_actions'
+import { storeUpdate, storeAdd } from '../../actions/base_actions'
+import { popupClose } from '../../actions/popup_actions'
 import { dispatch } from '../../helpers/dispatcher'
 import ReactDOM from 'react-dom'
 
@@ -31,7 +32,7 @@ class TodoForm extends Component {
       } else {
         dispatch(storeAdd(this.props.mstore, todo))
       }
-      dispatch(storeCancelForm(this.props.mstore))
+      dispatch(popupClose())
     }
   }
 
@@ -92,7 +93,7 @@ class TodoForm extends Component {
         <button action="submit" className="btn btn-primary">Save</button>
         <button onClick={ (event) => {
           event.preventDefault();
-          dispatch(storeCancelForm(this.props.mstore)) }} className="btn btn-danger">Cancel</button>
+          dispatch(popupClose()) }} className="btn btn-danger">Cancel</button>
       </form>
     );
   }

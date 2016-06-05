@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
-import { observer } from "mobx-react";
-import  TodoStore from '../../stores/todo_store';
-import { storeGetAll, storePreviousPage, storeNextPage, storeEditForm } from '../../actions/base_actions';
-import Todo from './todo';
-import { dispatch } from '../../helpers/dispatcher';
-import TodoForm from './todo_form';
-import { registerStore } from '../../stores/register_store';
+import React, { Component } from 'react'
+import { observer } from "mobx-react"
+import  TodoStore from '../../stores/todo_store'
+import { storeGetAll, storePreviousPage, storeNextPage } from '../../actions/base_actions'
+import { popupShow } from '../../actions/popup_actions'
+import Todo from './todo'
+import { dispatch } from '../../helpers/dispatcher'
+import TodoForm from './todo_form'
+import { registerStore } from '../../stores/register_store'
 
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
   constructor() {
-    super();
-    this.store = TodoStore.mount();
+    super()
+    this.store = TodoStore.mount()
     this.handleAdd = this.handleAdd.bind(this)
   }
 
   componentWillMount() {
-    dispatch(storeGetAll(this.store));
+    dispatch(storeGetAll(this.store))
   }
 
   componentWillUnmount() {
-    TodoStore.unmount(this.store);
+    TodoStore.unmount(this.store)
   }
 
   handleAdd() {
     var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
-    dispatch(storeEditForm(this.store, component, TodoStore.getEditFormDimension()))
+    dispatch(popupShow(component, TodoStore.getEditFormDimension()))
   }
 
   render() {
@@ -50,5 +51,5 @@ class Todos extends Component {
     )
   }
 };
-export default Todos;
+export default Todos
 

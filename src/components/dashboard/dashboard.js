@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import ReactGridLayout from 'react-grid-layout';
-import Users from '../user/users';
-import Todos from '../todo/todos';
-import Widget from './widget';
-import { dispatch } from '../../helpers/dispatcher';
-import { storeEditTab, storeGetAll } from '../../actions/base_actions';
+import React, { Component } from 'react'
+import ReactGridLayout from 'react-grid-layout'
+import Users from '../user/users'
+import Todos from '../todo/todos'
+import Widget from './widget'
+import { dispatch } from '../../helpers/dispatcher'
+import { tabbarShow } from '../../actions/tabbar_actions'
+import { storeGetAll } from '../../actions/base_actions'
 
 class Dashboard extends Component {
   render() {
@@ -24,7 +25,7 @@ class Dashboard extends Component {
         </div>
         <div key={'b'} className="widget" >
           <Widget  title="My Todos" 
-                onOpenInTab={() => dispatch(storeEditTab(null,component,"Todo"))}
+                onOpenInTab={() => dispatch(tabbarShow(component,"Todo"))}
                 onRefresh= {() => dispatch(storeGetAll("todo"))}
                 >
             <Todos />

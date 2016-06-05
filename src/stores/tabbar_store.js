@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import { observable, action, transaction } from 'mobx';
+import { observable, action } from 'mobx';
 
 class TabBarStore {
   @observable tabBarStores = []
@@ -18,23 +18,28 @@ class TabBarStore {
   }
 
   @action
-  select(id) {
-    console.log('select',id)
-    this.tabBarStores[this.current].display = 'none';
-    this.tabBarStores[id].display = 'block';
-    this.current = Number(id)
+  closeAll() {
+    this.tabBarStores = []
+    this.current = -1
   }
 
   @action
-  show(title, component) {
+  select(idx) {
+    this.tabBarStores[this.current].display = 'none'
+    this.tabBarStores[idx].display = 'block'
+    this.current = Number(idx)
+  }
+
+  @action
+  show(component, title) {
     if (this.current > -1) {
-      this.tabBarStores[this.current].display = 'none';
+      this.tabBarStores[this.current].display = 'none'
     }
     this.tabBarStores.push(TabBarStore.createStore())
     this.current = this.tabBarStores.length - 1
     this.tabBarStores[this.current].id = this.current
     this.tabBarStores[this.current].title = title ? title : 'na'
-    this.tabBarStores[this.current].display = 'block';
+    this.tabBarStores[this.current].display = 'block'
 
     // need a set timeout, because the current action must terminate
     // to re-render of the tabbar. After that it's possible
@@ -44,9 +49,9 @@ class TabBarStore {
   }
 
   @action
-  close() {
-    this.tabBarStores.splice(this.current,1)
-    this.current = this.tabBarStores.length - 1
+  close(idx) {
+    this.tabBarStores.splice(idx,1)
+    this.current = idx - 1
     if (this.current == -1 && this.tabBarStores.length > 0) {
       this.current = 0  
     }
