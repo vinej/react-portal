@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import  TodoStore from '../../stores/todo_store'
-import { storeGetAll, storePreviousPage, storeNextPage } from '../../actions/base_actions'
+import { baseGetAll, basePreviousPage, baseNextPage } from '../../actions/base_actions'
 import { popupShow } from '../../actions/popup_actions'
 import Todo from './todo'
 import { dispatch } from '../../helpers/dispatcher'
@@ -17,7 +17,7 @@ class Todos extends Component {
   }
 
   componentWillMount() {
-    dispatch(storeGetAll(this.store))
+    dispatch(baseGetAll(this.store))
   }
 
   componentWillUnmount() {
@@ -44,8 +44,8 @@ class Todos extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => dispatch(storePreviousPage(this.store)) }>prev</button>
-        <button onClick={ () => dispatch(storeNextPage(this.store)) }>next</button>
+        <button onClick={ () => dispatch(basePreviousPage(this.store)) }>prev</button>
+        <button onClick={ () => dispatch(baseNextPage(this.store)) }>next</button>
         <button onClick={ () => this.handleAdd() }>add</button>
       </div>
     )

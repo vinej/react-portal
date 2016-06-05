@@ -5,7 +5,7 @@ import Todos from '../todo/todos'
 import Widget from './widget'
 import { dispatch } from '../../helpers/dispatcher'
 import { tabbarShow } from '../../actions/tabbar_actions'
-import { storeGetAll } from '../../actions/base_actions'
+import { baseGetAll } from '../../actions/base_actions'
 
 class Dashboard extends Component {
   render() {
@@ -26,7 +26,7 @@ class Dashboard extends Component {
         <div key={'b'} className="widget" >
           <Widget  title="My Todos" 
                 onOpenInTab={() => dispatch(tabbarShow(component,"Todo"))}
-                onRefresh= {() => dispatch(storeGetAll("todo"))}
+                onRefresh= {() => dispatch(baseGetAll("todo"))}
                 >
             <Todos />
           </Widget>

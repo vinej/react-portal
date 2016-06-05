@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import { storeDelete } from '../../actions/base_actions';
+import { baseDelete } from '../../actions/base_actions';
 import { popupShow } from '../../actions/popup_actions';
 import { dispatch } from '../../helpers/dispatcher';
 import TodoForm from './todo_form';
@@ -15,7 +15,7 @@ class Todo extends Component {
   }
 
   handleDelete(todo) {
-    dispatch(storeDelete(this.props.mstore, todo));
+    dispatch(baseDelete(this.props.mstore, todo));
   }     
 
   handleEdit(todo) {
