@@ -8,6 +8,7 @@ import authReducer      from '../reducers/auth_reducer';
 import userReducer      from '../reducers/user_reducer';
 import todoReducer      from '../reducers/todo_reducer';
 import messageReducer   from '../reducers/message_reducer';
+import dashboardReducer   from '../reducers/dashboard_reducer';
 
 class Dispatcher {
   constructor() {
@@ -64,6 +65,7 @@ dispatcher.addReducer(authReducer)
 dispatcher.addReducer(messageReducer)
 dispatcher.addReducer(userReducer)
 dispatcher.addReducer(todoReducer)
+dispatcher.addReducer(dashboardReducer)
 dispatcher.buildDispatch();
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)

@@ -36,7 +36,7 @@ export var authStore = {
     browserHistory.push('/main')
     // now we can create the first tab. The first tab contains the DashBoard
     setTimeout( () => {
-      var component = <Dashboard name='my dashboard 1'/>
+      var component = <Dashboard name='my dashboard 1' idx='0'/>
       dispatch(tabbarShow(component, 'Dashboard'))
     }, 1)
   },
