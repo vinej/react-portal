@@ -25,6 +25,7 @@ export default class DashboardStore extends CrudStore {
 
   getWidgetsLayout(idx) {
     var layout = []
+    this.records[idx].widgets.forEach( (w) =>  layout.push( { i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
     return layout
   }
 }
