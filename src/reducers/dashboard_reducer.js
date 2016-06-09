@@ -20,7 +20,10 @@ export default function(action, next) {
   switch(action.type) {
     case t.DASHBOARD_GET_ALL:
       dashboardStore.showAllUserDashboard()
-      break;
+      break
+    case t.DASHBOARD_REMOVE_WIDGET:
+      dashboardStore.removeWidget(action.payload.dashboardId, action.payload.widgetId)
+      break
   }
 
   return next(null, action);

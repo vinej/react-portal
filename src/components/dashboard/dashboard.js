@@ -11,12 +11,12 @@ import TodosWidget from '../widgets/todos_widget'
 
 @observer
 class Dashboard extends Component {
-  static getWidgetComponent(name) {
+  static getWidgetComponent(name, dashboardId, widgetId) {
     switch (name) {
       case 'TodosWidget':
-        return <TodosWidget />
+        return <TodosWidget dashboardId={ dashboardId } id={ widgetId } />
       case 'UsersWidget':
-        return <UsersWidget />
+        return <UsersWidget dashboardId={ dashboardId } id={ widgetId } />
     }
   }
 
@@ -42,17 +42,15 @@ class Dashboard extends Component {
   }
 
   handleOnLayoutChange(layout) {
-    console.log('handle layout')
-    const idx = this.props.idx
-    if (this.isDifferent(layout, dashboardStore.getWidgets(idx)) === true) {
-      dashboardStore.getDashboard(idx).widgets = layout
-      dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(idx)))
+    const id = this.props.id
+    if (this.isDifferent(layout, dashboardStore.getWidgets(id)) === true) {
+      dashboardStore.getDashboard(id).widgets = layout
+      dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(id)))
     }
   }
 
   render() {
-    console.log('render')
-    var layout = dashboardStore.getWidgetsLayout(this.props.idx)
+    var layout = dashboardStore.getWidgetsLayout(this.props.id)
     return (
       <ReactGridLayout  className="layout" 
                         layout={layout} 
@@ -62,7 +60,7 @@ class Dashboard extends Component {
                         onLayoutChange={ this.handleOnLayoutChange }>
         { layout.map( widget => 
           <div key={widget.i} className="widget">
-            { Dashboard.getWidgetComponent(widget.name) }
+            { Dashboard.getWidgetComponent(widget.name, this.props.id, widget._id) }
           </div> )
         }
       </ReactGridLayout>

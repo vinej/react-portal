@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Users from '../user/users'
 import { dispatch } from '../../helpers/dispatcher'
 import { tabbarShow } from '../../actions/tabbar_actions'
+import { removeWidget } from '../../actions/dashboard_actions'
 import { pageGetAll } from '../../actions/page_actions'
 import Widget from '../dashboard/widget'
 
@@ -10,8 +11,9 @@ class UsersWidget extends Component {
     var component = <Users />
     return (
       <Widget title="Users list" 
-        onOpenInTab={() => dispatch(tabbarShow(component,"Users"))}
-        onRefresh= {() => dispatch(pageGetAll("user"))}  >
+        onOpenWidgetInTab={ () => dispatch(tabbarShow(component,"Users"))}
+        onRemoveWidget={ () => dispatch(removeWidget(this.props.dashboardId, this.props.id))}
+        onRefreshWidget= { () => dispatch(pageGetAll("user"))}  >
         <Users />
       </Widget>  
     )

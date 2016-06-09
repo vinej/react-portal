@@ -16,46 +16,30 @@ class DashboardStore extends CrudStore {
 
   showAllUserDashboard() {
     this.records.forEach( (dashboard, idx) => {
-      var component = <Dashboard name={ dashboard.title } idx={ idx } />
-      dispatch(tabbarShow(component, dashboard.title))
-    })
-
-    // only to test many dashboards with the same widget, to be sure that
-    // every component are independant
-    console.log("dashboard 2")
-    this.records.forEach( (dashboard, idx) => {
-      var component = <Dashboard name={ dashboard.title } idx={ idx } />
-      dispatch(tabbarShow(component, dashboard.title + "2"))
-    })
-
-    console.log("dashboard 3")
-    this.records.forEach( (dashboard, idx) => {
-      var component = <Dashboard name={ dashboard.title } idx={ idx } />
-      dispatch(tabbarShow(component, dashboard.title + "3"))
-    })
-
-    console.log("dashboard 4")
-    this.records.forEach( (dashboard, idx) => {
-      var component = <Dashboard name={ dashboard.title + "4" } idx={ idx } />
+      var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
       dispatch(tabbarShow(component, dashboard.title))
     })
   }
 
-  removeWidget(idx, widget) {
-    const indexWidget = this.records[idx].widgets.findIndex( (r) => r._id === widget._id );
+  removeWidget(dashboardId, widgetId) {
+    const idx = this.records.findIndex( (r) => r._id === dashboardId );
+    const indexWidget = this.records[idx].widgets.findIndex( (r) => r._id === widgetId );
     this.records[idx].widgets.splice(indexWidget,1);
-    dispatch(crudUpdate(this))
+    dispatch(crudUpdate(this, this.records[idx]))
   }
 
-  getDashboard(idx) {
+  getDashboard(dashboardId) {
+    const idx = this.records.findIndex( (r) => r._id === dashboardId );
     return this.records[idx]
   }
 
-  getWidgets(idx) {
+  getWidgets(dashboardId) {
+    const idx = this.records.findIndex( (r) => r._id === dashboardId );
     return this.records[idx].widgets
   }
 
-  getWidgetsLayout(idx) {
+  getWidgetsLayout(dashboardId) {
+    const idx = this.records.findIndex( (r) => r._id === dashboardId );
     var layout = []
     this.records[idx].widgets.forEach( (w) =>  layout.push( { _id:w._id, i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
     return layout
