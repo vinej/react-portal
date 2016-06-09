@@ -8,11 +8,3 @@ export function removeWidget(store, widget) {
     payload: widget
   }
 }
-
-export function removeWidget(store, widget) {
-  return {
-    type: t.DASHBOARD_ADD_WIDGET,
-    store: store,
-    payload: widget
-  }
-}
