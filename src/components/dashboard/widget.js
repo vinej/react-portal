@@ -6,12 +6,12 @@ class Widget extends Component {
       <div>
         <div className="widgetheader">{ this.props.title }
           <i className="fa fa-refresh icon" onClick={this.props.onRefresh} />
-          <i className="fa fa-folder-open icon" onClick={this.props.onOpenInTab }/>
-          <i className="fa fa-gear icon" onClick={this.props.onTools}/>       
+          <i className="fa fa-folder-open icon" onClick={this.props.onOpenInTab } />
+          <i className="fa fa-close icon" onClick={this.props.onClose} />
         </div>
         {this.props.children}
-      </div> 
-    );
+      </div>
+    )
   }
 }
 export default Widget;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react";
 import ReactGridLayout from 'react-grid-layout'
-import DashboardStore from '../../stores/dashboard_store'
+import { dashboardStore } from '../../stores/dashboard_store'
 import { dispatch } from '../../helpers/dispatcher'
-import { crudGetAll, crudUpdate } from '../../actions/crud_actions'
+import { crudUpdate } from '../../actions/crud_actions'
 
 // need to import all available widgets that can be included into a dashboard
 import UsersWidget from '../widgets/users_widget'
@@ -23,20 +23,11 @@ class Dashboard extends Component {
   constructor() {
     super()
     this.layout = null
-    this.isStart = false
-    this.store = DashboardStore.mount('test')
     this.handleOnLayoutChange = this.handleOnLayoutChange.bind(this)
   }
 
-  componentWillMount() {
-    dispatch(crudGetAll(this.store))
-  }
-
-  componentWillUnmount() {
-    DashboardStore.unmount(this.store)
-  }
-
   isDifferent(old, nw) {
+    //debugger
     if (!old) return false
     if (!nw) return false
     var isDiff = false
@@ -51,23 +42,17 @@ class Dashboard extends Component {
   }
 
   handleOnLayoutChange(layout) {
-    if (this.isDifferent(layout, this.store.records[this.props.idx].widgets) === true) {
-      this.store.records[this.props.idx].widgets = layout
-      dispatch(crudUpdate(this.store, this.store.records[this.props.idx])) 
+    console.log('handle layout')
+    const idx = this.props.idx
+    if (this.isDifferent(layout, dashboardStore.getWidgets(idx)) === true) {
+      dashboardStore.getDashboard(idx).widgets = layout
+      dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(idx)))
     }
   }
 
   render() {
-    if (this.store.records.length == 0) {
-      //this.store.records = [ { title:'test', widgets : 
-      //    [ { i:'a',x:0,y:0,w:4,h:21,name:'UsersWidget' }, { i:'b',x:4,y:0,w:3,h:21,name:'TodosWidget'} ] } ]
-      // testing
-      return (
-        <div>Loading ...</div>
-      )
-    }
-
-    var layout = this.store.getWidgetsLayout(this.props.idx)
+    console.log('render')
+    var layout = dashboardStore.getWidgetsLayout(this.props.idx)
     return (
       <ReactGridLayout  className="layout" 
                         layout={layout} 

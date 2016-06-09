@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Users from '../user/users';
+import React, { Component } from 'react'
+import Users from '../user/users'
 import { dispatch } from '../../helpers/dispatcher'
 import { tabbarShow } from '../../actions/tabbar_actions'
 import { pageGetAll } from '../../actions/page_actions'
@@ -17,4 +17,4 @@ class UsersWidget extends Component {
     )
   }
 }
-export default UsersWidget;
+export default UsersWidget

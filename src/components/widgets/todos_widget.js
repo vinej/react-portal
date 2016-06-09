@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Todos from '../todo/todos';
+import React, { Component } from 'react'
+import Todos from '../todo/todos'
 import { dispatch } from '../../helpers/dispatcher'
 import { tabbarShow } from '../../actions/tabbar_actions'
 import { pageGetAll } from '../../actions/page_actions'
@@ -11,10 +11,10 @@ class TodosWidget extends Component {
     return (
       <Widget title="My Todos" 
         onOpenInTab={() => dispatch(tabbarShow(component,"Todo"))}
-        onRefresh= {() => dispatch(pageGetAll("todo"))}  >
+        onRefresh= {() => dispatch(pageGetAll("todo"))} >
         <Todos />
       </Widget>  
     )
   }
 }
-export default TodosWidget;
+export default TodosWidget

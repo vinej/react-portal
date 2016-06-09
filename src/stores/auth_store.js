@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { observable, action, transaction } from 'mobx'
 import { browserHistory } from 'react-router'
 import { authSetAuthorizations } from '../actions/auth_actions'
-import { tabbarShow, tabbarCloseAll } from '../actions/tabbar_actions'
+import { tabbarCloseAll } from '../actions/tabbar_actions'
+import { crudGetAll } from '../actions/crud_actions'
 import { dispatch } from '../helpers/dispatcher'
-import Dashboard from '../components/dashboard/dashboard'
+import { dashboardStore } from './dashboard_store'
 
 export var authStore = {
   @observable email : "",
@@ -36,8 +37,7 @@ export var authStore = {
     browserHistory.push('/main')
     // now we can create the first tab. The first tab contains the DashBoard
     setTimeout( () => {
-      var component = <Dashboard name='my dashboard 1' idx='0'/>
-      dispatch(tabbarShow(component, 'Dashboard'))
+      dispatch(crudGetAll(dashboardStore))
     }, 1)
   },
 
