@@ -1,9 +1,9 @@
 import * as t from '../types/tabbar_types';
 
-export function tabbarShow(component, title) {
+export function tabbarShow(component, componentId, title, type) {
   return  {
     type: t.TABBAR_SHOW,
-    payload: { component, title }
+    payload: { component, componentId, title, type }
   }
 }
 

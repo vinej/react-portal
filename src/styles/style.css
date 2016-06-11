@@ -89,4 +89,9 @@ ul { overflow: auto; }
 
 div.content { clear: both; }
 
+.widgetButton {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+}
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react";
 import ReactGridLayout from 'react-grid-layout'
-import { dashboardStore } from '../../stores/dashboard_store'
+import { dashboardStore, getWidgetComponent } from '../../stores/dashboard_store'
 import { dispatch } from '../../helpers/dispatcher'
 import { crudUpdate } from '../../actions/crud_actions'
 
@@ -11,15 +11,6 @@ import TodosWidget from '../widgets/todos_widget'
 
 @observer
 class Dashboard extends Component {
-  static getWidgetComponent(name, dashboardId, widgetId) {
-    switch (name) {
-      case 'TodosWidget':
-        return <TodosWidget dashboardId={ dashboardId } id={ widgetId } />
-      case 'UsersWidget':
-        return <UsersWidget dashboardId={ dashboardId } id={ widgetId } />
-    }
-  }
-
   constructor() {
     super()
     this.layout = null
@@ -43,6 +34,7 @@ class Dashboard extends Component {
 
   handleOnLayoutChange(layout) {
     const id = this.props.id
+    if (!id) return
     if (this.isDifferent(layout, dashboardStore.getWidgets(id)) === true) {
       dashboardStore.getDashboard(id).widgets = layout
       dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(id)))
@@ -51,20 +43,24 @@ class Dashboard extends Component {
 
   render() {
     var layout = dashboardStore.getWidgetsLayout(this.props.id)
-    return (
-      <ReactGridLayout  className="layout" 
-                        layout={layout} 
-                        cols={12} 
-                        rowHeight={20} 
-                        width={1400}
-                        onLayoutChange={ this.handleOnLayoutChange }>
-        { layout.map( widget => 
-          <div key={widget.i} className="widget">
-            { Dashboard.getWidgetComponent(widget.name, this.props.id, widget._id) }
-          </div> )
-        }
-      </ReactGridLayout>
-    )
+    if (layout.length == 0) { 
+      return (<div>no widget</div>)
+    } else {
+      return (
+        <ReactGridLayout  className="layout" 
+                          layout={layout} 
+                          cols={12} 
+                          rowHeight={20} 
+                          width={1400}
+                          onLayoutChange={ this.handleOnLayoutChange }>
+          { layout.map( widget => 
+            <div key={widget.i} className="widget">
+              { getWidgetComponent(widget.name, this.props.id, widget.i) }
+            </div> )
+          }
+        </ReactGridLayout>
+      )
+    }
   }
 }
 export default Dashboard;

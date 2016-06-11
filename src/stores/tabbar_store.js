@@ -8,6 +8,10 @@ class TabbarStore {
     return this.current
   }
 
+  getCurrentComponentId() {
+    return this.tabbarStores[this.current].componentId
+  }
+
   getCurrentStore() {
     return this.tabbarStores[this.current]
   }
@@ -30,7 +34,7 @@ class TabbarStore {
   }
 
   @action
-  show(component, title) {
+  show(componentId, title, type) {
     if (this.current > -1) {
       this.tabbarStores[this.current].display = 'none'
     }
@@ -38,6 +42,8 @@ class TabbarStore {
     this.current = this.tabbarStores.length - 1
     this.tabbarStores[this.current].id = this.current
     this.tabbarStores[this.current].title = title ? title : 'na'
+    this.tabbarStores[this.current].type = type ? type : 'dashboard'
+    this.tabbarStores[this.current].componentId = componentId ? componentId : '0'
     this.tabbarStores[this.current].display = 'block'
   }
 
@@ -58,7 +64,9 @@ class TabbarStore {
     return {
       display : 'none',
       title : '',
-      id : 0
+      type: '',         // dashboard , page
+      id : 0,
+      componentId : ''
     }      
   }
 }

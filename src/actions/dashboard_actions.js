@@ -6,3 +6,10 @@ export function removeWidget(dashboardId, widgetId) {
     payload: { dashboardId, widgetId }
   }
 }
+
+export function dashboardAddWidget(widgetName) {
+  return {
+    type: t.DASHBOARD_ADD_WIDGET,
+    payload: widgetName
+  }
+}

@@ -15,7 +15,7 @@ export function tabbarMiddleware(action, next) {
       tabbarStore.closeAll()
       break
     case t.TABBAR_SHOW:
-      tabbarStore.show(action.payload.component , action.payload.title)
+      tabbarStore.show(action.payload.componentId, action.payload.title, action.payload.type)
       if (!document.querySelector(`#tab${tabbarStore.getCurrentId()}`)) { 
         // we need a timeout, because the refresh from mobx is not done yet. The setTimeout let the time to the function
         // to finish to give the chance to the component to refresh. After that we can render the component into the widget

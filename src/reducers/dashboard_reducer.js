@@ -24,6 +24,9 @@ export default function(action, next) {
     case t.DASHBOARD_REMOVE_WIDGET:
       dashboardStore.removeWidget(action.payload.dashboardId, action.payload.widgetId)
       break
+    case t.DASHBOARD_ADD_WIDGET:
+      dashboardStore.addWidget(action.payload)
+      break
   }
 
   return next(null, action);
