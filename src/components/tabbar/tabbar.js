@@ -19,7 +19,8 @@ class TabBarItem extends Component {
   }
 
   handleOnClose(idx) {
-    dispatch(tabbarClose(idx))
+    const componentId = tabbarStore.getComponentId(idx)
+    dispatch(tabbarClose(idx, componentId))
   }
 
   render() {

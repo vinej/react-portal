@@ -12,6 +12,10 @@ class TabbarStore {
     return this.tabbarStores[this.current].componentId
   }
 
+  getComponentId(idx) {
+    return this.tabbarStores[idx].componentId
+  }
+
   getCurrentTitle() {
     return this.tabbarStores[this.current].title
   }
@@ -46,7 +50,10 @@ class TabbarStore {
   show(component, componentId, title, type) {
     const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
     // check if already there
-    if (idx !== -1) return
+    if (idx !== -1) {
+      this.select(idx)
+      return
+    }
 
     if (this.current > -1) {
       this.tabbarStores[this.current].display = 'none'

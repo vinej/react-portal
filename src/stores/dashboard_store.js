@@ -58,11 +58,20 @@ class DashboardStore extends CrudStore {
     dispatch(crudAdd(this, this.createDashboard(dashboardName)))
   }
 
+  removeDashboard(dashboardId) {
+    const idx = this.records.findIndex( (r) => r._id === dashboardId )
+    if (idx > -1) {
+      this.records.splice(idx,1)
+    }
+  }
+
   renameDashboard(dashboardName) {
     const dashboardId = tabbarStore.getCurrentComponentId()
     const idx = this.records.findIndex( (r) => r._id === dashboardId )
-    this.records[idx].title = dashboardName;
-    dispatch(crudUpdate(this, this.records[idx]))
+    if (idx > -1) {
+      this.records[idx].title = dashboardName;
+      dispatch(crudUpdate(this, this.records[idx]))
+    }
   }
 
   addWidget(widgetName) {

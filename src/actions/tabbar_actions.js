@@ -7,10 +7,10 @@ export function tabbarShow(component, componentId, title, type) {
   }
 }
 
-export function tabbarClose(idx) {
+export function tabbarClose(idx, componentId) {
   return  {
     type: t.TABBAR_CLOSE,
-    payload : idx
+    payload : { idx, componentId }
   }
 }
 

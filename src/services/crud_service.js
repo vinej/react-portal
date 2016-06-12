@@ -26,7 +26,7 @@ export default class CrudService {
   update(store, entity, next, err) {
     axios.put(`${API_URL}/${this.service}?${PARAMETERS()}`, entity, HEADERS())
     .then(response => {
-      dispatch(next(store, entity)); 
+      dispatch(next(store, response.data)); 
     })
     .catch(response => dispatch(err(store, response.data)));
   };
