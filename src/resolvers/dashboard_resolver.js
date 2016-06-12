@@ -1,5 +1,5 @@
 import * as t from '../types/dashboard_types'
-import { reduceCrudAction } from './crud_reducer'
+import { resolveCrudAction } from './crud_resolver'
 import { dashboardStore } from '../stores/dashboard_store'
 
 export default function(action, next) {
@@ -7,7 +7,7 @@ export default function(action, next) {
     return next(null, action);
   }
 
-  reduceCrudAction(action);
+  resolveCrudAction(action);
 
   switch(action.type) {
     case t.DASHBOARD_GET_ALL:

@@ -1,6 +1,6 @@
 import { authStore } from '../stores/auth_store'
 
-export function authorizationMiddleware(action, next) {
+export function authorizationResolver(action, next) {
   // need to verify if the user can exexcute the action
   // for the current project. The same validation must be
   // done in the backend.

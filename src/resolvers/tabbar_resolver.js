@@ -2,8 +2,9 @@ import * as t from '../types/tabbar_types'
 import * as d from '../types/dashboard_types'
 import { tabbarStore } from '../stores/tabbar_store'
 
-export function tabbarMiddleware(action, next) {
-  if (!action.type.startsWith("tabbar_") && action.type != d.DASHBOARD_RENAME_DASHBOARD ) { 
+export function tabbarResolver(action, next) {
+  if (!action.type.startsWith("tabbar_") 
+    && action.type != d.DASHBOARD_RENAME_DASHBOARD ) { 
     return next(null, action)
   }
 

@@ -13,7 +13,7 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * Form validations
 * Popup form 
 * Tab Bar 
-* Dynamic widgets and dashboards (not completed yet)
+* Dynamic widgets and dashboards
 
 ## Installation
 * install nodejs
@@ -43,8 +43,8 @@ With React/Mobx/Dispatch
 
 * Stores use mutable data
 * Stores contain actions with Mobx @action decorator
-* Stores actions are called through reducers and middlewares to update the data
-  * I kept the same name as Redux, but they are not really reducers. I have to find a better term (maybe switcher) !
+* Stores actions are called through resolvers to update the data 
+  * Resolvers are something like reducers from Redux and middlewares. The goal of a resolver is to decide what to do with an action
 * Components are refreshed with Mobx @obserser decorator
 * Components use 'dispatch' function to dispatch actions creator
 * Components use stores' data directly (not need to use MapStateToProps)

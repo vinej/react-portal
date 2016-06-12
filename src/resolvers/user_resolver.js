@@ -1,5 +1,5 @@
 import * as t from '../types/user_types';
-import { reducePageAction } from './page_reducer';
+import { resolvePageAction } from './page_resolver';
 
 export default function(action, next) {
 
@@ -16,7 +16,7 @@ export default function(action, next) {
       return next(null, action);
   }
   
-  reducePageAction(action);
+  resolvePageAction(action);
 
   return next(null, action);
 }

@@ -1,7 +1,7 @@
 import * as t from '../types/popup_types';
 import { popupStore } from '../stores/popup_store';
 
-export function popupMiddleware(action, next) {
+export function popupResolver(action, next) {
 
   if (!action.type.startsWith("popup_")) { 
     return next(null, action);

@@ -1,6 +1,6 @@
 import { registerStore } from '../stores/register_store';
 
-export function reduceCrudAction(action, next) {
+export function resolveCrudAction(action, next) {
 
   let store = action.store
   const idx = action.type.indexOf("_")

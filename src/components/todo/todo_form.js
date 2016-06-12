@@ -38,7 +38,7 @@ class TodoForm extends Component {
 
   handleOnChange( event ) {
     // we don't go throught all the flux pattern for simple input because
-    // we don't need middleware for this case and there is no
+    // we don't need resolver for this case and there is no
     // business logic related to it. 
     this.formStore[event.target.name] = event.target.value;
   }
