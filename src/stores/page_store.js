@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 export default class PageStore {
   constructor() {
@@ -17,11 +17,13 @@ export default class PageStore {
   pageEnd = 10;
   pageSize = 10;
 
+  @action
   setAll(records) {
     this.records = records;
     this.setCurrentPage();
   }
 
+  @action
   add(record) {
     this.records.push(record);
     if (this.pageEnd < this.pageSize) {
@@ -30,12 +32,14 @@ export default class PageStore {
     this.setCurrentPage();
   }
 
+  @action
   update(record) {
     const idx = this.records.findIndex( (r) => r._id === record._id );
     this.records[idx] = record;
     this.setCurrentPage();
   }
 
+  @action
   delete(record) {
     const idx = this.records.findIndex( (r) => r._id === record._id );
     this.records.splice(idx,1);
@@ -46,6 +50,7 @@ export default class PageStore {
     this.page = this.records.slice(this.pageStart,this.pageEnd);
   }
 
+  @action
   nextPage() {
     if (this.pageEnd < this.records.length - 1) {
         this.pageStart = this.pageStart + this.pageSize;
@@ -54,6 +59,7 @@ export default class PageStore {
     }
   }
 
+  @action
   previousPage() {
     if (this.pageStart > 0) {
       this.pageStart = Math.max(this.pageStart - this.pageSize,0);
@@ -62,6 +68,7 @@ export default class PageStore {
     }
   }
 
+  @action
   firstPage() {
     if (this.pageStart > 0) {
       this.pageStart = 0;
@@ -70,6 +77,7 @@ export default class PageStore {
     }
   }
 
+  @action
   lastPage() {
     if (this.pageEnd < this.records.length) {
       this.pageEnd = this.records.length;
