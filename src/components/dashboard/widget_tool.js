@@ -3,6 +3,7 @@ import { widgetStore } from '../../stores/widget_store'
 import { dispatch } from '../../helpers/dispatcher'
 import { popupShow } from '../../actions/popup_actions'
 import WidgetForm from './widget_form'
+import DashboardForm from './dashboard_form'
 
 class WidgetTool extends Component {
 
@@ -12,9 +13,9 @@ class WidgetTool extends Component {
   }
 
   handleOnChange(e) {
-    console.log(e)
     switch(e.target.value) {
       case 'create' :
+        dispatch(popupShow( <DashboardForm />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
         break;
       case 'show' :
         break;

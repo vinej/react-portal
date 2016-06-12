@@ -17,7 +17,7 @@ class WidgetForm extends Component {
         { widgetStore.getWidgets().map( (widget) => 
             <div className='widgetButton' key={widget._id} onClick={ () => this.handleClick(widget.name)}>{widget.name}</div>
         )}
-        <button style={{ 'marginTop': '20px'}} onClick={ (event) => {
+        <button style={{ 'marginTop': '20px', float :'right' }} onClick={ (event) => {
           event.preventDefault();
           dispatch(popupClose()) }} >OK</button>
       </div>          

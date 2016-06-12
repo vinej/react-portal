@@ -1,5 +1,5 @@
 .widgetheader {
-  background-color: mintcream;
+  background-color: aquamarine;
   border-style: solid;
   border-width: 1px;
   height: 25px;
@@ -8,7 +8,7 @@
 }
 
 .popupHeader {
-  background-color: mintcream;
+  background-color: aquamarine;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   height: 27px;
@@ -81,17 +81,22 @@ ul.tabbar>li.selected {
   background-color: blue;
 }
 
-div.tabbarcontent {
-  //border: 1px solid gray;
-}
+div.tabbarcontent {}
 
 ul { overflow: auto; }
 
 div.content { clear: both; }
 
 .widgetButton {
-  border-color: black;
+  background-color: white;
+  border-color: gray;
   border-style: solid;
   border-width: 1px;
 }
 
+.widgetButton:hover {
+  background-color: mintcream;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}

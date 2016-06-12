@@ -29,11 +29,13 @@ class Header extends Component {
   }
 
   renderTools() {
+    if ( authStore.authenticated ) {
       return [
         <li className="nav-item" key={1}>
           <WidgetTool />
         </li>,
       ];
+    }
   }
 
   render() {

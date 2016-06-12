@@ -27,6 +27,12 @@ export default function(action, next) {
     case t.DASHBOARD_ADD_WIDGET:
       dashboardStore.addWidget(action.payload)
       break
+    case t.DASHBOARD_ADD_DASHBOARD:
+      dashboardStore.addDashboard(action.payload)
+      break
+    case t.DASHBOARD_ADD:
+      dashboardStore.showAllUserDashboard()
+      break
   }
 
   return next(null, action);

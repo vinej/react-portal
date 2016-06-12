@@ -35,6 +35,10 @@ class TabbarStore {
 
   @action
   show(componentId, title, type) {
+    const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
+    // check if already there
+    if (idx !== -1) return idx
+
     if (this.current > -1) {
       this.tabbarStores[this.current].display = 'none'
     }
@@ -45,6 +49,8 @@ class TabbarStore {
     this.tabbarStores[this.current].type = type ? type : 'dashboard'
     this.tabbarStores[this.current].componentId = componentId ? componentId : '0'
     this.tabbarStores[this.current].display = 'block'
+
+    return -1
   }
 
   @action

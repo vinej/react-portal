@@ -13,3 +13,10 @@ export function dashboardAddWidget(widgetName) {
     payload: widgetName
   }
 }
+
+export function dashboardAddDashboard(dashboardName) {
+  return {
+    type: t.DASHBOARD_ADD_DASHBOARD,
+    payload: dashboardName
+  }
+}

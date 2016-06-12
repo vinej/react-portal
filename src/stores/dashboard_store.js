@@ -4,7 +4,7 @@ import { tabbarStore } from './tabbar_store'
 import { registerStore } from './register_store';
 import { dashboardService } from '../services/dashboard_service'
 import { dispatch } from '../helpers/dispatcher'
-import { crudUpdate } from '../actions/crud_actions'
+import { crudUpdate, crudAdd } from '../actions/crud_actions'
 import { tabbarShow } from '../actions/tabbar_actions'
 import Dashboard from '../components/dashboard/dashboard'
 
@@ -41,12 +41,26 @@ class DashboardStore extends CrudStore {
     }
   }
 
+  createDashboard(name) {
+    return {
+      title: name,
+      widgets: []
+    }
+  }
+
+  addDashboard(dashboardName) {
+    //this.records.push(this.createDashboard(dashboardName))
+    dispatch(crudAdd(this, this.createDashboard(dashboardName)))
+    // supposed to be automatic, but I have tio check the
+    // implementation
+    setTimeout( () => this.showAllUserDashboard(),1)
+  }
+
   addWidget(widgetName) {
     const dashboardId = tabbarStore.getCurrentComponentId()
-    console.log('dashboardId',dashboardId)
-    const idx = this.records.findIndex( (r) => r._id === dashboardId );
+    const idx = this.records.findIndex( (r) => r._id === dashboardId )
     this.records[idx].widgets.push(this.createWidget(widgetName));
-    setTimeout(() => dispatch(crudUpdate(this, this.records[idx])),1)
+    dispatch(crudUpdate(this, this.records[idx]))
   }
 
   getDashboard(dashboardId) {
@@ -62,7 +76,9 @@ class DashboardStore extends CrudStore {
   getWidgetsLayout(dashboardId) {
     const idx = this.records.findIndex( (r) => r._id === dashboardId );
     var layout = []
-    this.records[idx].widgets.forEach( (w) =>  layout.push( { i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
+    if (this.records[idx].widgets) {
+      this.records[idx].widgets.forEach( (w) =>  layout.push( { i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
+    }
     return layout
   }
 }
