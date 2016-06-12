@@ -8,6 +8,7 @@ import { crudUpdate } from '../../actions/crud_actions'
 // need to import all available widgets that can be included into a dashboard
 import UsersWidget from '../widgets/users_widget'
 import TodosWidget from '../widgets/todos_widget'
+import HelpsWidget from '../widgets/helps_widget'
 
 @observer
 class Dashboard extends Component {

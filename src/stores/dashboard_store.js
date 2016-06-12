@@ -11,6 +11,7 @@ import Dashboard from '../components/dashboard/dashboard'
 // need to import all available widgets that can be included into a dashboard
 import UsersWidget from '../components/widgets/users_widget'
 import TodosWidget from '../components/widgets/todos_widget'
+import HelpsWidget from '../components/widgets/helps_widget'
 
 class DashboardStore extends CrudStore {
   constructor() {
@@ -109,5 +110,7 @@ export function getWidgetComponent(name, dashboardId, widgetId) {
       return <TodosWidget dashboardId={ dashboardId } id={ widgetId } />
     case 'UsersWidget':
       return <UsersWidget dashboardId={ dashboardId } id={ widgetId } />
+    case 'HelpsWidget':
+      return <HelpsWidget dashboardId={ dashboardId } id={ widgetId } />
   }
 }

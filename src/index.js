@@ -23,6 +23,8 @@ require("./helpers/string.js")
 require("./styles/style.css")
 require("../node_modules/react-grid-layout/css/styles.css")
 require("../node_modules/react-resizable/css/styles.css")
+require("../node_modules/ag-grid/dist/styles/ag-grid.css")
+require("../node_modules/ag-grid/dist/styles/theme-bootstrap.css")
 
 var mainComponentsToRender = function() { 
   ReactDOM.render(

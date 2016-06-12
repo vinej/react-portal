@@ -52,7 +52,7 @@ export default class PageStore {
 
   @action
   nextPage() {
-    if (this.pageEnd < this.records.length - 1) {
+    if (this.pageEnd < this.records.length) {
         this.pageStart = this.pageStart + this.pageSize;
         this.pageEnd = this.pageEnd + this.pageSize;
         this.setCurrentPage();
