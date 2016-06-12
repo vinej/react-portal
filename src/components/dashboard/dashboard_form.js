@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { popupClose } from '../../actions/popup_actions'
-import { dashboardAddDashboard } from '../../actions/dashboard_actions'
+import { dashboardAddDashboard, dashboardRenameDashboard } from '../../actions/dashboard_actions'
 import { dispatch } from '../../helpers/dispatcher'
 
 class DashboardForm extends Component {
@@ -13,7 +13,11 @@ class DashboardForm extends Component {
 
   handleFormSubmit( event ) {
     event.preventDefault();
-    dispatch(dashboardAddDashboard(this.state.dashboardname))
+    if (this.props.action == "add") {
+      dispatch(dashboardAddDashboard(this.state.dashboardname))
+    } else {
+      dispatch(dashboardRenameDashboard(this.state.dashboardname))
+    }
     dispatch(popupClose())
   }
 
@@ -23,6 +27,7 @@ class DashboardForm extends Component {
 
   componentDidMount() {
     this.refs.nameInput.focus();
+    this.setState( { dashboardname : this.props.name } )
   }
 
   render() {
@@ -37,7 +42,7 @@ class DashboardForm extends Component {
                     value={ this.state.dashboardname }
                     onChange={ this.handleOnChange } />
           </fieldset>
-          <button action="submit" className="btn btn-primary">Create</button>
+          <button action="submit" className="btn btn-primary">{ this.props.action == 'add' ? 'Create' : 'Rename' }</button>
           <button onClick={ (event) => {
             event.preventDefault();
             dispatch(popupClose()) }} className="btn btn-danger">Cancel</button>

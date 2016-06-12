@@ -9,10 +9,14 @@ class Main extends Component {
     return (
       <div>
         { tabbarStore.getStores().map( store => 
-          <Tab key={store.id} _id={store.id} store={store}/> )
+          <Tab key={store.id} _id={store.id} store={store}>
+              { store.component }
+          </Tab>
+          )
         }
       </div>
     )
   }
 }
+
 export default Main;

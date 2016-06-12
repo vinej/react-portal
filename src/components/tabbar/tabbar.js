@@ -6,8 +6,7 @@ import { dispatch } from '../../helpers/dispatcher';
 import { tabbarClose, tabbarSelect } from '../../actions/tabbar_actions';
 
 @observer
-class TabBar extends Component {
-
+class TabBarItem extends Component {
   constructor() {
     super()
     this.handleOnClick = this.handleOnClick.bind(this)
@@ -24,15 +23,25 @@ class TabBar extends Component {
   }
 
   render() {
+    console.log('render tab bar item')
+    return (
+      <li onClick={ this.handleOnClick }
+          _id={this.props.idx} key={this.props.idx} value={this.props.idx}>{this.props.title}
+        <sup><a className='fa fa-close fa-sm' onClick={() => this.handleOnClose(this.props.idx)} 
+        style={{ 'color': 'lightgray'}}></a></sup>
+      </li>
+    )
+  }
+}
+
+@observer
+class TabBar extends Component {
+  render() {
     return (
       <div className='tabbarcontent'>
         <ul className="tabbar">
           { tabbarStore.getStores().map( (store, idx) => 
-            <li onClick={ this.handleOnClick}
-                _id={idx} key={idx} value={idx}>{store.title}
-              <sup><a className='fa fa-close fa-sm' onClick={() => this.handleOnClose(idx)} 
-              style={{ 'color': 'lightgray'}}></a></sup>
-            </li>
+            <TabBarItem key={idx} idx={idx} title={store.title} />
             )
           } 
         </ul>

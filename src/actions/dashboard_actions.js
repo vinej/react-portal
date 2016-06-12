@@ -20,3 +20,10 @@ export function dashboardAddDashboard(dashboardName) {
     payload: dashboardName
   }
 }
+
+export function dashboardRenameDashboard(dashboardName) {
+  return {
+    type: t.DASHBOARD_RENAME_DASHBOARD,
+    payload: dashboardName
+  }
+}

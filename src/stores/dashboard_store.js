@@ -27,6 +27,12 @@ class DashboardStore extends CrudStore {
     })
   }
 
+  showLastDashboard() {
+    const dashboard = this.records[this.records.length - 1]
+    var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
+    dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
+  }
+
   removeWidget(dashboardId, widgetId) {
     const idx = this.records.findIndex( (r) => r._id === dashboardId );
     const indexWidget = this.records[idx].widgets.findIndex( (r) => r.i === widgetId );
@@ -49,11 +55,14 @@ class DashboardStore extends CrudStore {
   }
 
   addDashboard(dashboardName) {
-    //this.records.push(this.createDashboard(dashboardName))
     dispatch(crudAdd(this, this.createDashboard(dashboardName)))
-    // supposed to be automatic, but I have tio check the
-    // implementation
-    setTimeout( () => this.showAllUserDashboard(),1)
+  }
+
+  renameDashboard(dashboardName) {
+    const dashboardId = tabbarStore.getCurrentComponentId()
+    const idx = this.records.findIndex( (r) => r._id === dashboardId )
+    this.records[idx].title = dashboardName;
+    dispatch(crudUpdate(this, this.records[idx]))
   }
 
   addWidget(widgetName) {

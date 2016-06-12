@@ -5,8 +5,10 @@ import { observer } from "mobx-react";;
 class Tab extends Component {
   render() {
     return (
-      <div className="tab" id={`tab${this.props._id}`} 
-            style={{ display : this.props.store.display }} /> 
+      <div className="tab" 
+            style={{ display : this.props.store.display }} >
+        {this.props.children}
+      </div>
     )
   }
 }

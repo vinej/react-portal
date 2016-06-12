@@ -4,6 +4,7 @@ import { dispatch } from '../../helpers/dispatcher'
 import { popupShow } from '../../actions/popup_actions'
 import WidgetForm from './widget_form'
 import DashboardForm from './dashboard_form'
+import { tabbarStore} from '../../stores/tabbar_store'
 
 class WidgetTool extends Component {
 
@@ -15,7 +16,10 @@ class WidgetTool extends Component {
   handleOnChange(e) {
     switch(e.target.value) {
       case 'create' :
-        dispatch(popupShow( <DashboardForm />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
+        dispatch(popupShow( <DashboardForm action="add" name="" />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
+        break;
+      case 'rename' :
+        dispatch(popupShow( <DashboardForm action="rename" name={ tabbarStore.getCurrentTitle() } />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
         break;
       case 'show' :
         break;
@@ -30,6 +34,7 @@ class WidgetTool extends Component {
       <select style={{ 'marginTop': '7px'}} onChange={ this.handleOnChange } value='0'>
         <option value='0' disabled="true">Choose an option</option>
         <option value='create'>Create Dashboard</option>
+        <option value='rename'>Rename current Dashboard</option>
         <option value='show'>Show/Hide Dashboard</option> 
         <option value='add'>Add Widget to current Dashboard</option> 
       </select>

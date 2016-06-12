@@ -12,6 +12,10 @@ class TabbarStore {
     return this.tabbarStores[this.current].componentId
   }
 
+  getCurrentTitle() {
+    return this.tabbarStores[this.current].title
+  }
+
   getCurrentStore() {
     return this.tabbarStores[this.current]
   }
@@ -27,6 +31,12 @@ class TabbarStore {
   }
 
   @action
+  rename(title) {
+    console.log('rename', title)
+    this.tabbarStores[this.current].title = title
+  }
+
+  @action
   select(idx) {
     this.tabbarStores[this.current].display = 'none'
     this.tabbarStores[idx].display = 'block'
@@ -34,10 +44,10 @@ class TabbarStore {
   }
 
   @action
-  show(componentId, title, type) {
+  show(component, componentId, title, type) {
     const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
     // check if already there
-    if (idx !== -1) return idx
+    if (idx !== -1) return
 
     if (this.current > -1) {
       this.tabbarStores[this.current].display = 'none'
@@ -48,9 +58,8 @@ class TabbarStore {
     this.tabbarStores[this.current].title = title ? title : 'na'
     this.tabbarStores[this.current].type = type ? type : 'dashboard'
     this.tabbarStores[this.current].componentId = componentId ? componentId : '0'
+    this.tabbarStores[this.current].component = component
     this.tabbarStores[this.current].display = 'block'
-
-    return -1
   }
 
   @action
@@ -69,10 +78,11 @@ class TabbarStore {
   static createStore() {
     return {
       display : 'none',
-      title : '',
+      @observable title : '',
       type: '',         // dashboard , page
       id : 0,
-      componentId : ''
+      componentId : '',
+      component : null
     }      
   }
 }

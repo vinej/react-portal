@@ -7,14 +7,6 @@ export default function(action, next) {
     return next(null, action);
   }
 
-  // switch(action.type) {
-  //   case t.DASHBOARD_REMOVE_WIDGET:
-  //     store.removeWidget(action.payload)
-
-  //     break;
-  //   }
-  // }
-
   reduceCrudAction(action);
 
   switch(action.type) {
@@ -30,8 +22,11 @@ export default function(action, next) {
     case t.DASHBOARD_ADD_DASHBOARD:
       dashboardStore.addDashboard(action.payload)
       break
+    case t.DASHBOARD_RENAME_DASHBOARD:
+      dashboardStore.renameDashboard(action.payload)
+      break
     case t.DASHBOARD_ADD:
-      dashboardStore.showAllUserDashboard()
+      dashboardStore.showLastDashboard()
       break
   }
 
