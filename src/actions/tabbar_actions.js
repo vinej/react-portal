@@ -7,10 +7,10 @@ export function tabbarShow(component, componentId, title, type) {
   }
 }
 
-export function tabbarClose(idx, componentId) {
+export function tabbarClose(componentId) {
   return  {
     type: t.TABBAR_CLOSE,
-    payload : { idx, componentId }
+    payload : componentId
   }
 }
 
@@ -20,9 +20,9 @@ export function tabbarCloseAll() {
   }
 }
 
-export function tabbarSelect(idx) {
+export function tabbarSelect(componentId) {
   return  {
     type: t.TABBAR_SELECT,
-    payload: idx
+    payload: componentId
   }
 }

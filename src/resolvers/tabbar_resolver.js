@@ -12,7 +12,7 @@ export function tabbarResolver(action, next) {
       tabbarStore.rename(action.payload)
       break
     case t.TABBAR_CLOSE:
-      tabbarStore.close(action.payload.idx)
+      tabbarStore.close(action.payload)
       break
     case t.TABBAR_CLOSE_ALL:
       tabbarStore.closeAll()

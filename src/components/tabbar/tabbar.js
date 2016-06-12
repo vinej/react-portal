@@ -15,20 +15,27 @@ class TabBarItem extends Component {
 
   handleOnClick(event) {
     if (event.target.value == null) { return }
-    dispatch(tabbarSelect(event.target.value))
+    dispatch(tabbarSelect(this.props.componentId))
   }
 
-  handleOnClose(idx) {
-    const componentId = tabbarStore.getComponentId(idx)
-    dispatch(tabbarClose(idx, componentId))
+  handleOnClose() {
+    dispatch(tabbarClose(this.props.componentId))
+  }
+
+  renderClose(visible){
+    if (visible === true ){
+      return (
+          <sup><span style={{ 'marginLeft' : '5px' }} /><a className='fa fa-close fa-sm' onClick={ this.handleOnClose } 
+          style={{ 'color': 'red'}}></a></sup>
+      )
+    }
   }
 
   render() {
     return (
       <li onClick={ this.handleOnClick }
-          _id={this.props.idx} key={this.props.idx} value={this.props.idx}>{this.props.title}
-        <sup><a className='fa fa-close fa-sm' onClick={() => this.handleOnClose(this.props.idx)} 
-        style={{ 'color': 'lightgray'}}></a></sup>
+          _id={this.props.componentId} key={this.props.componentId} value={this.props.componentId}>{this.props.title}
+        { this.renderClose(this.props.visible)}
       </li>
     )
   }
@@ -37,11 +44,13 @@ class TabBarItem extends Component {
 @observer
 class TabBar extends Component {
   render() {
+    const stores = tabbarStore.getStores()
+    const count = stores.length - 1
     return (
       <div className='tabbarcontent'>
         <ul className="tabbar">
-          { tabbarStore.getStores().map( (store, idx) => 
-            <TabBarItem key={idx} idx={idx} title={store.title} />
+          { stores.map( (store, idx) => 
+            <TabBarItem key={store.componentId} componentId={store.componentId} title={store.title} visible={ store.display == 'block'} />
             )
           } 
         </ul>

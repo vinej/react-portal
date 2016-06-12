@@ -40,7 +40,8 @@ class TabbarStore {
   }
 
   @action
-  select(idx) {
+  select(componentId) {
+    const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
     this.tabbarStores[this.current].display = 'none'
     this.tabbarStores[idx].display = 'block'
     this.current = Number(idx)
@@ -51,7 +52,7 @@ class TabbarStore {
     const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
     // check if already there
     if (idx !== -1) {
-      this.select(idx)
+      this.select(componentId)
       return
     }
 
@@ -69,7 +70,8 @@ class TabbarStore {
   }
 
   @action
-  close(idx) {
+  close(componentId) {
+    const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
     this.tabbarStores.splice(idx,1)
     this.current = idx - 1
     if (this.current == -1 && this.tabbarStores.length > 0) {

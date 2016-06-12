@@ -11,7 +11,7 @@ class TodosWidget extends Component {
     var component = <Todos />
     return (
       <Widget title="My Todos" 
-        onOpenWidgetInTab={() => dispatch(tabbarShow(component,'0',"Todo", 'page'))}
+        onOpenWidgetInTab={() => dispatch(tabbarShow(component,'todo',"Todo", 'page'))}
         onRemoveWidget={ () => dispatch(removeWidget(this.props.dashboardId, this.props.id))}
         onRefreshWidget= {() => dispatch(pageGetAll("todo"))} >
         <Todos />

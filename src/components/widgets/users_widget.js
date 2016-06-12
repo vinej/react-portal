@@ -11,7 +11,7 @@ class UsersWidget extends Component {
     var component = <Users />
     return (
       <Widget title="Users list" 
-        onOpenWidgetInTab={ () => dispatch(tabbarShow(component , "", "Users", "page"))}
+        onOpenWidgetInTab={ () => dispatch(tabbarShow(component , "user", "Users", "page"))}
         onRemoveWidget={ () => dispatch(removeWidget(this.props.dashboardId, this.props.id))}
         onRefreshWidget= { () => dispatch(pageGetAll("user"))}  >
         <Users />

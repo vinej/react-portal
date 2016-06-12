@@ -13,7 +13,7 @@ export default function(action, next) {
 
   switch(action.type) {
     case t.TABBAR_CLOSE:
-      dashboardStore.removeDashboard(action.payload.componentId)
+      dashboardStore.removeDashboard(action.payload)
       break
     case d.DASHBOARD_GET_ALL:
       dashboardStore.showAllUserDashboard()

@@ -9,7 +9,7 @@ class Main extends Component {
     return (
       <div>
         { tabbarStore.getStores().map( store => 
-          <Tab key={store.id} _id={store.id} store={store}>
+          <Tab key={store.componentId} _id={store.componentId} store={store}>
               { store.component }
           </Tab>
           )
