@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 export default class CrudStore {
   constructor() {
@@ -12,19 +12,23 @@ export default class CrudStore {
   @observable records = [];
   @observable error = '';
 
+  @action
   setAll(records) {
     this.records = records;
   }
 
+  @action
   add(record) {
     this.records.push(record);
   }
 
+  @action
   update(record) {
     const idx = this.records.findIndex( (r) => r._id === record._id );
     this.records[idx] = record;
   }
 
+  @action
   delete(record) {
     const idx = this.records.findIndex( (r) => r._id === record._id );
     this.records.splice(idx,1);

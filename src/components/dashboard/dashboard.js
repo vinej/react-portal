@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { observer } from "mobx-react";
+import { observer, action } from "mobx-react";
 import ReactGridLayout from 'react-grid-layout'
 import { dashboardStore, getWidgetComponent } from '../../stores/dashboard_store'
 import { dispatch } from '../../helpers/dispatcher'
@@ -36,6 +36,7 @@ class Dashboard extends Component {
     const id = this.props.id
     if (!id) return
     if (this.isDifferent(layout, dashboardStore.getWidgets(id)) === true) {
+      console.log("layout change")
       dashboardStore.getDashboard(id).widgets = layout
       dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(id)))
     }
