@@ -32,7 +32,6 @@ class TabbarStore {
 
   @action
   rename(title) {
-    console.log('rename', title)
     this.tabbarStores[this.current].title = title
   }
 

@@ -33,12 +33,8 @@ export var authStore = {
     if (mainComponentsToRender) {
       mainComponentsToRender()
     }
-    console.log('before main')
     browserHistory.push('/main')
-    // now we can create the first tab. The first tab contains the DashBoard
-    setTimeout( () => {
-      dispatch(crudGetAll(dashboardStore))
-    }, 1)
+    dispatch(crudGetAll(dashboardStore))
   },
 
   checkToken : function(mainComponentsToRender) {

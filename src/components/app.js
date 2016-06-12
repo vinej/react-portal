@@ -12,7 +12,10 @@ class App extends Component {
     return (
       <div>
         { popupStore.getStores().map( store => 
-          <Popup _id={store.id} key={store.id} store={store}/> )
+          <Popup _id={store.id} key={store.id} store={store}>
+            { store.component }
+          </Popup>
+          )
         }
         <Header className="widgetheader"/>
         {this.props.children}

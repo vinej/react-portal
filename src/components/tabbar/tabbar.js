@@ -23,7 +23,6 @@ class TabBarItem extends Component {
   }
 
   render() {
-    console.log('render tab bar item')
     return (
       <li onClick={ this.handleOnClick }
           _id={this.props.idx} key={this.props.idx} value={this.props.idx}>{this.props.title}

@@ -36,16 +36,7 @@ class PopupStore {
     store.height = dimension.height;
     store.left = dimension.left;
     store.top = dimension.top;
-
-    // we need a setTimeout, because without it the
-    // render of the component will be done before 
-    // the render of the div that will contain the
-    // component. 1 millisecond is enough to let the
-    // other render to finish
-    setTimeout( () => 
-      ReactDOM.render( component , 
-        document.querySelector(`#popup${this.current}`)),
-    1)
+    store.component = component;
   }
 
   @action
@@ -60,10 +51,11 @@ class PopupStore {
   static createStore() {
     return {
       @observable display : 'none',
-      @observable height : '250px',
-      @observable width : '50%',
-      @observable left : '50%',
-      @observable top : '100px',
+      height : '250px',
+      width : '50%',
+      left : '50%',
+      top : '100px',
+      component : null,
       id : 0,
     }      
   }
