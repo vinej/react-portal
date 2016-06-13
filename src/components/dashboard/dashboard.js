@@ -33,6 +33,10 @@ class Dashboard extends Component {
     return isDiff
   }
 
+  handleOnDragStart(layout) {
+    return false
+  }
+
   handleOnLayoutChange(layout) {
     const id = this.props.id
     if (!id) return
@@ -53,8 +57,10 @@ class Dashboard extends Component {
                           layout={layout} 
                           cols={12} 
                           rowHeight={20} 
+                          isDraggable={true}
                           width={1400}
-                          onLayoutChange={ this.handleOnLayoutChange }>
+                          onLayoutChange={ this.handleOnLayoutChange }
+                          draggableHandle=".widgetheader">
           { layout.map( widget => 
             <div key={widget.i} className="widget">
               { getWidgetComponent(widget.name, this.props.id, widget.i) }

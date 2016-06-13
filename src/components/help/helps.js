@@ -30,7 +30,7 @@ class Helps extends Component {
 
   render() {
     return (
-      <div className="ag-bootstrap">
+      <div className="ag-bootstrap" style={{height: "330px" }}>
         <AgGridReact
           // listen for events with React callbacks
           //onRowSelected={this.onRowSelected.bind(this)}
