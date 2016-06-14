@@ -31,8 +31,8 @@ class Todos extends Component {
 
   render() {
     return ( 
-      <div>
-        <table className='table table-hoover' style={{ height: 400}}>
+      <div style={{ height: '400px'}}>
+        <table className='table table-hoover'>
           <thead >
             <tr><th><i className="fa fa-edit" /></th><th>Description</th><th>Status</th><th><i className="fa fa-trash" /></th></tr>
           </thead>
