@@ -10,8 +10,8 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * Authorization (which actions the user can do)
 * A dispatcher
 * Resolvers (logger, thunk, autorization, ...) like reducers/middlewares
-* Form validations
-* Popup form 
+* Form validation and abstraction (from Michel Weststrate)
+* Popup modal form 
 * Tab Bar 
 * Dynamic widgets and dashboards
 
