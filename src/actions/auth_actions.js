@@ -75,9 +75,10 @@ export function authValidateSignIn(store) {
   };
 }
 
-export function authError(error) {
+export function authError(error, mainComponentsToRender) {
   return {
     type: t.AUTH_ERROR, 
+    render: mainComponentsToRender,
     payload : error 
   }
 }

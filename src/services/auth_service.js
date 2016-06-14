@@ -25,7 +25,7 @@ class AuthService {
       dispatch(next(render, response.data))
     })
     .catch(response => {
-      dispatch(err(response.data))
+      dispatch(err(response.data, render))
     })
   }
 }

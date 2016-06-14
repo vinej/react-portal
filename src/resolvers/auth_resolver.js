@@ -18,7 +18,7 @@ export default function(action, next) {
       authStore.signOut()
       break;
     case t.AUTH_ERROR:
-      authStore.Error(action.payload)
+      authStore.Error(action.payload, action.render)
       break;
     case t.AUTH_VALIDATE_SIGN_UP:
       store.validateSignUp();
