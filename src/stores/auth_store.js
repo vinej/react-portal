@@ -39,9 +39,9 @@ export var authStore = {
   },
 
   checkToken : function(mainComponentsToRender) {
-    const token = localStorage.getItem('token')
-    if (token) {
-      const name = localStorage.getItem('name')
+    const token = localStorage.getItem('react-portal-token')
+    if (token != null && token != '') {
+      const name = localStorage.getItem('react-portal-name')
       transaction( () => {
         authStore.authenticated = true
         authStore.name = name
@@ -57,8 +57,8 @@ export var authStore = {
   },
 
   signInOrUp : function(token, name) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('name', name);
+    localStorage.setItem('react-portal-token', token);
+    localStorage.setItem('react-portal-name', name);
     transaction( () => {
       authStore.authenticated = true;
       authStore.name = name;
@@ -68,8 +68,8 @@ export var authStore = {
   },
 
   signOut : function() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
+    localStorage.removeItem('react-portal-token');
+    localStorage.removeItem('react-portal-name');
     transaction(() => {
       authStore.authenticated = false;
       authStore.name = '';
@@ -78,7 +78,7 @@ export var authStore = {
     dispatch(tabbarCloseAll())
   },
 
-  Error : function(error) {
+  Error : function(error, mainComponentsToRender) {
     transaction(() => {
       if (typeof error === 'object') {
         authStore.errorMessage = error.error;
@@ -87,7 +87,12 @@ export var authStore = {
       }
       authStore.authenticated = false;
       authStore.name = '';
-    });
+    })
+    if (mainComponentsToRender) {
+      // token is not good or an error with authentification
+      mainComponentsToRender()
+      browserHistory.push('/')
+    }
   }
 }
 
