@@ -1,92 +1,71 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { authSignUp } from '../../actions/auth_actions';
-import  { authFormStore,  authStore } from '../../stores/auth_store';
+import  { signUpForm,  authStore } from '../../stores/auth_store';
 import { dispatch } from '../../helpers/dispatcher';
 
 @observer
-class Signup extends Component {
-  constructor() {
-    super();
-    authFormStore.reset();
-    authStore.errorMessage = '';
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
-  }
-
-  handleFormSubmit( event ) {
-    event.preventDefault();
-    if (authFormStore.isValidateSignUp()) {
-      dispatch(authSignUp( authFormStore ));
+export default class Signup extends Component {
+  async handleSend(form) {
+    await form.validate();
+    if (form.valid) {
+      dispatch(authSignUp( {
+        email : form.fields.email.value,
+        name : form.fields.name.value,
+        password  : form.fields.password.value }));      
     }
   }
 
-  handleOnChange( event ) {
-    // don't need actions for input field. 
-    authFormStore[event.target.name] = event.target.value;
+  componentWillMount() {
+    this.form = this.props.form ? this.props.form : signUpForm
+    this.store = this.props.store ? this.props.store : authStore
   }
 
-  renderAlert() {
-    if (authStore.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <strong>Oops! </strong><span>{authStore.errorMessage}</span>
-        </div>
-      );
-    }
-  }
-
-  renderError(error) {
-    return (
-      <span>
-        <span className='text-danger'>{error}</span>
-        <i className="fa fa-exclamation text-danger" />
-      </span>
-    );
-  }
- 
   render() {
+    const form = this.form
     return (
-      <form onSubmit={ this.handleFormSubmit }>
+      <div>
         <fieldset className="form-group">
           <label>Email:</label>&nbsp;
-          { authFormStore.emailError && this.renderError(authFormStore.emailError) }
+          { form.renderError(form.fields.email.errorMessage) }
           <input 
               className="form-control" 
               name="email"
-              onChange={ this.handleOnChange }
-              value={ authFormStore.email }
-          />
+              value={form.fields.email.value}
+              onChange={(e) => form.fields.email.value = e.target.value}/>
         </fieldset>
         <fieldset className="form-group">
           <label>Password:</label>&nbsp;
-          { authFormStore.passwordError && this.renderError(authFormStore.passwordError) }
+          { form.renderError(form.fields.password.errorMessage) }
           <input  className="form-control" 
                   name="password" 
                   type="password"
-                  onChange={ this.handleOnChange }
-                  value={ authFormStore.password } />
+                  value={form.fields.password.value}
+                  onChange={(e) => form.fields.password.value = e.target.value}/>
         </fieldset>
         <fieldset className="form-group">
           <label>Confirm Password:</label>&nbsp;
-          {authFormStore.passwordConfirmError && this.renderError(authFormStore.passwordConfirmError) }
+          { form.renderError(form.fields.passwordConfirm.errorMessage) }
           <input  className="form-control" 
                   name="passwordConfirm" 
-                  onChange={ this.handleOnChange }
                   type="password" 
-                  value={ authFormStore.passwordConfirm} />
+                  value={form.fields.passwordConfirm.value}
+                  onChange={(e) => form.fields.passwordConfirm.value = e.target.value}/>
         </fieldset>
         <fieldset className="form-group">
           <label>Name:</label>&nbsp;
-          {authFormStore.nameError && this.renderError(authFormStore.nameError) }
+          { form.renderError(form.fields.name.errorMessage) }
           <input  className="form-control" 
                   name="name"
-                  onChange={ this.handleOnChange }
-                  value={ authFormStore.name } />
+                  value={form.fields.name.value}
+                  onChange={(e) => form.fields.name.value = e.target.value}/>
         </fieldset>
-        {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign up!</button>
-      </form>
+        {form.renderAlert(this.store.errorMessage)}
+        <button onClick={ () => this.handleSend(form) } 
+                className="btn btn-primary"
+                disabled={!form.valid} >Sign Up</button>
+      </div>
     );
   }
 }
-export default Signup;
+

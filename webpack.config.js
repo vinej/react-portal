@@ -7,9 +7,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    alias: {
-      "ag-grid-root" : __dirname + "/node_modules/ag-grid"
-    },
     loaders: [
     {
       // JSX REACT transpiler

@@ -1,88 +1,56 @@
+require("babel-polyfill")
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-import { authFormStore, authStore } from '../../stores/auth_store';
+import { authStore, signInForm } from '../../stores/auth_store';
 import { authSignIn } from '../../actions/auth_actions';
 import { dispatch } from '../../helpers/dispatcher';
 
-class Field extends Component {
-  render() {
-    return (<fieldset className="form-group">
-      <label>{this.props.label}</label>
-      <input  name={this.props.name} className="form-control" 
-        onChange={ this.props.change }/>
-      </fieldset>
-    );
-  }
-}
-
 @observer
-class Signin extends Component {
-  constructor() {
-    super();
-    authFormStore.reset();
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
-  }
-
-  handleFormSubmit( event ) {
-    event.preventDefault();
-    if (authFormStore.isValidateSignIn()) {
-      dispatch(authSignIn( authFormStore ));
+export default class Signin extends Component {
+  async handleSend(form) {
+    await form.validate();
+    if (form.valid) {
+      dispatch(authSignIn( {
+        email : form.fields.email.value,
+        password  : form.fields.password.value }));      
     }
   }
 
-  handleOnChange( event ) {
-    // we don't go throught all the flux pattern for simple input because
-    // we don't need resolver for this case and there is no
-    // business logic related to it.
-    authFormStore[event.target.name] = event.target.value;
-  }
-
-  renderAlert() {
-    if (authStore.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <strong>Oops! </strong><span>{authStore.errorMessage}</span>
-        </div>
-      );
-    }
-  }
-
-  renderError(error) {
-    return (
-      <span>
-        <span className='text-danger'>{error}</span>
-        <i className="fa fa-exclamation text-danger" />
-      </span>
-    );
+  componentWillMount() {
+    this.form = this.props.form ? this.props.form : signInForm
+    this.store = this.props.store ? this.props.store : authStore
   }
 
   render() {
+    const form = this.form
     return (
-      <form onSubmit={ this.handleFormSubmit }>
+      <div>
         <fieldset className="form-group">
           <label>Email:</label>&nbsp;
-          { authFormStore.emailError && this.renderError(authFormStore.emailError) }
+          { form.renderError(form.fields.email.errorMessage) }
           <input  name="email" 
                   className="form-control"
-                  value={ authFormStore.email }
-                  onChange={ this.handleOnChange } />
+                  value={form.fields.email.value}
+                  onChange={(e) => form.fields.email.value = e.target.value}/>
         </fieldset>
 
         <fieldset className="form-group">
           <label>Password:</label>&nbsp;
-          { authFormStore.passwordError && this.renderError(authFormStore.passwordError) }
+          { form.renderError(form.fields.password.errorMessage) }
           <input  name="password" 
                   type="password" 
                   className="form-control"
-                  value={ authFormStore.password }
-                  onChange={ this.handleOnChange } />
+                  value={form.fields.password.value}
+                  onChange={(e) => form.fields.password.value = e.target.value} />
         </fieldset>
-        {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign in</button>
-      </form>
+        {form.renderAlert(this.store.errorMessage)}
+        <button onClick={ () => this.handleSend(form) } 
+                className="btn btn-primary"
+                disabled={!form.valid} >Sign in</button>
+      </div>
     );
   }
 }
 
-export default Signin;
+
 

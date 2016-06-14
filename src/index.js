@@ -18,7 +18,6 @@ import { dispatch } from './helpers/dispatcher'
 
 // launch the web socket service client side
 //require("./services/wss_service");
-
 require("./helpers/string.js")
 require("./styles/style.css")
 require("../node_modules/react-grid-layout/css/styles.css")
