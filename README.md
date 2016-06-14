@@ -19,7 +19,17 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * install nodejs
 * npm install
 * npm start
-* signup the first time, after that use 'signin'
+* use the portal
+ * signup for the first time : after that use 'signin'
+ * use the option : Create Dashboard
+ * use the option : Add Widget into the current Dashboard
+ * use the option : Rename the current Dashboard if needed
+ * move widgets by dragging them around with the green header
+ * you can remove widgets from a Dashboard with the "X" icon
+ * you can open a widget into it's own tab with the "folder" icon
+ * you can close a Dashboard with the red X
+ * note: the option Show/Hide Dashboards is not implemented yet
+ *       when you refresh the page, all your Dashboards will be shown 
 
 Notes: 
 * You need to install 'react-portal-server' to run the application
