@@ -25,7 +25,7 @@ class Todos extends Component {
   }
 
   handleAdd() {
-    var component = <TodoForm store={this.store} todo={TodoStore.createTodo()} />
+    var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()))
   }
 
