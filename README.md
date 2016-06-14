@@ -19,6 +19,7 @@ A portal example using React, Mobx and a Flux pattern inspired by Redux
 * install nodejs
 * npm install
 * npm start
+* signup the first time, after that use 'signin'
 
 Notes: 
 * You need to install 'react-portal-server' to run the application
