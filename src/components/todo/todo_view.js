@@ -55,7 +55,7 @@ export default class TodoView extends Component {
           <select name="status" 
                   className="form-control"
                   value={form.fields.status.value}
-                  onChange={(e) => form.fields.description.value = e.target.value} >
+                  onChange={(e) => form.fields.status.value = e.target.value} >
             <option value="waiting">Waiting</option>
             <option value="suspend">Suspend</option>
             <option value="freeze">Freeze</option>
