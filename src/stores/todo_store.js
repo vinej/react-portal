@@ -4,29 +4,21 @@ import { registerStore } from './register_store';
 import { observable, action } from 'mobx';
 
 export default class TodoStore extends PageStore {
-  static mount() {
+  static create() {
     return registerStore.add( new TodoStore() );
   }
 
-  static unmount(store) {
+  static remove(store) {
     registerStore.remove( store );
     store = null;
   }
 
   constructor() {
-    super();
-    this.service = todoService;
-    this.name = 'todo';
+    super()
+    this.service = todoService
+    this.name = 'todo'
     this.id = 0
-  }
-
-  static getEditFormDimension() {
-    return {
-      width: '50%',
-      height: '245px',
-      left: '50%',
-      top: '100px'
-    }
+    this.error = null
   }
 
   static createTodo() {
@@ -37,51 +29,12 @@ export default class TodoStore extends PageStore {
     }
   }
 
-  static getFormStore(_todo) {
+  static getEditFormDimension() {
     return {
-      // keep the todo before the modification
-      todo : _todo,
-
-      @observable description : _todo.description,
-      @observable status : _todo.status,
-      @observable done : _todo.done,
-      @observable descriptionError : "",
-      @observable statusError : "",
-
-      isError : false,
-
-      @action
-      reset : function() {
-        this.description = "";
-        this.status = "";
-        this.done = false;
-      },
-
-      @action
-      isValidate : function() {
-        this.isError = false;
-        this.descriptionError = '';
-        this.statusError = '';
-
-        if (!this.description) {
-          this.descriptionError = "Enter a description";
-          this.isError = true;
-        }
-
-        if (!this.status) {
-          this.statusError = "Enter a status";
-          this.isError = true;
-        }
-        return this.isError === false;
-      },
-
-      @action
-      getTodo : function() {
-        this.todo.description = this.description
-        this.todo.status = this.status
-        this.todo.done = this.done
-        return this.todo
-      }
+      width: '50%',
+      height: '245px',
+      left: '50%',
+      top: '100px'
     }
   }
 }
