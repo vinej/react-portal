@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Popup from './popup'
 import Header from './header'
+import Footer from './footer'
 import Dashboard from './dashboard/dashboard'
 import DevTools from 'mobx-react-devtools'
 import { popupStore } from '../stores/popup_store'
@@ -18,8 +19,12 @@ class App extends Component {
           )
         }
         <Header className="widgetheader"/>
-        {this.props.children}
+        <main class="Site-content">
+          {this.props.children}
+
+        </main>
         {/* <DevTools /> } */}
+        <Footer />
       </div>
     )
   }

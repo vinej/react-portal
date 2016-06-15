@@ -31,12 +31,12 @@ class WidgetTool extends Component {
 
   render() {
     return (
-      <select style={{ 'marginTop': '7px'}} onChange={ this.handleOnChange } value='0'>
-        <option value='0' disabled="true">Choose an option</option>
-        <option value='create'>Create Dashboard</option>
-        <option value='rename'>Rename current Dashboard</option>
-        <option value='show'>Show/Hide Dashboard</option> 
-        <option value='add'>Add Widget to current Dashboard</option> 
+      <select className='widget-tool' onChange={ this.handleOnChange } value='0'>
+        <option value='0' disabled="true">Dashboard</option>
+        <option value='create'>Create a new Dashboard</option>
+        <option value='rename'>Rename the current Dashboard</option>
+        <option value='show'>Show/Hide Dashboards</option> 
+        <option value='add'>Add Widgets to current Dashboard</option> 
       </select>
     )
   }
