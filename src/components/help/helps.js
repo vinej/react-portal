@@ -5,27 +5,36 @@ import  TodoStore from '../../stores/todo_store'
 import { pageGetAll, pagePrevious, pageNext } from '../../actions/page_actions'
 import { dispatch } from '../../helpers/dispatcher'
 import { popupShow } from '../../actions/popup_actions'
-import TodoForm from '../todo/todo_form'
+import TodoView from '../todo/todo_view'
 
 @observer
 class Helps extends Component {
   constructor() {
     super()
-    this.store = TodoStore.mount()
     this.handleAdd = this.handleAdd.bind(this)
   }
 
   handleAdd() {
-    var component = <TodoForm mstore={this.store} todo={TodoStore.createTodo()} />
+    var component = <TodoView store={this.store} todo={TodoStore.createTodo()} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()))
   }
 
   componentWillMount() {
+    if (this.props.store) {
+      this.store = this.props.store;
+      this.storeAsProps = true
+    } else {
+      this.store = TodoStore.create();
+      this.storeAsProps = false
+    }      
     dispatch(pageGetAll(this.store))
   }
 
   componentWillUnmount() {
-    TodoStore.unmount(this.store)
+    if (this.storeAsProps == false)  {
+      TodoStore.remove(this.store);
+      this.store = null;
+    }
   }
 
   render() {

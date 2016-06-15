@@ -6,7 +6,6 @@ import { tabbarCloseAll } from '../actions/tabbar_actions'
 import { crudGetAll } from '../actions/crud_actions'
 import { dispatch } from '../helpers/dispatcher'
 import { dashboardStore } from './dashboard_store'
-import Form from '../helpers/form'
 
 export var authStore = {
   @observable email : "",
@@ -95,80 +94,3 @@ export var authStore = {
     }
   }
 }
-
-export let signUpForm = new Form(
-  { email: '',  name: '', password: '', passwordConfirm : '' }, 
-  { 
-    email: {
-      errorMessage: 'Required!',
-      fn: (field, fields) => {
-        return (field.value || '').length > 0;
-      }
-    },
-    name:  {
-      errorMessage: 'Required!',
-      fn: (field, fields) => {
-        return (field.value || '').length > 0;
-      }
-    },
-    password: {
-      fn: (field, fields) => {
-        return new Promise((resolve, reject) => {
-          if ((field.value || '').length === 0) {
-            reject({ error: 'Required!'});
-            return;
-          }
-          if (field.value === fields.email.value) {
-            reject({ error: 'Password cannot be the same as the email'});
-            return;
-          }
-          resolve();
-        });
-      }
-    },
-    passwordConfirm : {
-      errorMessage: 'Both passwords are not equal!',
-      fn: (field, fields) => {
-        return new Promise((resolve, reject) => {
-          if ((field.value || '').length === 0) {
-            reject({ error: 'Required!'});
-            return;
-          }
-          if (field.value !== fields.password.value) {
-            reject({ error: 'Both passwords are not equal!'});
-            return;
-          }
-          resolve();
-        });
-      }
-    }
-})
-
-export let signInForm = new Form({ email: '', password: ''}, {
-    email: {
-      errorMessage: 'Required!',
-      fn: (field, fields) => {
-        return (field.value || '').length > 0;
-      }
-    },
-    password: {
-      // this is the validation
-      fn: (field, fields) => {
-        return new Promise((resolve, reject) => {
-          // simulate server validation
-          setTimeout(() => {
-            if ((field.value || '').length === 0) {
-              reject({ error: 'Required!'});
-              return;
-            }
-            if (field.value === fields.email.value) {
-              reject({ error: 'Password cannot be the same as the email'});
-              return;
-            }
-            resolve();
-          }, 2);
-        });
-      }
-    }
-})
-

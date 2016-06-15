@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { pageDeleteRecord } from '../../actions/page_actions';
 import { popupShow } from '../../actions/popup_actions';
 import { dispatch } from '../../helpers/dispatcher';
-import TodoForm from './todo_form';
+import TodoView from './todo_view';
 import TodoStore from '../../stores/todo_store';
 
 @observer // need observer to update a row when a note is modified
@@ -15,11 +15,11 @@ class Todo extends Component {
   }
 
   handleDelete(todo) {
-    dispatch(pageDeleteRecord(this.props.mstore, todo));
+    dispatch(pageDeleteRecord(this.props.store, todo));
   }     
 
   handleEdit(todo) {
-    var component = <TodoForm mstore={this.props.mstore} todo={todo} />
+    var component = <TodoView store={this.props.store} todo={todo} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()));
   }     
 

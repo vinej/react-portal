@@ -8,6 +8,7 @@ class Field {
   @observable _interacted;
   @observable _valid = true;
   @observable errorMessage;
+  isRequired = false;
   _originalErrorMessage;
   
   markAsTouch() {
@@ -31,6 +32,10 @@ class Field {
     this._value = val;
 
     this.validate();
+  }
+
+  init(val) {
+    this._value = val;    
   }
 
   validate(force = false) {

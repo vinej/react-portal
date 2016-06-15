@@ -3,11 +3,11 @@ import { userService } from '../services/user_service';
 import { registerStore } from './register_store';
 
 export default class UserStore extends PageStore {
-  static mount() {
+  static create() {
     return registerStore.add( new UserStore() );
   }
 
-  static unmount(store) {
+  static remove(store) {
     registerStore.remove( store );
     store = null;
   }

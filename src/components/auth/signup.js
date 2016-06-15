@@ -1,9 +1,10 @@
 require("babel-polyfill")
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import { authSignUp } from '../../actions/auth_actions';
-import  { signUpForm,  authStore } from '../../stores/auth_store';
-import { dispatch } from '../../helpers/dispatcher';
+import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import { authSignUp } from '../../actions/auth_actions'
+import { authStore } from '../../stores/auth_store'
+import { signupForm } from '../../forms/signup_form'
+import { dispatch } from '../../helpers/dispatcher'
 
 @observer
 export default class Signup extends Component {
@@ -18,7 +19,7 @@ export default class Signup extends Component {
   }
 
   componentWillMount() {
-    this.form = this.props.form ? this.props.form : signUpForm
+    this.form = this.props.form ? this.props.form : signupForm
     this.store = this.props.store ? this.props.store : authStore
   }
 

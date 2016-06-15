@@ -10,16 +10,24 @@ import { dispatch } from '../../helpers/dispatcher';
 class Users extends Component {
   constructor() {
     super();
-    this.store = UserStore.mount();
   }
 
   componentWillMount() {
+    if (this.props.store) {
+      this.store = this.props.store;
+      this.storeAsProps = true
+    } else {
+      this.store = UserStore.create();
+      this.storeAsProps = false
+    }      
     dispatch(pageGetAll(this.store));
   }
 
   componentWillUnmount() {
-    UserStore.unmount(this.store);
-    this.store = null;
+    if (this.storeAsProps == false)  {
+      UserStore.remove(this.store);
+      this.store = null;
+    }
   }
 
   render() {
