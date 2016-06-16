@@ -31,7 +31,7 @@ class Header extends Component {
   renderTools() {
     if ( authStore.authenticated ) {
       return [
-        <li className="nav-item" style={{ float: 'right'}}>
+        <li className="nav-item" key={3} style={{ float: 'right'}}>
           <WidgetTool />
         </li>,
       ];

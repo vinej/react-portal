@@ -49,7 +49,7 @@ export default class Signin extends Component {
                 className="btn btn-primary"
                 disabled={!form.valid} >Sign in</button>
       </div>
-    );
+    )
   }
 }
 
