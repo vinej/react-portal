@@ -20,18 +20,18 @@ export function authSetAuthorizationsIt(mainComponentsToRender, authorizations) 
 
 export function authSignIn({ email, password }) {
   return {
-    type: t.AUTH_SIGN_IN_,
+    type: t.AUTH_SIGN_IN,
     payload: function() {
-      authService.signIn({ email, password }, authSignInIt, authError);
+      authService.signIn({ email, password }, authSignInIt, authError)
     }
   }
 }
 
 export function authSignUp({ email, password, name }) {
   return {
-    type: t.AUTH_SIGN_UP_,
+    type: t.AUTH_SIGN_UP,
     payload : function() {
-      authService.signUp({ email, password, name }, authSignUpIt, authError);
+      authService.signUp({ email, password, name }, authSignUpIt, authError)
     }
   }
 }
@@ -40,14 +40,14 @@ export function authCheckToken(mainComponentsToRender) {
   return {
     type: t.AUTH_CHECK_TOKEN,
     render: mainComponentsToRender
-  };
+  }
 }
 
 export function authSignInIt(token, name) {
   return {
     type: t.AUTH_SIGN_IN,
     payload: { token, name }
-  };
+  }
 }
 
 export function authSignUpIt(token, name) {
@@ -65,14 +65,14 @@ export function authValidateSignUp(store) {
   return { 
     type: t.AUTH_VALIDATE_SIGN_UP,
     store: store 
-  };
+  }
 }
 
 export function authValidateSignIn(store) {
   return { 
     type: t.AUTH_VALIDATE_SIGN_IN,
     store: store 
-  };
+  }
 }
 
 export function authError(error, mainComponentsToRender) {

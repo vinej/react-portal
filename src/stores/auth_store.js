@@ -79,16 +79,21 @@ export var authStore = {
 
   Error : function(error, mainComponentsToRender) {
     transaction(() => {
-      if (typeof error === 'object') {
-        authStore.errorMessage = error.error;
+      if (mainComponentsToRender) {
+        authStore.errorMessage = ''
       } else {
-        authStore.errorMessage = error;
+        if (typeof error === 'object') {
+          authStore.errorMessage = error.error;
+        } else {
+          authStore.errorMessage = error;
+        }
       }
       authStore.authenticated = false;
       authStore.name = '';
     })
     if (mainComponentsToRender) {
       // token is not good or an error with authentification
+      // the first time don't show an error 
       mainComponentsToRender()
       browserHistory.push('/')
     }

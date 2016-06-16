@@ -19,10 +19,7 @@ class App extends Component {
           )
         }
         <Header className="widgetheader"/>
-        <main class="Site-content">
-          {this.props.children}
-
-        </main>
+        {this.props.children}
         {/* <DevTools /> } */}
         <Footer />
       </div>
