@@ -1,6 +1,6 @@
 # react-portal
 
-A portal example using React, Mobx and a Flux pattern inspired by Redux
+A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspired by Redux
 
 ## Features
 
@@ -68,7 +68,7 @@ With React/Mobx/Dispatch
 
 ## Dashboard example
 
-![db](https://cloud.githubusercontent.com/assets/3254214/15992427/d9969eee-3099-11e6-89a1-53e07bdf5f7e.png)
+![db](https://cloud.githubusercontent.com/assets/3254214/16101409/619ab15e-3333-11e6-8133-c9dd5eb27fd2.png)
 
 JYV
 
