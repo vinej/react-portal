@@ -21,15 +21,15 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 * npm start
 * use the portal
  * signup for the first time : after that use 'signin'
- * use the option : Create Dashboard
- * use the option : Add Widget into the current Dashboard
+ * use the option : Create a new Dashboard
+ * use the option : Add Widgets into the current Dashboard
  * use the option : Rename the current Dashboard if needed
  * move widgets by dragging them around with the green header
  * you can remove widgets from a Dashboard with the "X" icon
  * you can open a widget into it's own tab with the "folder" icon
- * you can close a Dashboard with the red X
+ * you can close a Dashboard with the red small "X"
  * note: the option Show/Hide Dashboards is not implemented yet
- *       when you refresh the page, all your Dashboards will be shown 
+ *       when you refresh the page, all your Dashboards will be shown again
 
 Notes: 
 * You need to install 'react-portal-server' to run the application
