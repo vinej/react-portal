@@ -8,8 +8,9 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 * A full CRUD TODO example : view -> action -> middleware -> service(ajax call) ->  reducer -> store -> view
 * Authentification with a JWT token
 * Authorization (which actions the user can do)
-* A dispatcher
+* A scalable dispatcher 
 * Resolvers (logger, thunk, autorization, ...) like reducers/middlewares
+  * 3 types of resolver (pre , std, post)
 * Form validation and abstraction (from Michel Weststrate)
 * Popup modal form 
 * Tab Bar 
