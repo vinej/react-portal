@@ -3,10 +3,6 @@ import * as d from '../types/dashboard_types'
 import { tabbarStore } from '../stores/tabbar_store'
 
 export function tabbarResolver(action, next) {
-  if ( !action.type.startsWith("tabbar_") && !action.type.startsWith("dashboard_") ) {
-    return next(null, action)
-  }
-
   switch(action.type) {
     case d.DASHBOARD_RENAME_DASHBOARD:
       tabbarStore.rename(action.payload)

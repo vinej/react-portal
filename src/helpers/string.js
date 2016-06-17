@@ -19,3 +19,16 @@ if (!String.prototype.endsWith) {
       return lastIndex !== -1 && lastIndex === position;
   };
 }
+
+if (typeof String.prototype.splitEqual != 'function') {
+  String.prototype.splitEqual = function(actiontype, sep) {
+    var res = this.split(sep)
+    for(let f of res) {
+      if (f === "*" || f == actiontype) {
+        return true
+      }
+    }
+    return false
+  }
+}
+

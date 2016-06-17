@@ -5,10 +5,6 @@ import { resolveCrudAction } from './crud_resolver'
 import { dashboardStore } from '../stores/dashboard_store'
 
 export default function(action, next) {
-  if ( !action.type.startsWith("tabbar_") && !action.type.startsWith("dashboard_") ) {
-    return next(null, action)
-  }
-
   resolveCrudAction(action);
 
   switch(action.type) {
