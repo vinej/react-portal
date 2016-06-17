@@ -27,3 +27,17 @@ export function dashboardRenameDashboard(dashboardName) {
     payload: dashboardName
   }
 }
+
+export function dashboardShow(dashboardId) {
+  return {
+    type: t.DASHBOARD_SHOW,
+    payload: dashboardId
+  }
+}
+
+export function dashboardHide(dashboardId) {
+  return {
+    type: t.DASHBOARD_HIDE,
+    payload: dashboardId
+  }
+}

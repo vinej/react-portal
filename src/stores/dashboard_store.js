@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { observable, action } from 'mobx'
 import CrudStore from './crud_store';
 import { tabbarStore } from './tabbar_store'
 import { registerStore } from './register_store';
@@ -23,8 +24,10 @@ class DashboardStore extends CrudStore {
 
   showAllUserDashboard() {
     this.records.forEach( (dashboard, idx) => {
-      var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
-      dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
+      if (dashboard.isHidden === false) {
+        var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
+        dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
+      }
     })
   }
 
@@ -32,6 +35,17 @@ class DashboardStore extends CrudStore {
     const dashboard = this.records[this.records.length - 1]
     var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
     dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
+  }
+
+  showDashboard(dashboardId) {
+    const idx = this.records.findIndex( (r) => r._id === dashboardId );
+    if (idx > -1) {
+      const dashboard = this.records[idx]
+      dashboard.isHidden = false
+      dispatch(crudUpdate(this, dashboard))
+      var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
+      dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
+    }
   }
 
   removeWidget(dashboardId, widgetId) {
@@ -50,7 +64,8 @@ class DashboardStore extends CrudStore {
 
   createDashboard(name) {
     return {
-      title: name,
+      @observable title: name,
+      @observable isHidden: false,
       widgets: []
     }
   }
@@ -59,10 +74,11 @@ class DashboardStore extends CrudStore {
     dispatch(crudAdd(this, this.createDashboard(dashboardName)))
   }
 
-  removeDashboard(dashboardId) {
+  hideDashboard(dashboardId) {
     const idx = this.records.findIndex( (r) => r._id === dashboardId )
     if (idx > -1) {
-      this.records.splice(idx,1)
+      this.records[idx].isHidden = true
+      dispatch(crudUpdate(this, this.records[idx]))
     }
   }
 
@@ -99,6 +115,15 @@ class DashboardStore extends CrudStore {
       this.records[idx].widgets.forEach( (w) =>  layout.push( { i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
     }
     return layout
+  }
+
+  static getFormManageDimension() {
+    return {
+      width: '50%',
+      height: '500px',
+      left: '50%',
+      top: '100px'
+    }
   }
 }
 export let dashboardStore = new DashboardStore()

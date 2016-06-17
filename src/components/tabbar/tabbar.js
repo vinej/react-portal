@@ -35,7 +35,7 @@ class TabBarItem extends Component {
     return (
       <li onClick={ this.handleOnClick }
           _id={this.props.componentId} key={this.props.componentId} value={this.props.componentId}>{this.props.title}
-        { this.renderClose(this.props.visible)}
+        { this.renderClose(this.props.visible) }
       </li>
     )
   }
@@ -50,7 +50,7 @@ class TabBar extends Component {
       <div className='tabbarcontent'>
         <ul className="tabbar">
           { stores.map( (store, idx) => 
-            <TabBarItem key={store.componentId} componentId={store.componentId} title={store.title} visible={ store.display == 'block'} />
+            <TabBarItem key={store.componentId} componentId={store.componentId} title={store.title} visible={ store.display === 'block'} />
             )
           } 
         </ul>

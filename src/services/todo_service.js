@@ -1,4 +1,3 @@
-import axios from 'axios';
 import CrudService from './crud_service';
 
 class TodoService extends CrudService {

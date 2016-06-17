@@ -13,7 +13,7 @@ export default function(action, next) {
 
   switch(action.type) {
     case t.TABBAR_CLOSE:
-      dashboardStore.removeDashboard(action.payload)
+      dashboardStore.hideDashboard(action.payload)
       break
     case d.DASHBOARD_GET_ALL:
       dashboardStore.showAllUserDashboard()
@@ -32,6 +32,12 @@ export default function(action, next) {
       break
     case d.DASHBOARD_ADD:
       dashboardStore.showLastDashboard()
+      break
+    case d.DASHBOARD_SHOW:
+      dashboardStore.showDashboard(action.payload)
+      break
+    case d.DASHBOARD_HIDE:
+      dashboardStore.hideDashboard(action.payload)
       break
   }
 

@@ -45,12 +45,12 @@ dispatcher.addResolver(authorizationResolver)
 dispatcher.addResolver(thunkResolver)
 
 // no special order for those
-dispatcher.addResolver(popupResolver)
 dispatcher.addResolver(tabbarResolver)
+dispatcher.addResolver(dashboardResolver)
 dispatcher.addResolver(authResolver)
 dispatcher.addResolver(messageResolver)
 dispatcher.addResolver(userResolver)
 dispatcher.addResolver(todoResolver)
-dispatcher.addResolver(dashboardResolver)
+dispatcher.addResolver(popupResolver)
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)

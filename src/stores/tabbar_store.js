@@ -72,20 +72,28 @@ class TabbarStore {
   @action
   close(componentId) {
     const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
-    this.tabbarStores.splice(idx,1)
-    this.current = idx - 1
-    if (this.current == -1 && this.tabbarStores.length > 0) {
-      this.current = 0  
-    }
-    // change the ID of the other tab
-    if (this.current > -1) {
-      this.tabbarStores[this.current].display = 'block'
-    }
+    if (this.current != idx)
+    { // must be selected before closing
+      this.select(componentId)
+    }  
+
+    if (idx > -1) {
+      this.tabbarStores[idx].display = 'none'
+      this.tabbarStores.splice(idx,1)
+      this.current = idx - 1
+      if (this.current == -1 && this.tabbarStores.length > 0) {
+        this.current = 0  
+      }
+      // change the ID of the other tab
+      if (this.current > -1) {
+        this.tabbarStores[this.current].display = 'block'
+      }
+    } 
   }
 
   static createStore() {
     return {
-      display : 'none',
+      @observable display : 'none',
       @observable title : '',
       type: '',         // dashboard , page
       id : 0,
