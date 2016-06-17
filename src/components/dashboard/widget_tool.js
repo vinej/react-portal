@@ -18,16 +18,16 @@ class WidgetTool extends Component {
   handleOnChange(e) {
     switch(e.target.value) {
       case 'create' :
-        dispatch(popupShow( <DashboardForm action="add" name="" />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
+        dispatch(popupShow( <DashboardForm action="add" name="" />, { width: '50%', height: '200px', left: '50%', top: '100px' }))
         break;
       case 'rename' :
-        dispatch(popupShow( <DashboardForm action="rename" name={ tabbarStore.getCurrentTitle() } />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
+        dispatch(popupShow( <DashboardForm action="rename" name={ tabbarStore.getCurrentTitle() } />, { width: '50%', height: '200px', left: '50%', top: '100px' }))
         break;
       case 'show_hide' :
         dispatch(popupShow( <DashboardManage />, { width: '50%', height: '400px', left: '50%', top: '100px' }))
         break;
       case 'add' :
-        dispatch(popupShow( <WidgetForm />, { width: '40%', height: '200px', left: '60%', top: '100px' }))
+        dispatch(popupShow( <WidgetForm />, { width: '50%', height: '200px', left: '50%', top: '100px' }))
         break;
     }
   }
