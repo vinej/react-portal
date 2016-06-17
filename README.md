@@ -27,7 +27,7 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
  * use the option : Show/Hide Dashboards to show or hide dashboards
  * move widgets by dragging them around with the green header
  * you can remove widgets from a Dashboard with the "X" icon
- * you can open a widget into it's own tab with the "folder" icon
+ * you can open a widget into its own tab with the "folder" icon
  * you can close a Dashboard with the red small "X"
 
 Notes: 
