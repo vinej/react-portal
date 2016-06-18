@@ -42,9 +42,11 @@ class TabbarStore {
   @action
   select(componentId) {
     const idx = this.tabbarStores.findIndex( (r) => r.componentId === componentId );
-    this.tabbarStores[this.current].display = 'none'
-    this.tabbarStores[idx].display = 'block'
-    this.current = Number(idx)
+    if (idx > -1) {
+      this.tabbarStores[this.current].display = 'none'
+      this.tabbarStores[idx].display = 'block'
+      this.current = Number(idx)
+    }
   }
 
   @action

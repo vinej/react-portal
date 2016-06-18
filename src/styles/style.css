@@ -45,6 +45,14 @@ body {
   border-bottom-color: lightgray;
 }
 
+.popupMsg {
+  background-color: white;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: lightgray;
+  height: 133px;
+}
+
 .tabbar {
   display: inline-block;
   margin-top: 6px;
@@ -180,3 +188,5 @@ div.content { clear: both; }
   display: block;
   margin-right: -350px;
 }
+
+

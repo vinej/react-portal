@@ -23,6 +23,9 @@ export default function(action, next) {
     case d.DASHBOARD_ADD_DASHBOARD:
       dashboardStore.addDashboard(action.payload)
       break
+    case d.DASHBOARD_DELETE_DASHBOARD:
+      dashboardStore.deleteDashboard(action.payload)
+      break
     case d.DASHBOARD_RENAME_DASHBOARD:
       dashboardStore.renameDashboard(action.payload)
       break

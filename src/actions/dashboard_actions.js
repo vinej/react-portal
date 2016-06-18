@@ -41,3 +41,9 @@ export function dashboardHide(dashboardId) {
     payload: dashboardId
   }
 }
+
+export function dashboardDelete() {
+  return {
+    type: t.DASHBOARD_DELETE_DASHBOARD
+  }
+}

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { widgetStore } from '../../stores/widget_store'
+import { dashboardStore } from '../../stores/dashboard_store'
+import PopupStore, { popupStore } from '../../stores/popup_store'
 import { dispatch } from '../../helpers/dispatcher'
 import { popupShow } from '../../actions/popup_actions'
+import { dashboardDelete } from '../../actions/dashboard_actions'
 import WidgetForm from './widget_form'
+import PopupYesNo from '../popups/popup_yesno'
 import DashboardForm from './dashboard_form'
 import DashboardManage from './dashboard_manage'
 
@@ -18,16 +22,27 @@ class WidgetTool extends Component {
   handleOnChange(e) {
     switch(e.target.value) {
       case 'create' :
-        dispatch(popupShow( <DashboardForm action="add" name="" />, { width: '50%', height: '200px', left: '50%', top: '100px' }))
+        dispatch(popupShow( <DashboardForm action="add" name="" />, 
+                            PopupStore.getStandardDimension()))
         break;
       case 'rename' :
-        dispatch(popupShow( <DashboardForm action="rename" name={ tabbarStore.getCurrentTitle() } />, { width: '50%', height: '200px', left: '50%', top: '100px' }))
+        dispatch(popupShow( <DashboardForm  action="rename" name={ tabbarStore.getCurrentTitle() } />, 
+                            PopupStore.getStandardDimension()))
         break;
       case 'show_hide' :
-        dispatch(popupShow( <DashboardManage />, { width: '50%', height: '400px', left: '50%', top: '100px' }))
+        dispatch(popupShow( <DashboardManage action="show_hide"/>, 
+                            PopupStore.getStandardDimension()))
+        break;
+      case 'delete' :
+        dispatch(popupShow( <PopupYesNo 
+          title="Delete Dashboard"  
+          msg={ "Do you want to delete the dashboard <" + dashboardStore.getDashboardTitle() + "> ?" }
+          yesAction={ dashboardDelete }
+          />, PopupStore.getSmallDimension()))
         break;
       case 'add' :
-        dispatch(popupShow( <WidgetForm />, { width: '50%', height: '200px', left: '50%', top: '100px' }))
+        dispatch(popupShow( <WidgetForm />, 
+                            PopupStore.getStandardDimension()))
         break;
     }
   }
@@ -38,6 +53,7 @@ class WidgetTool extends Component {
         <option value='0' disabled="true">Dashboard</option>
         <option value='create'>Create a new Dashboard</option>
         <option value='rename'>Rename the current Dashboard</option>
+        <option value='delete'>Delete the current Dashboard</option>
         <option value='show_hide'>Show/Hide Dashboards</option> 
         <option value='add'>Add Widgets to current Dashboard</option> 
       </select>
