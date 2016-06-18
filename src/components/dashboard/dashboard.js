@@ -5,11 +5,6 @@ import { dashboardStore, getWidgetComponent } from '../../stores/dashboard_store
 import { dispatch } from '../../helpers/dispatcher'
 import { crudUpdate } from '../../actions/crud_actions'
 
-// need to import all available widgets that can be included into a dashboard
-import UsersWidget from '../widgets/users_widget'
-import TodosWidget from '../widgets/todos_widget'
-import HelpsWidget from '../widgets/helps_widget'
-
 @observer
 class Dashboard extends Component {
   constructor() {
@@ -48,20 +43,20 @@ class Dashboard extends Component {
   }
 
   render() {
-    var layout = dashboardStore.getWidgetsLayout(this.props.id)
-    if (layout.length == 0) { 
+    var layouts = dashboardStore.getWidgetsLayout(this.props.id)
+    if (layouts.length == 0) { 
       return (<div>no widget</div>)
     } else {
       return (
         <ReactGridLayout  className="layout" 
-                          layout={layout} 
+                          layout={layouts} 
                           cols={12} 
                           rowHeight={20} 
                           isDraggable={true}
                           width={1400}
                           onLayoutChange={ this.handleOnLayoutChange }
                           draggableHandle=".widgetheader">
-          { layout.map( widget => 
+          { layouts.map( widget => 
             <div style={{overflow: 'auto'}} key={widget.i} className="widget">
               { getWidgetComponent(widget.name, this.props.id, widget.i) }
             </div> )

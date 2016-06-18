@@ -5,8 +5,8 @@ import { tabbarStore } from './tabbar_store'
 import { registerStore } from './register_store';
 import { dashboardService } from '../services/dashboard_service'
 import { dispatch } from '../helpers/dispatcher'
-import { crudUpdate, crudAdd } from '../actions/crud_actions'
-import { tabbarShow } from '../actions/tabbar_actions'
+import { crudUpdate, crudAdd, crudDelete } from '../actions/crud_actions'
+import { tabbarShow, tabbarSelect, tabbarClose } from '../actions/tabbar_actions'
 import Dashboard from '../components/dashboard/dashboard'
 
 // need to import all available widgets that can be included into a dashboard
@@ -23,6 +23,7 @@ class DashboardStore extends CrudStore {
   }
 
   showAllUserDashboard() {
+    console.log("show all")
     this.records.forEach( (dashboard, idx) => {
       if (dashboard.isHidden === false) {
         var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
@@ -64,14 +65,21 @@ class DashboardStore extends CrudStore {
 
   createDashboard(name) {
     return {
-      @observable title: name,
-      @observable isHidden: false,
+      title: name,
+      isHidden: false,
       widgets: []
     }
   }
 
   addDashboard(dashboardName) {
     dispatch(crudAdd(this, this.createDashboard(dashboardName)))
+  }
+
+  deleteDashboard() {
+    const dashboardId = tabbarStore.getCurrentComponentId()
+    const idx = this.records.findIndex( (r) => r._id === dashboardId )
+    dispatch(crudDelete(this, this.records[idx]))
+    dispatch(tabbarClose(dashboardId))
   }
 
   hideDashboard(dashboardId) {
@@ -98,6 +106,12 @@ class DashboardStore extends CrudStore {
     dispatch(crudUpdate(this, this.records[idx]))
   }
 
+  getDashboardTitle() {
+    const dashboardId = tabbarStore.getCurrentComponentId()
+    const idx = this.records.findIndex( (r) => r._id === dashboardId );
+    return this.records[idx].title
+  }
+
   getDashboard(dashboardId) {
     const idx = this.records.findIndex( (r) => r._id === dashboardId );
     return this.records[idx]
@@ -110,11 +124,15 @@ class DashboardStore extends CrudStore {
 
   getWidgetsLayout(dashboardId) {
     const idx = this.records.findIndex( (r) => r._id === dashboardId );
-    var layout = []
-    if (this.records[idx].widgets) {
-      this.records[idx].widgets.forEach( (w) =>  layout.push( { i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
+    if (idx > -1) {
+      var layouts = []
+      if (this.records[idx].widgets) {
+        this.records[idx].widgets.forEach( (w) =>  layouts.push( { i: w.i, x: w.x, y: w.y, w: w.w, h: w.h, name: w.name } ) )
+      }
+      return layouts
+    } else {
+      return []
     }
-    return layout
   }
 
   static getFormManageDimension() {

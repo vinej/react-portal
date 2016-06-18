@@ -1,12 +1,20 @@
 import { observable, action } from 'mobx';
 import ReactDOM from 'react-dom';
 
-class PopupStore {
+export default class PopupStore {
 
   @observable popupStores = []
 
   constructor() {
     this.current = -1
+  }
+
+  static getStandardDimension() {
+    return { width: '50%', height: '200px', left: '50%', top: '100px' }
+  }
+
+  static getSmallDimension() {
+    return { width: '30%', height: '200px', left: '60%', top: '100px' }
   }
 
   getCurrentId() {
