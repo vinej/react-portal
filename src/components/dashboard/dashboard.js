@@ -62,7 +62,7 @@ class Dashboard extends Component {
                           onLayoutChange={ this.handleOnLayoutChange }
                           draggableHandle=".widgetheader">
           { layout.map( widget => 
-            <div key={widget.i} className="widget">
+            <div style={{overflow: 'auto'}} key={widget.i} className="widget">
               { getWidgetComponent(widget.name, this.props.id, widget.i) }
             </div> )
           }
