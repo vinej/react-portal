@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { popupClose } from '../../actions/popup_actions'
 import { dashboardAddWidget } from '../../actions/dashboard_actions'
 import { dispatch } from '../../helpers/dispatcher'
-import { widgetStore } from '../../stores/widget_store'
+import WidgetStore from '../../stores/widget_store'
 
 class WidgetForm extends Component {
 
@@ -10,11 +10,15 @@ class WidgetForm extends Component {
     dispatch(dashboardAddWidget(name))
   }
 
+  static propTypes = {
+    store:  React.PropTypes.instanceOf(WidgetStore)  
+  }
+
   render() {
     return (
       <div>
         <div className="popupHeader"><strong>add widget to current dashboard</strong></div>
-        { widgetStore.getWidgets().map( (widget) => 
+        { this.props.store.getWidgets().map( (widget) => 
             <div className='widgetButton' key={widget._id} onClick={ () => this.handleClick(widget.name)}>{widget.name}</div>
         )}
         <button style={{ 'marginTop': '20px', float :'right' }} onClick={ (event) => {

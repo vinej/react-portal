@@ -16,6 +16,10 @@ import Welcome from './components/welcome'
 import { simulateEvent} from './helpers/simulate_event'
 import { dispatch } from './helpers/dispatcher'
 
+import { authStore } from './stores/auth_store'
+import { signinForm } from './forms/signin_form'
+import { signupForm } from './forms/signup_form'
+
 // launch the web socket service client side
 //require("./services/wss_service");
 require("./helpers/string.js")
@@ -30,9 +34,13 @@ var mainComponentsToRender = function() {
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Welcome} />
-        <Route path="signin" component={Signin} />
+        <Route path="signin" 
+              component={ ({children}) =>
+                <Signin store={authStore} form={signinForm}>{children}</Signin> } />
         <Route path="signout" component={Signout} />
-        <Route path="signup" component={Signup} />
+        <Route path="signup" 
+              component={ ({children}) =>
+                <Signup store={authStore} form={signupForm}>{children}</Signup> } />
         <Route path="main" component={RequireAuth(Main)} />
         <Route path="dashboard" component={RequireAuth(Dashboard)} />
         <Route path="feature" component={RequireAuth(Feature)} />

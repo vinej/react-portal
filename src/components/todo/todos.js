@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
-import  TodoStore from '../../stores/todo_store'
 import { pageGetAll, pagePrevious, pageNext } from '../../actions/page_actions'
 import { popupShow } from '../../actions/popup_actions'
-import Todo from './todo'
 import { dispatch } from '../../helpers/dispatcher'
+import { todoForm } from '../../forms/todo_form'
+import Todo from './todo'
+import TodoStore from '../../stores/todo_store'
 import TodoView from './todo_view'
-import { registerStore } from '../../stores/register_store'
+import TodoModel from '../../models/todo_model'
 
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
@@ -15,30 +16,30 @@ class Todos extends Component {
     this.handleAdd = this.handleAdd.bind(this)
   }
 
+  static propTypes = {
+    store:          React.PropTypes.instanceOf(TodoStore),
+    isRemoveStore : React.PropTypes.bool      // true means that the store must be delete here
+                                              // false means that the store will be deleted by the parent
+  }
+
   componentWillMount() {
-    if (this.props.store) {
-      this.store = this.props.store;
-      this.storeAsProps = true
-    } else {
-      this.store = TodoStore.create();
-      this.storeAsProps = false
-    }      
-    dispatch(pageGetAll(this.store))
+    dispatch(pageGetAll(this.props.store))
   }
 
   componentWillUnmount() {
-    if (this.storeAsProps == false)  {
-      TodoStore.remove(this.store)
-      this.store = null;
+    if (this.props.isRemoveStore === true) {
+      TodoStore.remove(this.props.store)
+      this.props.store = null;
     }
   }
 
   handleAdd() {
-    var component = <TodoView store={this.store} todo={TodoStore.createTodo()} />
+    var component = <TodoView store={this.props.store} todo={TodoModel.create()} form={todoForm} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()))
   }
 
   render() {
+    const store = this.props.store
     return ( 
       <div style={{ height: '400px'}}>
         <table className='table table-hoover'>
@@ -47,14 +48,14 @@ class Todos extends Component {
           </thead>
           {/* note: always need a key */} 
           <tbody>
-            { this.store.page.map( todo => 
-              <Todo key={todo._id} todo={todo} store={this.store} />
+            { store.page.map( todo => 
+              <Todo key={todo._id} todo={todo} store={store} />
               )
             }
           </tbody>
         </table>
-        <button onClick={ () => dispatch(pagePrevious(this.store)) }>prev</button>
-        <button onClick={ () => dispatch(pageNext(this.store)) }>next</button>
+        <button onClick={ () => dispatch(pagePrevious(store)) }>prev</button>
+        <button onClick={ () => dispatch(pageNext(store)) }>next</button>
         <button onClick={ () => this.handleAdd() }>add</button>
       </div>
     )

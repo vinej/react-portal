@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { widgetStore } from '../../stores/widget_store'
 import { dashboardStore } from '../../stores/dashboard_store'
 import PopupStore, { popupStore } from '../../stores/popup_store'
 import { dispatch } from '../../helpers/dispatcher'
@@ -9,7 +8,7 @@ import WidgetForm from './widget_form'
 import PopupYesNo from '../popups/popup_yesno'
 import DashboardForm from './dashboard_form'
 import DashboardManage from './dashboard_manage'
-
+import { widgetStore } from '../../stores/widget_store'
 import { tabbarStore} from '../../stores/tabbar_store'
 
 class WidgetTool extends Component {
@@ -22,15 +21,15 @@ class WidgetTool extends Component {
   handleOnChange(e) {
     switch(e.target.value) {
       case 'create' :
-        dispatch(popupShow( <DashboardForm action="add" name="" />, 
+        dispatch(popupShow( <DashboardForm action="add" title="" />, 
                             PopupStore.getStandardDimension()))
         break;
       case 'rename' :
-        dispatch(popupShow( <DashboardForm  action="rename" name={ tabbarStore.getCurrentTitle() } />, 
+        dispatch(popupShow( <DashboardForm  action="rename" title={ tabbarStore.getCurrentTitle() } />, 
                             PopupStore.getStandardDimension()))
         break;
       case 'show_hide' :
-        dispatch(popupShow( <DashboardManage action="show_hide"/>, 
+        dispatch(popupShow( <DashboardManage store={dashboardStore} />, 
                             PopupStore.getStandardDimension()))
         break;
       case 'delete' :
@@ -41,7 +40,7 @@ class WidgetTool extends Component {
           />, PopupStore.getSmallDimension()))
         break;
       case 'add' :
-        dispatch(popupShow( <WidgetForm />, 
+        dispatch(popupShow( <WidgetForm store={widgetStore} />, 
                             PopupStore.getStandardDimension()))
         break;
     }

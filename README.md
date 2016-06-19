@@ -56,15 +56,15 @@ With React/Mobx/Dispatch
 * Stores contain actions with Mobx @action decorator
 * Stores actions are called through resolvers to update the data 
   * Resolvers are something like reducers from Redux and middlewares. The goal of a resolver is to decide what to do with an action
-* Components are refreshed with Mobx @obserser decorator
-* Components use 'dispatch' function to dispatch actions creator
-* Components use stores' data directly (not need to use MapStateToProps)
- * like that you know the difference between stores' data and props
-* Components must use stores' data in read only mode
-* Components use stores' data in read/write mode (it's the exception) for input fields. There is no value to go through each reducer for every key stroke during input. If you want to follow at 100% the flux pattern, you could dispatch an action creator at every change value
+* Stores are passed as props to Components (must of the time)
 * Stores attributes are observables with the @observable decorator
-* Stores are singletons or standard classes
-* Standard classes stores are passed as parameter to the action creator to keep the independance of the components. In a dashboard, the same component could be used multiple times and each component will have its own store to implement local filtering, sorting, etc...
+* Stores are singletons or intance classes as needed
+
+* Components are refreshed with Mobx @obserser decorator
+* Components props are validated with 'propTypes'
+* Components use model shape to validate entity with React.PropTypes.shape
+* Components use 'dispatch' function to dispatch actions creator
+* Components must use stores' data in read only mode
 
 ## Dashboard example
 

@@ -8,13 +8,14 @@ import { dispatch } from '../helpers/dispatcher'
 import { crudUpdate, crudAdd, crudDelete } from '../actions/crud_actions'
 import { tabbarShow, tabbarSelect, tabbarClose } from '../actions/tabbar_actions'
 import Dashboard from '../components/dashboard/dashboard'
+import DashboardModel from '../models/dashboard_model'
 
 // need to import all available widgets that can be included into a dashboard
 import UsersWidget from '../components/widgets/users_widget'
 import TodosWidget from '../components/widgets/todos_widget'
-import HelpsWidget from '../components/widgets/helps_widget'
+import AgGridWidget from '../components/widgets/aggrid_widget'
 
-class DashboardStore extends CrudStore {
+export default class DashboardStore extends CrudStore {
   constructor() {
     super();
     this.service = dashboardService;
@@ -63,16 +64,8 @@ class DashboardStore extends CrudStore {
     }
   }
 
-  createDashboard(name) {
-    return {
-      title: name,
-      isHidden: false,
-      widgets: []
-    }
-  }
-
   addDashboard(dashboardName) {
-    dispatch(crudAdd(this, this.createDashboard(dashboardName)))
+    dispatch(crudAdd(this, DashboardModel.create(dashboardName)))
   }
 
   deleteDashboard() {
@@ -153,7 +146,7 @@ export function getWidgetComponent(name, dashboardId, widgetId) {
       return <TodosWidget dashboardId={ dashboardId } id={ widgetId } />
     case 'UsersWidget':
       return <UsersWidget dashboardId={ dashboardId } id={ widgetId } />
-    case 'HelpsWidget':
-      return <HelpsWidget dashboardId={ dashboardId } id={ widgetId } />
+    case 'AgGridWidget':
+      return <AgGridWidget dashboardId={ dashboardId } id={ widgetId } />
   }
 }

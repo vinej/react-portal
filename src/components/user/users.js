@@ -5,51 +5,50 @@ import { pageGetAll, pagePrevious, pageNext } from '../../actions/page_actions';
 import User from './user';
 import { dispatch } from '../../helpers/dispatcher';
 
-
 @observer  // need observer when we add, delete rows
-class Users extends Component {
+export default class Users extends Component {
   constructor() {
     super();
   }
 
+  static propTypes = {
+    store:          React.PropTypes.instanceOf(UserStore),
+    isRemoveStore : React.PropTypes.bool      // true means that the store must be delete here
+                                              // false means that the store will be deleted by the parent
+  }
+
   componentWillMount() {
-    if (this.props.store) {
-      this.store = this.props.store;
-      this.storeAsProps = true
-    } else {
-      this.store = UserStore.create();
-      this.storeAsProps = false
-    }      
-    dispatch(pageGetAll(this.store));
+    dispatch(pageGetAll(this.props.store));
   }
 
   componentWillUnmount() {
-    if (this.storeAsProps == false)  {
-      UserStore.remove(this.store);
-      this.store = null;
+    if (this.props.isRemoveStore === true) {
+      UserStore.remove(this.props.store)
+      this.props.store = null;
     }
   }
 
   render() {
+    const store = this.props.store
     return ( 
-      <div>
+      <div style={{ height: '400px'}}>
         <table className='table table-hoover' style={{ height: 400}}>
           <thead >
             <tr><th>Name</th><th>Desc</th><th>Id</th><th>DEL</th></tr>
           </thead>
           {/* note: always need a key */} 
           <tbody>
-            { this.store.page.map( user => 
-              <User key={user._id} user={user} mstore={this.store} />
+            { store.page.map( user => 
+              <User key={user._id} user={user} store={store} />
               )
             }
           </tbody>
         </table>
-        <button onClick={ () => dispatch(pagePrevious(this.store)) }>prev</button>
-        <button onClick={ () => dispatch(pageNext(this.store)) }>next</button>
+        <button onClick={ () => dispatch(pagePrevious(store)) }>prev</button>
+        <button onClick={ () => dispatch(pageNext(store)) }>next</button>
       </div>
     )
   }
-};
-export default Users;
+}
+
 

@@ -21,14 +21,6 @@ export default class TodoStore extends PageStore {
     this.error = null
   }
 
-  static createTodo() {
-    return {
-      description : "",
-      status : "waiting",
-      done : false
-    }
-  }
-
   static getEditFormDimension() {
     return {
       width: '50%',

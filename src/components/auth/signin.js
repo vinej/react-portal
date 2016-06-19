@@ -1,10 +1,10 @@
 require("babel-polyfill")
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
-import { authStore } from '../../stores/auth_store'
-import { signinForm } from '../../forms/signin_form'
-import { authSignIn } from '../../actions/auth_actions'
 import { dispatch } from '../../helpers/dispatcher'
+import { authSignIn } from '../../actions/auth_actions'
+import Form from '../../forms/form'
+import AuthStore from '../../stores/auth_store'
 
 @observer
 export default class Signin extends Component {
@@ -12,18 +12,19 @@ export default class Signin extends Component {
     await form.validate();
     if (form.valid) {
       dispatch(authSignIn( {
-        email : form.fields.email.value,
+        email     : form.fields.email.value,
         password  : form.fields.password.value }));      
     }
   }
 
-  componentWillMount() {
-    this.form = this.props.form ? this.props.form : signinForm
-    this.store = this.props.store ? this.props.store : authStore
+  static propTypes = {
+    form:   React.PropTypes.instanceOf(Form),      
+    store:  React.PropTypes.instanceOf(AuthStore)  
   }
 
   render() {
-    const form = this.form
+    const form = this.props.form
+    if (!form) { return <div />}
     return (
       <div>
         <fieldset className="form-group">
@@ -44,7 +45,7 @@ export default class Signin extends Component {
                   value={form.fields.password.value}
                   onChange={(e) => form.fields.password.value = e.target.value} />
         </fieldset>
-        {form.renderAlert(this.store.errorMessage)}
+        {form.renderAlert(this.props.store.errorMessage)}
         <button onClick={ () => this.handleSend(form) } 
                 className="btn btn-primary"
                 disabled={!form.valid} >Sign in</button>

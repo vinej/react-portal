@@ -1,39 +1,40 @@
 import React, { Component } from 'react'
 import { AgGridReact } from 'ag-grid-react';
 import { observer } from "mobx-react"
-import  TodoStore from '../../stores/todo_store'
 import { pageGetAll, pagePrevious, pageNext } from '../../actions/page_actions'
 import { dispatch } from '../../helpers/dispatcher'
 import { popupShow } from '../../actions/popup_actions'
 import TodoView from '../todo/todo_view'
+import { todoForm } from '../../forms/todo_form'
+import TodoModel from '../../models/todo_model'
+import TodoStore from '../../stores/todo_store'
 
 @observer
-class Helps extends Component {
+export default class AgGrid extends Component {
   constructor() {
     super()
     this.handleAdd = this.handleAdd.bind(this)
   }
 
+  static propTypes = {
+    store:          React.PropTypes.instanceOf(TodoStore),
+    isRemoveStore : React.PropTypes.bool      // true means that the store must be delete here
+                                              // false means that the store will be deleted by the parent
+  }
+
   handleAdd() {
-    var component = <TodoView store={this.store} todo={TodoStore.createTodo()} />
+    var component = <TodoView store={this.props.store} todo={TodoModel.create()} form={todoForm} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()))
   }
 
   componentWillMount() {
-    if (this.props.store) {
-      this.store = this.props.store;
-      this.storeAsProps = true
-    } else {
-      this.store = TodoStore.create();
-      this.storeAsProps = false
-    }      
-    dispatch(pageGetAll(this.store))
+    dispatch(pageGetAll(this.props.store))
   }
 
   componentWillUnmount() {
-    if (this.storeAsProps == false)  {
-      TodoStore.remove(this.store);
-      this.store = null;
+    if (this.isRemoveStore === true)  {
+      TodoStore.remove(this.props.store);
+      this.props.store = null;
     }
   }
 
@@ -57,7 +58,7 @@ class Helps extends Component {
               {headerName: 'Status', field: 'status'}
           ]}
 
-          rowData = { this.store.page }
+          rowData = { this.props.store.page }
 
           // or provide props the old way with no binding
           rowSelection="multiple"
@@ -65,11 +66,11 @@ class Helps extends Component {
           enableFilter="true"
           rowHeight="30"
         />
-        <button onClick={ () => dispatch(pagePrevious(this.store)) }>prev</button>
-        <button onClick={ () => dispatch(pageNext(this.store)) }>next</button>
+        <button onClick={ () => dispatch(pagePrevious(this.props.store)) }>prev</button>
+        <button onClick={ () => dispatch(pageNext(this.props.store)) }>next</button>
         <button onClick={ () => this.handleAdd() }>add</button>
       </div>
     )
   }
 }
-export default Helps
+

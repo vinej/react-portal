@@ -2,11 +2,11 @@ require("babel-polyfill")
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import TodoStore from '../../stores/todo_store'
-import { todoForm, todoFormSet, todoFormGet } from '../../forms/todo_form'
 import { pageUpdateRecord, pageAddRecord } from '../../actions/page_actions'
 import { popupClose } from '../../actions/popup_actions'
 import { dispatch } from '../../helpers/dispatcher'
-import ReactDOM from 'react-dom'
+import TodoModel from '../../models/todo_model'
+import Form from '../../forms/form'
 
 @observer
 export default class TodoView extends Component {
@@ -14,20 +14,24 @@ export default class TodoView extends Component {
     await form.validate();
     if (form.valid) {
       var todo = this.props.todo
-      todoFormGet(todo, form.fields)
+      TodoModel.setTodoModel(form.fields, todo)
       if (todo._id) {
-        dispatch(pageUpdateRecord(this.store, todo))
+        dispatch(pageUpdateRecord(this.props.store, todo))
       } else {
-        dispatch(pageAddRecord(this.store, todo))
+        dispatch(pageAddRecord(this.props.store, todo))
       }
       dispatch(popupClose())
     }
   }
 
+  static propTypes = {
+    form:   React.PropTypes.instanceOf(Form),      
+    store:  React.PropTypes.instanceOf(TodoStore),  
+    todo:  React.PropTypes.shape(TodoModel.shape())  
+  }
+
   componentWillMount() {
-    this.form = this.props.form ? this.props.form : todoForm
-    todoFormSet(this.props.todo, this.form.fields)
-    this.store = this.props.store
+    TodoModel.setFormFields(this.props.todo, this.props.form.fields)
   }
 
   componentDidMount() {
@@ -35,7 +39,7 @@ export default class TodoView extends Component {
   }
 
   render() {
-    const form = this.form
+    const form = this.props.form
     return (
       <div>
         <div className="popupHeader"><strong>Todo</strong></div>
@@ -62,7 +66,7 @@ export default class TodoView extends Component {
             <option value="completed">Completed</option>
           </select>
         </fieldset>
-        {form.renderAlert(this.store.error)}
+        {form.renderAlert(this.props.store.error)}
         <button onClick={ () => this.handleSend(form) } 
                 className="btn btn-primary"
                 disabled={!form.valid} >Save</button>

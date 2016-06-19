@@ -7,24 +7,24 @@ import { crudGetAll } from '../actions/crud_actions'
 import { dispatch } from '../helpers/dispatcher'
 import { dashboardStore } from './dashboard_store'
 
-export var authStore = {
-  @observable email : "",
-  @observable name : "",
-  @observable authenticated : false,
-  @observable errorMessage : '',
+export default class AuthStore {
+  @observable email : ""
+  @observable name : ""
+  @observable authenticated : false
+  @observable errorMessage : ''
 
-  isAutorizationInit : false,
-  authorizations : [],
+  isAutorizationInit : false
+  authorizations : []
 
-  isActionAvailable : function(actiontype) {
+  isActionAvailable(actiontype) {
     return true
     // if (actiontype.endsWith("_")) {
     //   actiontype = actiontype.substr(0, actiontype.length - 1);
     // }
     // return this.actions.indexOf(actiontype) > -1
-  },
+  }
 
-  setAuthorizations : function(authorizations, mainComponentsToRender) {
+  setAuthorizations(authorizations, mainComponentsToRender) {
     transaction( () => {
       this.isAutorizationInit = true
       this.authorizations = authorizations
@@ -35,9 +35,9 @@ export var authStore = {
     }
     browserHistory.push('/main')
     dispatch(crudGetAll(dashboardStore))
-  },
+  }
 
-  checkToken : function(mainComponentsToRender) {
+  checkToken(mainComponentsToRender) {
     const token = localStorage.getItem('react-portal-token')
     if (token != null && token != '') {
       const name = localStorage.getItem('react-portal-name')
@@ -53,9 +53,9 @@ export var authStore = {
       mainComponentsToRender()
       browserHistory.push('/')
     }
-  },
+  }
 
-  signInOrUp : function(token, name) {
+  signInOrUp(token, name) {
     localStorage.setItem('react-portal-token', token);
     localStorage.setItem('react-portal-name', name);
     transaction( () => {
@@ -64,9 +64,9 @@ export var authStore = {
       authStore.errorMessage = '';
     });
     dispatch(authSetAuthorizations(null))
-  },
+  }
 
-  signOut : function() {
+  signOut() {
     localStorage.removeItem('react-portal-token');
     localStorage.removeItem('react-portal-name');
     transaction(() => {
@@ -75,9 +75,8 @@ export var authStore = {
       authStore.errorMessage = '';
     });
     dispatch(tabbarCloseAll())
-  },
+  }
 
-  Error : function(error, mainComponentsToRender) {
     transaction(() => {
       if (mainComponentsToRender) {
         authStore.errorMessage = ''
@@ -99,3 +98,4 @@ export var authStore = {
     }
   }
 }
+export let authStore = new AuthStore()

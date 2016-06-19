@@ -2,9 +2,10 @@ require("babel-polyfill")
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { authSignUp } from '../../actions/auth_actions'
-import { authStore } from '../../stores/auth_store'
-import { signupForm } from '../../forms/signup_form'
 import { dispatch } from '../../helpers/dispatcher'
+
+import Form from '../../forms/form'
+import AuthStore from '../../stores/auth_store'
 
 @observer
 export default class Signup extends Component {
@@ -18,13 +19,13 @@ export default class Signup extends Component {
     }
   }
 
-  componentWillMount() {
-    this.form = this.props.form ? this.props.form : signupForm
-    this.store = this.props.store ? this.props.store : authStore
+  static propTypes = {
+    form:   React.PropTypes.instanceOf(Form),      
+    store:  React.PropTypes.instanceOf(AuthStore)  
   }
 
   render() {
-    const form = this.form
+    const form = this.props.form
     return (
       <div>
         <fieldset className="form-group">
@@ -62,7 +63,7 @@ export default class Signup extends Component {
                   value={form.fields.name.value}
                   onChange={(e) => form.fields.name.value = e.target.value}/>
         </fieldset>
-        {form.renderAlert(this.store.errorMessage)}
+        {form.renderAlert(this.props.store.errorMessage)}
         <button onClick={ () => this.handleSend(form) } 
                 className="btn btn-primary"
                 disabled={!form.valid} >Sign Up</button>

@@ -13,6 +13,15 @@ class Dashboard extends Component {
     this.handleOnLayoutChange = this.handleOnLayoutChange.bind(this)
   }
 
+  static propTypes = {
+    id:     React.PropTypes.string.isRequired,    // the id of the dashboard, could be the _id of mongoose
+    title:  React.PropTypes.string.isRequired     // the title of the dashboard,use for the tab title
+  }
+
+  /*
+    this method unsure that we handle layout changes only if the widget
+    have really resized or moved
+   */
   isDifferent(old, nw) {
     //debugger
     if (!old) return false
@@ -28,15 +37,10 @@ class Dashboard extends Component {
     return isDiff
   }
 
-  handleOnDragStart(layout) {
-    return false
-  }
-
   handleOnLayoutChange(layout) {
     const id = this.props.id
     if (!id) return
     if (this.isDifferent(layout, dashboardStore.getWidgets(id)) === true) {
-      console.log("layout change")
       dashboardStore.getDashboard(id).widgets = layout
       dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(id)))
     }

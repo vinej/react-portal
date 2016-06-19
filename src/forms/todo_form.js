@@ -21,13 +21,3 @@ export let todoForm = new Form(
     }
   }
 )
-
-export function todoFormSet(todo, editTodo) {
-  editTodo.description.init(todo.description)
-  editTodo.status.init(todo.status)
-}
-
-export function todoFormGet(todo, editTodo) {
-  todo.description = editTodo.description.value
-  todo.status = editTodo.status.value
-}

@@ -5,6 +5,8 @@ import { popupShow } from '../../actions/popup_actions';
 import { dispatch } from '../../helpers/dispatcher';
 import TodoView from './todo_view';
 import TodoStore from '../../stores/todo_store';
+import TodoModel from '../../models/todo_model'
+import { todoForm } from '../../forms/todo_form'
 
 @observer // need observer to update a row when a note is modified
 class Todo extends Component {
@@ -14,12 +16,18 @@ class Todo extends Component {
     this.handleEdit = this.handleEdit.bind(this);
   }
 
+  static propTypes = {
+    store:  React.PropTypes.instanceOf(TodoStore),  
+    todo:  React.PropTypes.shape(TodoModel.shape())  
+  }
+
+
   handleDelete(todo) {
     dispatch(pageDeleteRecord(this.props.store, todo));
   }     
 
   handleEdit(todo) {
-    var component = <TodoView store={this.props.store} todo={todo} />
+    var component = <TodoView store={this.props.store} form={todoForm} todo={todo} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()));
   }     
 
