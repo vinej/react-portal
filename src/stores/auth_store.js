@@ -77,6 +77,7 @@ export default class AuthStore {
     dispatch(tabbarCloseAll())
   }
 
+  authError(error, mainComponentsToRender) {
     transaction(() => {
       if (mainComponentsToRender) {
         authStore.errorMessage = ''
