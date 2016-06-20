@@ -34,7 +34,7 @@ describe('Authentification' , () => {
     component.find('input[name="email"]').simulate('change', 'jyvinet@hotmail.ca');
     component.find('input[name="password"]').simulate('change', 'test');
     component.find('button').simulate('click');
-    expect(component.find('div[class="alert alert-danger"]')).not.to.exist;
+    setTimeout( () => expect(component.find('div[class="alert alert-danger"]')).not.to.exist,1);
   });
 });
 
