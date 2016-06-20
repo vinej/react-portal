@@ -11,7 +11,10 @@ module.exports = {
     {
       // JSX REACT transpiler
       test: /\.js$/,
-      include: path.join(__dirname, 'src'),
+      include: [
+        path.join(__dirname, 'src'),
+        path.join(__dirname, 'test')
+      ],
       loader: 'babel'
     },
     {
