@@ -22,12 +22,14 @@ export default class TodoModel {
   static setFormFields(todo, editTodo) {
     editTodo.description.init(todo.description)
     editTodo.status.init(todo.status)
+    //editTodo.done.int(todo.done)
   }
 
 
   static setTodoModel(editTodo, todo ) {
     todo.description = editTodo.description.value
     todo.status = editTodo.status.value
+    //todo.done =editTodo.done.value
   }
 }
 
