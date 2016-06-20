@@ -20,6 +20,7 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 
 ## Installation
 * install nodejs
+* npm install -g mocha
 * npm install
 * npm start
 * use the portal
