@@ -15,6 +15,8 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 * Popup modal form 
 * Tab Bar 
 * Dynamic widgets and dashboards
+* Unit test with mocha,chai,chai-jquery and enzyme  (only some tests for now)
+  * test_helper from Stephen Grider
 
 ## Installation
 * install nodejs
