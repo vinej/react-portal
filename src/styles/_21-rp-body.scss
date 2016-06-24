@@ -1,0 +1,55 @@
+/* reset for header - footer */
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 2rem;
+  min-height: 100%;
+}
+
+.rp-appbar {
+  background-color: $appbar-color;
+}
+
+.rp-appbar a {
+  color: black;
+}
+.rp-appbar a:hover {
+  color: midnightblue;
+}
+
+.rp-bar {
+  background-color: $bar-color;
+  color: white
+}
+
+.rp-rbar-item {
+  float: right;
+  padding: 1rem;
+}
+
+.rp-lbar-item {
+  padding: 1rem;
+}
+/* */
+
+.rp-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: .2rem;
+  background-color: $footer-color;
+  text-align: center;
+}
+/* */

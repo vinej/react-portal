@@ -1,0 +1,46 @@
+/**/
+/* rp-form-small */
+/**/
+.rp-form-small {
+  width : 45rem;
+  background-color: $form-color;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+  margin: 4px;
+}
+.rp-field-error {
+  color: red;
+  margin-left : 4px;
+}
+.rp-form-error {
+  color: red;
+}
+
+form.rp-form-small label {
+  @extend .rp-txtright;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  margin-right: .4rem;
+  width: 15rem;
+}
+form.rp-form-small label[required]::after {
+  content: " *";
+  color: red;
+}
+form.rp-form-small input {
+  width: 28rem;
+}
+form.rp-form-small select {
+  height: 27px;
+  margin-left: 4px;
+  width: 28rem;
+}
+form.rp-form-small textarea {
+  width: 28rem;
+}
+div.rp-form-button {
+  margin-top: 4px;
+}
+
+/* end rp-from-small */

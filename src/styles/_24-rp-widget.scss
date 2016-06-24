@@ -1,0 +1,51 @@
+/* 
+  rp-widget-* 
+*/
+.rp-widget {
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border-color;
+}
+
+.rp-widget-icon {
+  float: right;
+  margin: 4px;
+}
+
+.rp-widget-header {
+  background-color: $header-color;
+  border-style: solid;
+  border-width: 1px;
+  height: 27px;
+  width: 100%;
+  border-color: $border-color;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 1.6rem;
+}
+
+.rp-widget-button {
+  background-color: white;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.rp-widget-button:hover {
+  background-color: $hoover-color;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.rp-widget-tool {
+  width: 110px;
+  background-color: $hoover-color;
+}
+
+.react-grid-item.react-grid-placeholder { 
+   background: white !important;  
+} 
+
+/* */

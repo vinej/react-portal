@@ -1,0 +1,38 @@
+/* 
+  rp-tabbar 
+*/
+.rp-tabbar {
+  display: inline-block;
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
+ul.rp-tabbar {
+  display: table;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rp-tabbar>li {
+  float: left;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: white;
+}
+
+ul.rp-tabbar>li:hover {
+  background-color: $hoover-color;
+}
+
+ul.rp-tabbar>li.selected {
+  background-color: blue;
+}
+
+div.rp-tabbar-content {
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $border-color;
+}
+/* */

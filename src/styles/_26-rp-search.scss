@@ -1,0 +1,19 @@
+/*
+  rp-search-* 
+*/
+.rp-search-tool {
+  float: left;
+  margin-top: 9px;
+}
+
+.rp-search-after {
+  margin-top: 4px;
+  float: left;
+  display: none;
+}
+
+#asearchtool:hover #bsearchtool {
+  display: block;
+  margin-right: -350px;
+}
+/* */
