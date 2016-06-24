@@ -23,7 +23,7 @@ import { signupForm } from './forms/signup_form'
 // launch the web socket service client side
 //require("./services/wss_service");
 require("./helpers/string.js")
-require("./styles/style.css")
+require("./styles/knacss.scss")
 require("../node_modules/react-grid-layout/css/styles.css")
 require("../node_modules/react-resizable/css/styles.css")
 require("../node_modules/ag-grid/dist/styles/ag-grid.css")

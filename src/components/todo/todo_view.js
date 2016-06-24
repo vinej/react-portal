@@ -10,7 +10,8 @@ import Form from '../../forms/form'
 
 @observer
 export default class TodoView extends Component {
-  async handleSend(form) {
+  async handleSend(event,form) {
+    event.preventDefault()
     await form.validate();
     if (form.valid) {
       var todo = this.props.todo
@@ -41,23 +42,20 @@ export default class TodoView extends Component {
   render() {
     const form = this.props.form
     return (
-      <div>
-        <div className="popupHeader"><strong>Todo</strong></div>
-        <fieldset className="form-group">
-          <label>Description:</label>&nbsp;
+      <form className='rp-form-small'>
+        <div className="rp-popup-header">Todo</div>
+        <div>
+          <label required>Description</label>&nbsp;
           { form.renderError(form.fields.description.errorMessage) }
           <input  ref="nameInput"
                   name="description" 
-                  className="form-control"
                   value={form.fields.description.value}
                   onChange={(e) => form.fields.description.value = e.target.value}/>
-        </fieldset>
-
-        <fieldset className="form-group">
-          <label>Status:</label>&nbsp;
+        </div>
+        <div>
+          <label>Status</label>
           { form.renderError(form.fields.status.errorMessage) }
           <select name="status" 
-                  className="form-control"
                   value={form.fields.status.value}
                   onChange={(e) => form.fields.status.value = e.target.value} >
             <option value="waiting">Waiting</option>
@@ -65,13 +63,16 @@ export default class TodoView extends Component {
             <option value="freeze">Freeze</option>
             <option value="completed">Completed</option>
           </select>
-        </fieldset>
+        </div>
         {form.renderAlert(this.props.store.error)}
-        <button onClick={ () => this.handleSend(form) } 
-                className="btn btn-primary"
-                disabled={!form.valid} >Save</button>
-        <button onClick={ (event) => dispatch(popupClose()) } className="btn btn-danger">Cancel</button>
-      </div>
+        <div  className='rp-form-button'>
+          <button onClick={ (event) => this.handleSend(event,form) } 
+                  disabled={!form.valid} >Save</button>
+          <button onClick={ (event) => { event.preventDefault(); dispatch(popupClose()); } }  
+                  >Cancel
+          </button>
+        </div>
+      </form>
     );
   }
 }

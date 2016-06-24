@@ -50,14 +50,16 @@ class DashboardManage extends Component {
 
   render() {
     return (
-      <div>
-        <div className="popupHeader"><strong>Show/Hide Dashboards</strong></div>
+      <div className='rp-form-small'>
+        <div className="rp-popup-header">Show/Hide Dashboards</div>
         { this.props.store.records.map( (dashboard) => 
             <DashboardManageItem key={dashboard._id} dashboard={ dashboard } />
         )}
-        <button style={{ 'marginTop': '20px', float :'right' }} onClick={ (event) => {
-          event.preventDefault();
-          dispatch(popupClose()) }} >Close</button>
+        <div  className='rp-form-button'>
+          <button onClick={ (event) => {
+            event.preventDefault();
+            dispatch(popupClose()) }} >Close</button>
+        </div>
       </div>          
     )
   }

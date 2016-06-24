@@ -12,7 +12,7 @@ class Feature extends Component {
 
   render() {
     return (
-      <div className='feature'>{messageStore.message}</div>
+      <div className='rp-feature'>{messageStore.message}</div>
     );
   }
 }

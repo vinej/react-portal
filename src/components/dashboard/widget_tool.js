@@ -21,41 +21,39 @@ class WidgetTool extends Component {
   handleOnChange(e) {
     switch(e.target.value) {
       case 'create' :
-        dispatch(popupShow( <DashboardForm action="add" title="" />, 
-                            PopupStore.getStandardDimension()))
+        dispatch(popupShow( <DashboardForm action="add" dashboard_name="" /> ))
         break;
       case 'rename' :
-        dispatch(popupShow( <DashboardForm  action="rename" title={ tabbarStore.getCurrentTitle() } />, 
-                            PopupStore.getStandardDimension()))
+        dispatch(popupShow( <DashboardForm  action="rename" dashboard_name={dashboardStore.getDashboardTitle()} /> ))
         break;
       case 'show_hide' :
-        dispatch(popupShow( <DashboardManage store={dashboardStore} />, 
-                            PopupStore.getStandardDimension()))
+        dispatch(popupShow( <DashboardManage store={dashboardStore} />))
         break;
       case 'delete' :
         dispatch(popupShow( <PopupYesNo 
           title="Delete Dashboard"  
           msg={ "Do you want to delete the dashboard <" + dashboardStore.getDashboardTitle() + "> ?" }
           yesAction={ dashboardDelete }
-          />, PopupStore.getSmallDimension()))
+          />))
         break;
-      case 'add' :
-        dispatch(popupShow( <WidgetForm store={widgetStore} />, 
-                            PopupStore.getStandardDimension()))
+      case 'add_widget' :
+        dispatch(popupShow( <WidgetForm store={widgetStore} />))
         break;
     }
   }
 
   render() {
     return (
-      <select className='widget-tool' onChange={ this.handleOnChange } value='0'>
-        <option value='0' disabled="true">Dashboard</option>
-        <option value='create'>Create a new Dashboard</option>
-        <option value='rename'>Rename the current Dashboard</option>
-        <option value='delete'>Delete the current Dashboard</option>
-        <option value='show_hide'>Show/Hide Dashboards</option> 
-        <option value='add'>Add Widgets to current Dashboard</option> 
-      </select>
+      <div>
+        <select className='rp-widget-tool' onChange={ this.handleOnChange } value='0'>
+          <option value='0' disabled="true">Dashboard</option>
+          <option value='create'>Create a new Dashboard</option>
+          <option value='rename'>Rename the current Dashboard</option>
+          <option value='delete'>Delete the current Dashboard</option>
+          <option value='show_hide'>Show/Hide Dashboards</option> 
+          <option value='add_widget'>Add Widgets to current Dashboard</option> 
+        </select>
+      </div>
     )
   }
 }

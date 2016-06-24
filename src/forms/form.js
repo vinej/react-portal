@@ -128,7 +128,7 @@ export default class Form {
   renderAlert(message) {
     if (message) {
       return (
-        <div className="alert alert-danger">
+        <div className="rp-field-error">
           <strong>Oops! </strong><span>{message}</span>
         </div>
       );
@@ -139,10 +139,7 @@ export default class Form {
   renderError(error) {
     if (error && error != '' ) {
       return (
-        <span>
-          <span className='text-danger'>{error}</span>
-          <i className="fa fa-exclamation text-danger" />
-        </span>
+        <i className="fa fa-exclamation rp-field-error" title={error} />
       )
     }
   }

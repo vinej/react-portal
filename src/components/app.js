@@ -18,7 +18,7 @@ class App extends Component {
           </Popup>
           )
         }
-        <Header className="widgetheader"/>
+        <Header className="rp-widget-header"/>
         {this.props.children}
         {/* <DevTools /> } */}
         <Footer />

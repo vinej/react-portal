@@ -1,0 +1,344 @@
+// Sass config file
+// -----------------
+
+// (WARNING : you should comment this line and move config file from vendor/knacss folder to your own folder)
+@import "_00-config";
+
+// normalize include
+@import "_01a-normalize"; // normalize
+
+// Sass base styles
+@import "_01b-base"; // reset and basic styles
+
+// Sass files : chose the ones you need
+@import "_02-layout"; // alignment, modules, positionning
+@import "_03-grids"; // grids
+@import "_04-tables"; // data tables consistency
+@import "_05-forms"; // forms consistency
+@import "_06-helpers"; // width and spacers visually classes
+@import "_07-responsive"; // Responsive Web Design helpers
+@import "_08-print"; // print quick reset
+@import "_09-misc"; // skip links, google maps and hyphens
+@import "_10-styling"; // minor stylings
+
+// WordPress base styles
+// @import "_11-wordpress"; // WordPress reset and basic styles
+
+/* ----------------------------- */
+/* ==own stylesheet              */
+/* ----------------------------- */
+
+/* Here should go your own CSS styles */
+/* You can also link them with a Sass @import */
+/* @import "my-styles"; */
+/*
+  Header body  footer
+*/
+
+/*
+    React-portal base color 
+ */
+$bar-color: #40E0D0 * 0.9;
+$form-color: white;
+$header-color: Turquoise;
+$footer-color: lightgray;
+$border-color: lightgray;
+$tab-color: white;
+$hoover-color: lightblue;
+
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 2rem;
+  min-height: 100%;
+}
+
+.rp-appbar {
+  background-color: $bar-color;
+}
+
+.rp-bar {
+  background-color: $bar-color;
+  color: white
+}
+
+.rp-rbar-item {
+  float: right;
+  padding: 1rem;
+}
+
+.rp-lbar-item {
+  padding: 1rem;
+}
+/* */
+
+.rp-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: .2rem;
+  background-color: $footer-color;
+  text-align: center;
+}
+/* */
+
+/* 
+  rp-popup-*
+*/
+.rp-popup {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  margin: 0 0 0 -25%;
+  background: white;
+  z-index: 1000;
+}
+
+.rp-popup-behind {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  background : rgba(255,255,255,0.6);
+}
+
+.rp-popup-header {
+  background-color: $header-color;
+  border-style: solid;
+  border-width: 1px;
+  height: 27px;
+  width: 100%;
+  border-color: $border-color;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 1.6rem;
+}
+
+.rp-popup-msg {
+  background-color: white;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $border-color;
+  height: 80px;
+}
+
+/* 
+  rp-tabbar 
+*/
+.rp-tabbar {
+  display: inline-block;
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
+ul.rp-tabbar {
+  display: table;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rp-tabbar>li {
+  float: left;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: white;
+}
+
+ul.rp-tabbar>li:hover {
+  background-color: $hoover-color;
+}
+
+ul.rp-tabbar>li.selected {
+  background-color: blue;
+}
+
+div.rp-tabbar-content {
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $border-color;
+}
+/* */
+
+
+/* 
+  rp-widget-* 
+*/
+.rp-widget {
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border-color;
+}
+
+.rp-widget-icon {
+  float: right;
+  margin: 4px;
+}
+
+.rp-widget-header {
+  background-color: $header-color;
+  border-style: solid;
+  border-width: 1px;
+  height: 27px;
+  width: 100%;
+  border-color: $border-color;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 1.6rem;
+}
+
+.rp-widget-button {
+  background-color: white;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.rp-widget-button:hover {
+  background-color: $hoover-color;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.rp-widget-tool {
+  width: 110px;
+  background-color: $hoover-color;
+}
+/* */
+
+
+/* 
+    rp-dashobard-*
+*/
+.rp-dashboard-button {
+  background-color: white;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.rp-dashboard-button:hover {
+  background-color: $hoover-color;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+}
+/* */
+
+
+/*
+  rp-search-* 
+*/
+.rp-search-tool {
+  float: left;
+  margin-top: 9px;
+}
+
+.rp-search-after {
+  margin-top: 4px;
+  float: left;
+  display: none;
+}
+
+#asearchtool:hover #bsearchtool {
+  display: block;
+  margin-right: -350px;
+}
+/* */
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+  color: white;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+  background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+  background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+  background: #EF7B7B;
+}
+
+.button-secondary {
+  background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.rp-menu-item-right {
+  float: right;
+}
+
+.react-grid-item.react-grid-placeholder { 
+   background: white !important;  
+} 
+
+/**/
+/* rp-form-small */
+/**/
+.rp-form-small {
+  width : 45rem;
+  background-color: $form-color;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+  margin: 4px;
+}
+.rp-field-error {
+  color: red;
+  margin-left : 4px;
+}
+.rp-form-error {
+  color: red;
+}
+
+form.rp-form-small label {
+  @extend .rp-txtright;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  margin-right: .4rem;
+  width: 15rem;
+}
+form.rp-form-small label[required]::after {
+  content: " *";
+  color: red;
+}
+form.rp-form-small input {
+  width: 28rem;
+}
+form.rp-form-small select {
+  height: 27px;
+  margin-left: 4px;
+  width: 28rem;
+}
+form.rp-form-small textarea {
+  width: 28rem;
+}
+div.rp-form-button {
+  margin-top: 4px;
+}
+
+/* end rp-from-small */

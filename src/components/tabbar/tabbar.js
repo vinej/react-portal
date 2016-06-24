@@ -47,8 +47,8 @@ class TabBar extends Component {
     const stores = tabbarStore.getStores()
     const count = stores.length - 1
     return (
-      <div className='tabbarcontent'>
-        <ul className="tabbar">
+      <div className='rp-tabbar-content'>
+        <ul className="rp-tabbar">
           { stores.map( (store, idx) => 
             <TabBarItem key={store.componentId} componentId={store.componentId} title={store.title} visible={ store.display === 'block'} />
             )

@@ -2,25 +2,27 @@ import React, { Component } from 'react'
 import { popupClose } from '../../actions/popup_actions'
 import { dispatch } from '../../helpers/dispatcher'
 
-class PopupYesNo extends Component {
+export default class PopupYesNo extends Component {
   render() {
     return (
-      <div>
-        <div className='popupHeader'>{ this.props.title }</div>
-        <div className='popupMsg'>{ this.props.msg }</div>
-        <button className="btn btn-danger" onClick={ () => {
+      <div className='rp-form-small'>
+        <div className='rp-popup-header'>{ this.props.title }</div>
+        <div className='rp-popup-msg'>{ this.props.msg }</div>
+        <div className='rp-form-button'>
+          <button onClick={ () => {
             dispatch(this.props.yesAction()) 
             dispatch(popupClose())
-          }}>Yes</button>
+            }}>Yes</button>
 
-        <button className="btn" onClick={ () => { 
+          <button onClick={ () => { 
             dispatch(popupClose())
             if (this.props.NoAction) {
               dispatch(this.props.NoAction())
             }
-          } }>No</button>
+            } }>No</button>
+        </div>
       </div>          
     )
   }
 }
-export default PopupYesNo;
+

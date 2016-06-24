@@ -32,25 +32,28 @@ class DashboardForm extends Component {
 
   componentDidMount() {
     this.refs.nameInput.focus();
-    this.setState( { dashboardTitle : this.props.title } )
+    this.setState( { dashboardTitle : this.props.dashboard_name } )
   }
 
   render() {
     return (
-      <form onSubmit={ this.handleFormSubmit }>
-        <div className="popupHeader"><strong>Create a new dashboard</strong></div>
-          <fieldset className="form-group">
-            <label>Dashboard Name:</label>&nbsp;
-            <input  name="dashboardTitle" 
-                    ref="nameInput"
-                    className="form-control"
-                    value={ this.state.dashboardTitle }
-                    onChange={ this.handleOnChange } />
-          </fieldset>
-          <button action="submit" className="btn btn-primary">{ this.props.action == 'add' ? 'Create' : 'Rename' }</button>
+      <form className='rp-form-small' onSubmit={ this.handleFormSubmit }>
+        <div className="rp-popup-header">
+          { this.props.action == 'add' ? 'Create a new dashboard' : 'Rename the current dashboard' }
+        </div>
+        <div>
+          <label>Dashboard Name</label>&nbsp;
+          <input  name="dashboardTitle" 
+                  ref="nameInput"
+                  value={ this.state.dashboardTitle }
+                  onChange={ this.handleOnChange } />
+        </div>
+        <div className='rp-form-button'>
+          <button action="submit">{ this.props.action == 'add' ? 'Create' : 'Rename' }</button>
           <button onClick={ (event) => {
             event.preventDefault();
-            dispatch(popupClose()) }} className="btn btn-danger">Cancel</button>
+            dispatch(popupClose()) }}>Cancel</button>
+        </div>
       </form>          
     )
   }

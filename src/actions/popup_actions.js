@@ -1,9 +1,9 @@
 import * as t from '../types/popup_types';
 
-export function popupShow(component, dimension) {
+export function popupShow(component) {
   return  {
     type: t.POPUP_SHOW,
-    payload: { component, dimension }
+    payload: component
   }
 }
 

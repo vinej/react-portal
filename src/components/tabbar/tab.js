@@ -5,7 +5,7 @@ import { observer } from "mobx-react";;
 class Tab extends Component {
   render() {
     return (
-      <div className="tab" 
+      <div className="rp-tab" 
             style={{ display : this.props.store.display }} >
         {this.props.children}
       </div>

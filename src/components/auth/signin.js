@@ -8,7 +8,8 @@ import AuthStore from '../../stores/auth_store'
 
 @observer
 export default class Signin extends Component {
-  async handleSend(form) {
+  async handleSend(event,form) {
+    event.preventDefault()
     await form.validate();
     if (form.valid) {
       dispatch(authSignIn( {
@@ -26,30 +27,32 @@ export default class Signin extends Component {
     const form = this.props.form
     if (!form) { return <div />}
     return (
-      <div>
-        <fieldset className="form-group">
-          <label>Email:</label>&nbsp;
+      <form className='rp-form-small'>
+        <div className='rp-popup-header'>Signin</div>
+        <div>
+          <label required>Email</label>
+          <input name="email" 
+                 value={form.fields.email.value}
+                 onChange={(e) => form.fields.email.value = e.target.value}/>
           { form.renderError(form.fields.email.errorMessage) }
-          <input  name="email" 
-                  className="form-control"
-                  value={form.fields.email.value}
-                  onChange={(e) => form.fields.email.value = e.target.value}/>
-        </fieldset>
+        </div>
 
-        <fieldset className="form-group">
-          <label>Password:</label>&nbsp;
-          { form.renderError(form.fields.password.errorMessage) }
-          <input  name="password" 
+        <div>
+          <label required>Password</label>
+          <input name="password" 
                   type="password" 
-                  className="form-control"
                   value={form.fields.password.value}
                   onChange={(e) => form.fields.password.value = e.target.value} />
-        </fieldset>
+          { form.renderError(form.fields.password.errorMessage) }
+        </div>
+        <div>
+          <button
+            className='kna-btn'
+              onClick={ (event) => this.handleSend(event,form) } 
+              disabled={!form.valid} >Sign in</button>
+        </div>
         {form.renderAlert(this.props.store.errorMessage)}
-        <button onClick={ () => this.handleSend(form) } 
-                className="btn btn-primary"
-                disabled={!form.valid} >Sign in</button>
-      </div>
+      </form>
     )
   }
 }

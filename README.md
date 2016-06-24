@@ -12,11 +12,12 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 * Resolvers (logger, thunk, autorization, ...) like reducers/middlewares
   * 3 types of resolver (pre , std, post)
 * Form validation and abstraction (from Michel Weststrate)
-* Popup modal form 
+* Movable Popup modal form 
 * Tab Bar 
 * Dynamic widgets and dashboards
 * Unit test with mocha,chai,chai-jquery and enzyme  (only some tests for now)
   * test_helper from Stephen Grider
+* Normalize CSS with knacss (normalize with steoride)
 
 ## Installation
 * install nodejs

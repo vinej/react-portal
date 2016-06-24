@@ -9,7 +9,8 @@ import AuthStore from '../../stores/auth_store'
 
 @observer
 export default class Signup extends Component {
-  async handleSend(form) {
+  async handleSend(event,form) {
+    event.preventDefault();
     await form.validate();
     if (form.valid) {
       dispatch(authSignUp( {
@@ -27,47 +28,44 @@ export default class Signup extends Component {
   render() {
     const form = this.props.form
     return (
-      <div>
-        <fieldset className="form-group">
-          <label>Email:</label>&nbsp;
+      <form className='rp-form-small'>
+        <div className='rp-popup-header'>Signup</div>
+        <div>
+          <label required>Email</label>
+          <input  name="email"
+                  value={form.fields.email.value}
+                  onChange={(e) => form.fields.email.value = e.target.value}/>
           { form.renderError(form.fields.email.errorMessage) }
-          <input 
-              className="form-control" 
-              name="email"
-              value={form.fields.email.value}
-              onChange={(e) => form.fields.email.value = e.target.value}/>
-        </fieldset>
-        <fieldset className="form-group">
-          <label>Password:</label>&nbsp;
-          { form.renderError(form.fields.password.errorMessage) }
-          <input  className="form-control" 
-                  name="password" 
+        </div>
+        <div>
+          <label required>Password</label>
+          <input  name="password" 
                   type="password"
                   value={form.fields.password.value}
                   onChange={(e) => form.fields.password.value = e.target.value}/>
-        </fieldset>
-        <fieldset className="form-group">
-          <label>Confirm Password:</label>&nbsp;
-          { form.renderError(form.fields.passwordConfirm.errorMessage) }
-          <input  className="form-control" 
-                  name="passwordConfirm" 
+          { form.renderError(form.fields.password.errorMessage) }
+        </div>
+        <div>
+          <label required>Confirm Password</label>
+          <input  name="passwordConfirm" 
                   type="password" 
                   value={form.fields.passwordConfirm.value}
                   onChange={(e) => form.fields.passwordConfirm.value = e.target.value}/>
-        </fieldset>
-        <fieldset className="form-group">
-          <label>Name:</label>&nbsp;
-          { form.renderError(form.fields.name.errorMessage) }
-          <input  className="form-control" 
-                  name="name"
+          { form.renderError(form.fields.passwordConfirm.errorMessage) }
+        </div>
+        <div>
+          <label required>Name</label>
+          <input  name="name"
                   value={form.fields.name.value}
                   onChange={(e) => form.fields.name.value = e.target.value}/>
-        </fieldset>
+          { form.renderError(form.fields.name.errorMessage) }
+        </div>
         {form.renderAlert(this.props.store.errorMessage)}
-        <button onClick={ () => this.handleSend(form) } 
-                className="btn btn-primary"
-                disabled={!form.valid} >Sign Up</button>
-      </div>
+        <div>
+          <button onClick={ (event) => this.handleSend(event,form) } 
+                  disabled={!form.valid} >Sign Up</button>
+        </div>
+      </form>
     );
   }
 }

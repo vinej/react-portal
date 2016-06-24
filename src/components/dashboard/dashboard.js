@@ -52,16 +52,16 @@ class Dashboard extends Component {
       return (<div>no widget</div>)
     } else {
       return (
-        <ReactGridLayout  className="layout" 
+        <ReactGridLayout  
                           layout={layouts} 
                           cols={12} 
                           rowHeight={20} 
                           isDraggable={true}
                           width={1400}
                           onLayoutChange={ this.handleOnLayoutChange }
-                          draggableHandle=".widgetheader">
+                          draggableHandle=".rp-widget-header">
           { layouts.map( widget => 
-            <div style={{overflow: 'auto'}} key={widget.i} className="widget">
+            <div style={{overflow: 'auto'}} key={widget.i} className="rp-widget">
               { getWidgetComponent(widget.name, this.props.id, widget.i) }
             </div> )
           }

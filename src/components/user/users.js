@@ -32,7 +32,7 @@ export default class Users extends Component {
     const store = this.props.store
     return ( 
       <div style={{ height: '400px'}}>
-        <table className='table table-hoover' style={{ height: 400}}>
+        <table className='pure-table' style={{ height: 400}}>
           <thead >
             <tr><th>Name</th><th>Desc</th><th>Id</th><th>DEL</th></tr>
           </thead>

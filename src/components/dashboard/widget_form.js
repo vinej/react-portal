@@ -16,14 +16,17 @@ class WidgetForm extends Component {
 
   render() {
     return (
-      <div>
-        <div className="popupHeader"><strong>add widget to current dashboard</strong></div>
+      <div className='rp-form-small'>
+        <div className="rp-popup-header">Add widget to current dashboard</div>
         { this.props.store.getWidgets().map( (widget) => 
-            <div className='widgetButton' key={widget._id} onClick={ () => this.handleClick(widget.name)}>{widget.name}</div>
+            <div className='rp-widget-button' key={widget._id} onClick={ () => this.handleClick(widget.name)}>{widget.name}</div>
         )}
-        <button style={{ 'marginTop': '20px', float :'right' }} onClick={ (event) => {
-          event.preventDefault();
-          dispatch(popupClose()) }} >OK</button>
+
+        <div className='rp-form-button'>
+          <button onClick={ (event) => {
+            event.preventDefault();
+            dispatch(popupClose()) }} >OK</button>
+          </div>
       </div>          
     )
   }

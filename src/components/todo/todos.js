@@ -42,7 +42,7 @@ class Todos extends Component {
     const store = this.props.store
     return ( 
       <div style={{ height: '400px'}}>
-        <table className='table table-hoover'>
+        <table>
           <thead >
             <tr><th><i className="fa fa-edit" /></th><th>Description</th><th>Status</th><th><i className="fa fa-trash" /></th></tr>
           </thead>

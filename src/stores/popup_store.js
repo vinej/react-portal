@@ -30,7 +30,7 @@ export default class PopupStore {
   }
 
   @action
-  show(component, dimension) {
+  show(component) {
     this.current = this.current + 1
     if (this.current > 1) {
       this.popupStores[this.current - 1].display = 'none';
@@ -40,10 +40,6 @@ export default class PopupStore {
 
     store.id = this.current
     store.display = 'block';
-    store.width = dimension.width;
-    store.height = dimension.height;
-    store.left = dimension.left;
-    store.top = dimension.top;
     store.component = component;
   }
 

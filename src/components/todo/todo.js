@@ -38,9 +38,9 @@ class Todo extends Component {
 
   getTodoDoneClass(todo) {
     if (todo.done) {
-      return { textDecoration: "line-through" }
+      return { textDecoration: "line-through", color: 'lightgray' }
     } else {
-      return { textDecoration: "none" }
+      return { textDecoration: "none", color : 'black'}
     }
   }
 
