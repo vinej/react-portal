@@ -52,7 +52,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <div className='rp-appbar rp-grid-2'>
+        <div className='rp-appbar kna-grid-2'>
           <div className='rp-lbar-item'> 
             <Link to="/" >React Portal: Welcome {authStore.name}</Link>
           </div>
