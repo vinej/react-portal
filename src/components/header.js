@@ -54,7 +54,7 @@ class Header extends Component {
       <div>
         <div className='rp-appbar kna-grid-2'>
           <div className='rp-lbar-item'> 
-            <Link to="/" >React Portal: Welcome {authStore.name}</Link>
+            <div>React Portal: Welcome {authStore.name}</div>
           </div>
           <div>
             {this.renderLinks()}
