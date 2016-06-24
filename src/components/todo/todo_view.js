@@ -46,15 +46,14 @@ export default class TodoView extends Component {
         <div className="rp-popup-header">Todo</div>
         <div>
           <label required>Description</label>&nbsp;
-          { form.renderError(form.fields.description.errorMessage) }
           <input  ref="nameInput"
                   name="description" 
                   value={form.fields.description.value}
                   onChange={(e) => form.fields.description.value = e.target.value}/>
+          { form.renderError(form.fields.description.errorMessage) }
         </div>
         <div>
           <label>Status</label>
-          { form.renderError(form.fields.status.errorMessage) }
           <select name="status" 
                   value={form.fields.status.value}
                   onChange={(e) => form.fields.status.value = e.target.value} >
@@ -63,8 +62,8 @@ export default class TodoView extends Component {
             <option value="freeze">Freeze</option>
             <option value="completed">Completed</option>
           </select>
+          { form.renderError(form.fields.status.errorMessage) }
         </div>
-        {form.renderAlert(this.props.store.error)}
         <div  className='rp-form-button'>
           <button onClick={ (event) => this.handleSend(event,form) } 
                   disabled={!form.valid} >Save</button>
@@ -72,6 +71,7 @@ export default class TodoView extends Component {
                   >Cancel
           </button>
         </div>
+        {form.renderAlert(this.props.store.error)}
       </form>
     );
   }
