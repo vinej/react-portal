@@ -17,6 +17,9 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 * Dynamic widgets and dashboards
 * Unit test with mocha,chai,chai-jquery and enzyme  (only some tests for now)
   * test_helper from Stephen Grider
+  * test_resolver to test action content and dispatch calls
+  * test promise to test asychrone calls
+  * MockxxxxService to mock the service layer
 * Normalize CSS with knacss (normalize with steoride)
 
 ## Installation

@@ -2,7 +2,16 @@ import axios from 'axios'
 import { ROOT_URL, HEADERS, PARAMETERS } from './const_service'
 import { dispatch } from '../helpers/dispatcher'
 
-class AuthService {
+export default class AuthService {
+  constructor() {
+  }
+
+  }
+
+  static getInstance() {
+    }
+  }
+
   signIn({ email, password }, next, err) {
     axios.post(`${ROOT_URL}/auth/signin?${PARAMETERS()}`, { email, password })
     .then(response => {
@@ -29,5 +38,5 @@ class AuthService {
     })
   }
 }
-export let authService = new AuthService();
+
 

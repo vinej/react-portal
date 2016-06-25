@@ -1,5 +1,5 @@
 import PageStore from './page_store';
-import { todoService } from '../services/todo_service';
+import TodoService from '../services/todo_service';
 import { registerStore } from './register_store';
 import { observable, action } from 'mobx';
 import { dispatch } from '../helpers/dispatcher'
@@ -17,7 +17,7 @@ export default class TodoStore extends PageStore {
 
   constructor() {
     super()
-    this.service = todoService
+    this.service = TodoService.getInstance()
     this.name = 'todo'
     this.id = 0
     this.error = null

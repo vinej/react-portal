@@ -3,7 +3,7 @@ import { observable, action } from 'mobx'
 import CrudStore from './crud_store';
 import { tabbarStore } from './tabbar_store'
 import { registerStore } from './register_store';
-import { dashboardService } from '../services/dashboard_service'
+import DashboardService from '../services/dashboard_service'
 import { dispatch } from '../helpers/dispatcher'
 import { crudUpdate, crudAdd, crudDelete } from '../actions/crud_actions'
 import { tabbarShow, tabbarSelect, tabbarClose } from '../actions/tabbar_actions'
@@ -18,7 +18,7 @@ import AgGridWidget from '../components/widgets/aggrid_widget'
 export default class DashboardStore extends CrudStore {
   constructor() {
     super();
-    this.service = dashboardService;
+    this.service = DashboardService.getInstance();
     this.name = 'dashboard';
     this.refCount = 0
   }

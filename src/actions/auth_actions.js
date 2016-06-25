@@ -1,10 +1,11 @@
 import * as t from '../types/auth_types';
-import { authService } from '../services/auth_service';
+import AuthService from '../services/auth_service';
 
 export function authSetAuthorizations(mainComponentsToRender) {
   return {
     type: t.AUTH_SET_AUTHORIZATIONS,
     payload: function() {
+      const authService = AuthService.getInstance()
       authService.setAuthorizations(mainComponentsToRender, authSetAuthorizationsIt , authError);
     }
   }
@@ -22,6 +23,7 @@ export function authSignIn({ email, password }) {
   return {
     type: t.AUTH_SIGN_IN,
     payload: function() {
+      const authService = AuthService.getInstance()
       authService.signIn({ email, password }, authSignInIt, authError)
     }
   }
@@ -31,6 +33,7 @@ export function authSignUp({ email, password, name }) {
   return {
     type: t.AUTH_SIGN_UP,
     payload : function() {
+      const authService = AuthService.getInstance()
       authService.signUp({ email, password, name }, authSignUpIt, authError)
     }
   }

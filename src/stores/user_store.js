@@ -1,5 +1,5 @@
 import PageStore from './page_store';
-import { userService } from '../services/user_service';
+import UserService from '../services/user_service';
 import { registerStore } from './register_store';
 
 export default class UserStore extends PageStore {
@@ -14,7 +14,7 @@ export default class UserStore extends PageStore {
 
   constructor() {
     super();
-    this.service = userService;
+    this.service = UserService.getInstance();
     this.name = 'user';
   }
 }

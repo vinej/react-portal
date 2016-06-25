@@ -135,7 +135,7 @@ dispatcher.addStdResolver( { fct: messageResolver,        filter: "message" })
 dispatcher.addStdResolver( { fct: userResolver,           filter: "user" })
 dispatcher.addStdResolver( { fct: todoResolver,           filter: "todo" })
 
-// logger last, post log
+// logger last, post log. we set the test resolver for unit test
 // dispatcher.addPostResolver( { fct: loggerResolver,        filter: "*" })
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)

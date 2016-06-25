@@ -32,7 +32,7 @@ function renderComponent(ComponentClass, props = {}, state = {}) {
     <ComponentClass {...props} />
   );
 
-  return $(ReactDOM.findDOMNode(componentInstance));
+  return { instance: componentInstance, component: $(ReactDOM.findDOMNode(componentInstance)) }
 }
 
 $.fn.simulate = function(eventName, value) {
