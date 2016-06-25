@@ -7,6 +7,7 @@ export function setTestFunction(testFct) {
 }
 
 export default function(action, next) {
+  if (testFunction) {
     testFunction(action)
   }
 

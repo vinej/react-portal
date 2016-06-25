@@ -8,13 +8,13 @@ import { dispatch } from '../helpers/dispatcher'
 import { dashboardStore } from './dashboard_store'
 
 export default class AuthStore {
-  @observable email : ""
-  @observable name : ""
-  @observable authenticated : false
-  @observable errorMessage : ''
+  @observable email = ""
+  @observable name = ""
+  @observable authenticated = false
+  @observable errorMessage = ''
 
-  isAutorizationInit : false
-  authorizations : []
+  isAutorizationInit = false
+  authorizations = []
 
   isActionAvailable(actiontype) {
     return true
@@ -22,6 +22,10 @@ export default class AuthStore {
     //   actiontype = actiontype.substr(0, actiontype.length - 1);
     // }
     // return this.actions.indexOf(actiontype) > -1
+  }
+
+  getError() {
+    return this.errorMessage
   }
 
   setAuthorizations(authorizations, mainComponentsToRender) {
@@ -42,9 +46,9 @@ export default class AuthStore {
     if (token != null && token != '') {
       const name = localStorage.getItem('react-portal-name')
       transaction( () => {
-        authStore.authenticated = true
-        authStore.name = name
-        authStore.errorMessage = ''
+        this.authenticated = true
+        this.name = name
+        this.errorMessage = ''
         dispatch(authSetAuthorizations(mainComponentsToRender))
       })
     } else {
@@ -59,9 +63,9 @@ export default class AuthStore {
     localStorage.setItem('react-portal-token', token);
     localStorage.setItem('react-portal-name', name);
     transaction( () => {
-      authStore.authenticated = true;
-      authStore.name = name;
-      authStore.errorMessage = '';
+      this.authenticated = true;
+      this.name = name;
+      this.errorMessage = '';
     });
     dispatch(authSetAuthorizations(null))
   }
@@ -70,9 +74,9 @@ export default class AuthStore {
     localStorage.removeItem('react-portal-token');
     localStorage.removeItem('react-portal-name');
     transaction(() => {
-      authStore.authenticated = false;
-      authStore.name = '';
-      authStore.errorMessage = '';
+      this.authenticated = false;
+      this.name = '';
+      this.errorMessage = '';
     });
     dispatch(tabbarCloseAll())
   }
@@ -80,16 +84,16 @@ export default class AuthStore {
   authError(error, mainComponentsToRender) {
     transaction(() => {
       if (mainComponentsToRender) {
-        authStore.errorMessage = ''
+        this.errorMessage = ''
       } else {
         if (typeof error === 'object') {
-          authStore.errorMessage = error.error;
+          this.errorMessage = error.error;
         } else {
-          authStore.errorMessage = error;
+          this.errorMessage = error;
         }
       }
-      authStore.authenticated = false;
-      authStore.name = '';
+      this.authenticated = false;
+      this.name = '';
     })
     if (mainComponentsToRender) {
       // token is not good or an error with authentification

@@ -9,6 +9,7 @@ import userResolver               from '../resolvers/user_resolver';
 import todoResolver               from '../resolvers/todo_resolver';
 import messageResolver            from '../resolvers/message_resolver';
 import dashboardResolver          from '../resolvers/dashboard_resolver';
+import testResolver               from '../resolvers/test_resolver';
 
 /**
  * We have 3 type of resolvers
@@ -137,6 +138,7 @@ dispatcher.addStdResolver( { fct: todoResolver,           filter: "todo" })
 
 // logger last, post log. we set the test resolver for unit test
 // dispatcher.addPostResolver( { fct: loggerResolver,        filter: "*" })
+dispatcher.addPostResolver( { fct: testResolver,          filter: "*" })
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)
 

@@ -4,12 +4,18 @@ import { dispatch } from '../helpers/dispatcher'
 
 export default class AuthService {
   constructor() {
+    this.instanceService = null
   }
 
+  static setInstance(instanceService) {
+    this.instanceService = instanceService
   }
 
   static getInstance() {
+    if (!this.instanceService) {
+      this.instanceService = new AuthService()
     }
+    return this.instanceService
   }
 
   signIn({ email, password }, next, err) {
