@@ -1,3 +1,4 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl'
 
-export default () => <div>Welcome to React Portal 0.01</div>;
+export default () => <div><FormattedMessage id='welcome.welcome'/></div>;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { popupClose } from '../../actions/popup_actions'
 import { dispatch } from '../../helpers/dispatcher'
+import { FormattedMessage } from 'react-intl'
 
 export default class PopupYesNo extends Component {
   render() {
@@ -12,14 +13,14 @@ export default class PopupYesNo extends Component {
           <button onClick={ () => {
             dispatch(this.props.yesAction()) 
             dispatch(popupClose())
-            }}>Yes</button>
+            }}><FormattedMessage id="form.yes"/></button>
 
           <button onClick={ () => { 
             dispatch(popupClose())
             if (this.props.NoAction) {
               dispatch(this.props.NoAction())
             }
-            } }>No</button>
+            } }><FormattedMessage id="form.no"/></button>
         </div>
       </div>          
     )

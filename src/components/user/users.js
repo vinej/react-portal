@@ -4,6 +4,7 @@ import  UserStore from '../../stores/user_store';
 import { pageGetAll, pagePrevious, pageNext } from '../../actions/page_actions';
 import User from './user';
 import { dispatch } from '../../helpers/dispatcher';
+import { FormattedMessage } from 'react-intl'
 
 @observer  // need observer when we add, delete rows
 export default class Users extends Component {
@@ -34,7 +35,10 @@ export default class Users extends Component {
       <div style={{ height: '400px'}}>
         <table className='pure-table' style={{ height: 400}}>
           <thead >
-            <tr><th>Name</th><th>Desc</th><th>Id</th><th>DEL</th></tr>
+            <tr><th><FormattedMessage id='user.name'/></th>
+            <th><FormattedMessage id='user.desc'/></th>
+            <th><FormattedMessage id='form.id'/></th>
+            <th><FormattedMessage id='form.del'/></th></tr>
           </thead>
           {/* note: always need a key */} 
           <tbody>
@@ -44,8 +48,8 @@ export default class Users extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => dispatch(pagePrevious(store)) }>prev</button>
-        <button onClick={ () => dispatch(pageNext(store)) }>next</button>
+        <button onClick={ () => dispatch(pagePrevious(store)) }><FormattedMessage id='form.prev'/></button>
+        <button onClick={ () => dispatch(pageNext(store)) }><FormattedMessage id='form.next'/></button>
       </div>
     )
   }

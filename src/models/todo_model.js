@@ -1,11 +1,12 @@
 import React from 'react'
+import { FormattedMessage, injectIntl } from 'react-intl'
 
 export default class TodoModel {
   static shape() {
     return {
       _id : React.PropTypes.string,
       description : React.PropTypes.string,
-      status : React.PropTypes.oneOf(['waiting', 'freeze','completed','suspend']),
+      status : React.PropTypes.string,
       done : React.PropTypes.bool
     }
   }

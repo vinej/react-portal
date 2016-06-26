@@ -6,6 +6,7 @@ import { dashboardShow, dashboardHide } from '../../actions/dashboard_actions'
 import { tabbarClose } from '../../actions/tabbar_actions'
 import { popupClose } from '../../actions/popup_actions'
 import DashboardModel from '../../models/dashboard_model'
+import { FormattedMessage } from 'react-intl'
 
 @observer // need observer to update a row when a note is modified
 class DashboardManageItem extends Component {
@@ -51,14 +52,14 @@ class DashboardManage extends Component {
   render() {
     return (
       <div className='rp-form-small'>
-        <div className="rp-popup-header">Show/Hide Dashboards</div>
+        <div className="rp-popup-header"><FormattedMessage id='db.showhide'/></div>
         { this.props.store.records.map( (dashboard) => 
             <DashboardManageItem key={dashboard._id} dashboard={ dashboard } />
         )}
         <div  className='rp-form-button'>
           <button onClick={ (event) => {
             event.preventDefault();
-            dispatch(popupClose()) }} >Close</button>
+            dispatch(popupClose()) }} ><FormattedMessage id='form.close'/></button>
         </div>
       </div>          
     )

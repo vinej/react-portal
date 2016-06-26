@@ -6,6 +6,7 @@ import { dashboardRemoveWidget } from '../../actions/dashboard_actions'
 import { pageGetAll } from '../../actions/page_actions'
 import Widget from '../dashboard/widget'
 import  UserStore from '../../stores/user_store';
+import { FormattedMessage } from 'react-intl'
 
 export default class UsersWidget extends Component {
   componentWillMount() {
@@ -20,7 +21,7 @@ export default class UsersWidget extends Component {
   render() {
     var component = <Users store={ this.store } isRemoveStore={ true } />
     return (
-      <Widget title="Users list" 
+      <Widget title={ <FormattedMessage id='user.userlist'/> }
         onOpenWidgetInTab={ () => dispatch(tabbarShow(component , "user", "Users", "page"))}
         onRemoveWidget={ () => dispatch(dashboardRemoveWidget(this.props.dashboardId, this.props.id))}
         onRefreshWidget= { () => dispatch(pageGetAll("user"))}  >

@@ -10,13 +10,17 @@ import DashboardForm from './dashboard_form'
 import DashboardManage from './dashboard_manage'
 import { widgetStore } from '../../stores/widget_store'
 import { tabbarStore} from '../../stores/tabbar_store'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
 
 class WidgetTool extends Component {
 
   constructor(props) {
     super(props)
     this.handleOnChange = this.handleOnChange.bind(this)
+  }
+
+  getAskDeleteMsg() {
+    return <FormattedMessage id="db.askdelete" values= {{ name : dashboardStore.getDashboardTitle() }} />
   }
 
   handleOnChange(e) {
@@ -32,8 +36,8 @@ class WidgetTool extends Component {
         break;
       case 'delete' :
         dispatch(popupShow( <PopupYesNo 
-          title="Delete Dashboard"  
-          msg={ "Do you want to delete the dashboard <" + dashboardStore.getDashboardTitle() + "> ?" }
+          title={ <FormattedMessage id="db.delete"/> }
+          msg={ this.getAskDeleteMsg() }
           yesAction={ dashboardDelete }
           />))
         break;
@@ -44,18 +48,19 @@ class WidgetTool extends Component {
   }
 
   render() {
+    const { formatMessage } = this.props.intl;
     return (
       <div>
         <select className='rp-widget-tool' onChange={ this.handleOnChange } value='0'>
-          <option value='0' disabled="true"><FormattedMessage id='db.dashboard'/></option>
-          <option value='create'><FormattedMessage id='db.create'/></option>
-          <option value='rename'><FormattedMessage id='db.rename'/></option>
-          <option value='delete'><FormattedMessage id='db.delete'/></option>
-          <option value='show_hide'><FormattedMessage id='db.showhide'/></option> 
-          <option value='add_widget'><FormattedMessage id='db.addwidgets'/></option> 
+          <option value='0' disabled="true">{ formatMessage({ id: 'db.dashboard' }) }</option>
+          <option value='create'>{ formatMessage({ id: 'db.create' } ) }</option>
+          <option value='rename'>{ formatMessage({ id: 'db.rename' } ) }</option>
+          <option value='delete'>{ formatMessage({ id: 'db.delete' } ) }</option>
+          <option value='show_hide'>{ formatMessage({ id: 'db.showhide' } ) }</option> 
+          <option value='add_widget'>{ formatMessage({ id: 'db.addwidgets' } ) }</option> 
         </select>
       </div>
     )
   }
 }
-export default WidgetTool;
+export default injectIntl(WidgetTool);

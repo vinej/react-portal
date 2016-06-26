@@ -31,7 +31,7 @@ export default class Signin extends Component {
       <form className='rp-form-small'>
         <div className='rp-popup-header'><FormattedMessage id="app.signin"/></div>
         <div>
-          <label required><FormattedMessage id="form.email"/></label>
+          <label required><FormattedMessage id="auth.email"/></label>
           <input name="email" 
                  value={form.fields.email.value}
                  onChange={(e) => form.fields.email.value = e.target.value}/>
@@ -39,7 +39,7 @@ export default class Signin extends Component {
         </div>
 
         <div>
-          <label required><FormattedMessage id="form.password"/></label>
+          <label required><FormattedMessage id="auth.password"/></label>
           <input name="password" 
                   type="password" 
                   value={form.fields.password.value}

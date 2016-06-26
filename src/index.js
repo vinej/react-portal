@@ -23,17 +23,19 @@ import { signupForm } from './forms/signup_form'
 import { qs } from './helpers/intl'
 
 require("./helpers/translation.js")
-var locale = qs["locale"] || 'en-US';
-if (locale !== 'en-US' && locale !== 'fr-CA') {
-  locale = "en-US"
+var locale = qs["locale"] 
+if (!locale) {
+  locale = window.navigator.userLanguage || window.navigator.language
 }
-const localePrefix = locale.slice(0, locale.indexOf('-'));
+var localePrefix = locale.slice(0, locale.indexOf('-'));
+if (localePrefix !== 'en' && localePrefix !==  'fr') {
+  locale = 'en-US'
+  localePrefix = 'en'
+}
 const defaultApp = window.app['en'];
 import en from 'react-intl/locale-data/en';
 import fr from 'react-intl/locale-data/fr'
 addLocaleData([...en, ...fr]);
-
-//addLocaleData(window.ReactIntlLocaleData[localePrefix]);
 
 // launch the web socket service client side
 //require("./services/wss_service");

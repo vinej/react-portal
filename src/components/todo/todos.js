@@ -8,6 +8,7 @@ import Todo from './todo'
 import TodoStore from '../../stores/todo_store'
 import TodoView from './todo_view'
 import TodoModel from '../../models/todo_model'
+import { FormattedMessage } from 'react-intl'
 
 @observer  // need observer when we add, delete rows
 class Todos extends Component {
@@ -44,7 +45,10 @@ class Todos extends Component {
       <div style={{ height: '400px'}}>
         <table>
           <thead >
-            <tr><th><i className="fa fa-edit" /></th><th>Description</th><th>Status</th><th><i className="fa fa-trash" /></th></tr>
+            <tr><th><i className="fa fa-edit" /></th>
+            <th><FormattedMessage id='todo.description'/></th>
+            <th><FormattedMessage id='todo.status'/></th>
+            <th><i className="fa fa-trash" /></th></tr>
           </thead>
           {/* note: always need a key */} 
           <tbody>
@@ -54,9 +58,9 @@ class Todos extends Component {
             }
           </tbody>
         </table>
-        <button onClick={ () => dispatch(pagePrevious(store)) }>prev</button>
-        <button onClick={ () => dispatch(pageNext(store)) }>next</button>
-        <button onClick={ () => this.handleAdd() }>add</button>
+        <button onClick={ () => dispatch(pagePrevious(store)) }><FormattedMessage id='form.prev'/></button>
+        <button onClick={ () => dispatch(pageNext(store)) }><FormattedMessage id='form.next'/></button>
+        <button onClick={ () => this.handleAdd() }><FormattedMessage id='form.add'/></button>
       </div>
     )
   }

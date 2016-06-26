@@ -4,6 +4,7 @@ import ReactGridLayout from 'react-grid-layout'
 import { dashboardStore, getWidgetComponent } from '../../stores/dashboard_store'
 import { dispatch } from '../../helpers/dispatcher'
 import { crudUpdate } from '../../actions/crud_actions'
+import { FormattedMessage } from 'react-intl'
 
 @observer
 class Dashboard extends Component {
@@ -49,7 +50,7 @@ class Dashboard extends Component {
   render() {
     var layouts = dashboardStore.getWidgetsLayout(this.props.id)
     if (layouts.length == 0) { 
-      return (<div>no widget</div>)
+      return (<div><FormattedMessage id='db.nowidget'/></div>)
     } else {
       return (
         <ReactGridLayout  

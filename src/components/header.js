@@ -56,7 +56,7 @@ class Header extends Component {
       <div>
         <div className='rp-appbar kna-grid-2'>
           <div className='rp-lbar-item'> 
-            <div>React Portal:&nbsp; 
+            <div><FormattedMessage id="app.portal"/>:&nbsp; 
               <FormattedMessage id="app.welcome"/>&nbsp;
               {authStore.name}
             </div>

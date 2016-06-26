@@ -8,6 +8,7 @@ import TodoView from '../todo/todo_view'
 import { todoForm } from '../../forms/todo_form'
 import TodoModel from '../../models/todo_model'
 import TodoStore from '../../stores/todo_store'
+import { FormattedMessage } from 'react-intl'
 
 @observer
 export default class AgGrid extends Component {
@@ -66,8 +67,8 @@ export default class AgGrid extends Component {
           enableFilter="true"
           rowHeight="30"
         />
-        <button onClick={ () => dispatch(pagePrevious(this.props.store)) }>prev</button>
-        <button onClick={ () => dispatch(pageNext(this.props.store)) }>next</button>
+        <button onClick={ () => dispatch(pagePrevious(this.props.store)) }><FormattedMessage id='form.prev'/></button>
+        <button onClick={ () => dispatch(pageNext(this.props.store)) }><FormattedMessage id='form.next'/></button>
         <button onClick={ () => this.handleAdd() }>add</button>
       </div>
     )

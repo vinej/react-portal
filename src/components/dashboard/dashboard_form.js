@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { popupClose } from '../../actions/popup_actions'
 import { dashboardAddDashboard, dashboardRenameDashboard } from '../../actions/dashboard_actions'
 import { dispatch } from '../../helpers/dispatcher'
+import { FormattedMessage } from 'react-intl'
 
 class DashboardForm extends Component {
   constructor() {
@@ -35,24 +36,31 @@ class DashboardForm extends Component {
     this.setState( { dashboardTitle : this.props.dashboard_name } )
   }
 
+  getHeader() {
+    return this.props.action === 'add' ?
+      <FormattedMessage id='db.create'/> : <FormattedMessage id='db.rename'/>
+  }
+
   render() {
     return (
       <form className='rp-form-small' onSubmit={ this.handleFormSubmit }>
         <div className="rp-popup-header">
-          { this.props.action == 'add' ? 'Create a new dashboard' : 'Rename the current dashboard' }
+          { this.getHeader() }
         </div>
         <div>
-          <label>Dashboard Name</label>&nbsp;
+          <label><FormattedMessage id='db.name'/></label>&nbsp;
           <input  name="dashboardTitle" 
                   ref="nameInput"
                   value={ this.state.dashboardTitle }
                   onChange={ this.handleOnChange } />
         </div>
         <div className='rp-form-button'>
-          <button action="submit">{ this.props.action == 'add' ? 'Create' : 'Rename' }</button>
+          <button action="submit">{ this.props.action == 'add' ? 
+          <FormattedMessage id='db.btncreate'/> : 
+          <FormattedMessage id='db.btnrename'/> }</button>
           <button onClick={ (event) => {
             event.preventDefault();
-            dispatch(popupClose()) }}>Cancel</button>
+            dispatch(popupClose()) }}><FormattedMessage id='form.cancel'/></button>
         </div>
       </form>          
     )

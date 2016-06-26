@@ -7,9 +7,10 @@ import { popupClose } from '../../actions/popup_actions'
 import { dispatch } from '../../helpers/dispatcher'
 import TodoModel from '../../models/todo_model'
 import Form from '../../forms/form'
+import { FormattedMessage, injectIntl } from 'react-intl'
 
 @observer
-export default class TodoView extends Component {
+class TodoView extends Component {
   async handleSend(event,form) {
     event.preventDefault()
     await form.validate();
@@ -41,11 +42,12 @@ export default class TodoView extends Component {
 
   render() {
     const form = this.props.form
+    const { formatMessage } = this.props.intl;
     return (
       <form className='rp-form-small'>
         <div className="rp-popup-header">Todo</div>
         <div>
-          <label required>Description</label>&nbsp;
+          <label required><FormattedMessage id='todo.description'/></label>&nbsp;
           <input  ref="nameInput"
                   name="description" 
                   value={form.fields.description.value}
@@ -53,28 +55,27 @@ export default class TodoView extends Component {
           { form.renderError(form.fields.description.errorMessage) }
         </div>
         <div>
-          <label>Status</label>
+          <label><FormattedMessage id='todo.status'/></label>
           <select name="status" 
                   value={form.fields.status.value}
                   onChange={(e) => form.fields.status.value = e.target.value} >
-            <option value="waiting">Waiting</option>
-            <option value="suspend">Suspend</option>
-            <option value="freeze">Freeze</option>
-            <option value="completed">Completed</option>
+            <option value="waiting">{ formatMessage( { id : 'todo.waiting'} ) }</option>
+            <option value="suspended">{ formatMessage( { id : 'todo.suspended' } ) }</option>
+            <option value="freezed">{ formatMessage( { id : 'todo.freezed'} ) }</option>
+            <option value="completed">{ formatMessage( { id : 'todo.completed'}) }</option>
           </select>
           { form.renderError(form.fields.status.errorMessage) }
         </div>
         <div  className='rp-form-button'>
           <button onClick={ (event) => this.handleSend(event,form) } 
-                  disabled={!form.valid} >Save</button>
+                  disabled={!form.valid} ><FormattedMessage id='form.save'/></button>
           <button onClick={ (event) => { event.preventDefault(); dispatch(popupClose()); } }  
-                  >Cancel
-          </button>
+                  ><FormattedMessage id='form.cancel'/></button>
         </div>
         {form.renderAlert(this.props.store.error)}
       </form>
     );
   }
 }
-
+export default injectIntl(TodoView)
 

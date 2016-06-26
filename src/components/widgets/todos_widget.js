@@ -7,6 +7,7 @@ import { pageGetAll } from '../../actions/page_actions'
 import Widget from '../dashboard/widget'
 import TodoModel from '../../models/todo_model'
 import TodoStore from '../../stores/todo_store'
+import { FormattedMessage } from 'react-intl'
 
 class TodosWidget extends Component {
 
@@ -22,7 +23,7 @@ class TodosWidget extends Component {
   render() {
     var component = <Todos store={this.store} isRemoveStore={ true } />
     return (
-      <Widget title="My Todos" 
+      <Widget title={ <FormattedMessage id='todo.mytodo'/> }
         onOpenWidgetInTab={() => dispatch(tabbarShow(component,'todo',"Todo", 'page'))}
         onRemoveWidget={ () => dispatch(dashboardRemoveWidget(this.props.dashboardId, this.props.id))}
         onRefreshWidget= {() => dispatch(pageGetAll("todo"))} >

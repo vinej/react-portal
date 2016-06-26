@@ -8,6 +8,7 @@ import TodoView from './todo_view';
 import TodoStore from '../../stores/todo_store';
 import TodoModel from '../../models/todo_model'
 import { todoForm } from '../../forms/todo_form'
+import { FormattedMessage } from 'react-intl'
 
 @observer // need observer to update a row when a note is modified
 class Todo extends Component {
@@ -50,7 +51,8 @@ class Todo extends Component {
       <tr>
         <td><i onClick={ () => this.handleEdit(todo)} className="fa fa-edit"/></td>
         <td style={ this.getTodoDoneClass(todo) } onClick={ () => this.handleDone(todo)}>{todo.description}</td>
-        <td style={ this.getTodoDoneClass(todo) } onClick={ () => this.handleDone(todo)}>{todo.status}</td>
+        <td style={ this.getTodoDoneClass(todo) } onClick={ () => this.handleDone(todo)}>
+          <FormattedMessage id={'todo.' + todo.status} /></td>
         <td><i onClick={ () => this.handleDelete(todo)} className="fa fa-trash"/></td>
       </tr>
     );
