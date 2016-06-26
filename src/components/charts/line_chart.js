@@ -1,36 +1,14 @@
 import React, { Component } from 'react'
 require("chart.js")
 
-const chartData = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      fillColor: "#25BDFF",
-      strokeColor: "#25BDFF",
-      pointColor: "#25BDFF",
-      pointStrokeColor: "#fff",
-      pointHighlightFill: "#fff",
-      pointHighlightStroke: "#25BDFF",
-      data: [28, 48, 40, 19, 86, 27, 90]
-    }
-  ]
-}
-
-const chartOptions = {
-  bezierCurve : false,
-  datasetFill : false,
-  pointDotStrokeWidth: 4,
-  scaleShowVerticalLines: false,
-  responsive: true
-}
-
 export default class LineChart extends Component {
   constructor() {
     super()
     this.chartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
+          label: 'React Portal',
           fillColor: "#25BDFF",
           strokeColor: "#25BDFF",
           pointColor: "#25BDFF",
@@ -47,7 +25,7 @@ export default class LineChart extends Component {
       datasetFill : false,
       pointDotStrokeWidth: 4,
       scaleShowVerticalLines: false,
-      responsive: true
+      responsive: false
     }
   }
 
@@ -65,7 +43,7 @@ export default class LineChart extends Component {
 
   render () {
     return (
-      <canvas ref={'chart'} height={'400'} width={'600'}></canvas>
+      <canvas ref={'chart'} height={'300'} width={'400'}></canvas>
     );
   }
 }
