@@ -19,7 +19,7 @@ import { dispatch } from './helpers/dispatcher'
 import { authStore } from './stores/auth_store'
 import { signinForm } from './forms/signin_form'
 import { signupForm } from './forms/signup_form'
-
+import { app } from './helpers/translation'
 import { qs } from './helpers/intl'
 
 require("./helpers/translation.js")
@@ -32,7 +32,7 @@ if (localePrefix !== 'en' && localePrefix !==  'fr') {
   locale = 'en-US'
   localePrefix = 'en'
 }
-const defaultApp = window.app['en'];
+const defaultApp = app['en'];
 import en from 'react-intl/locale-data/en';
 import fr from 'react-intl/locale-data/fr'
 addLocaleData([...en, ...fr]);
@@ -48,7 +48,7 @@ require("../node_modules/ag-grid/dist/styles/theme-bootstrap.css")
 
 var mainComponentsToRender = function() { 
   ReactDOM.render(
-    <IntlProvider locale={locale} messages={window.app[localePrefix] || defaultApp}>
+    <IntlProvider locale={locale} messages={app[localePrefix] || defaultApp}>
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Welcome} />

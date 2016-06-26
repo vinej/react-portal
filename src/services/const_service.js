@@ -5,5 +5,5 @@ export const HEADERS = function() {
   return { headers: { Authorization: localStorage.getItem('react-portal-token') } } 
 }
 export const PARAMETERS = function() {
-  return 'project=all&language=en' 
+  return 'project=all&locale=en-US' 
 }

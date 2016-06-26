@@ -1,10 +1,12 @@
 {
   "name": "react-portal",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "description": "A Dashboard application with React/Mobx and a Flux pattern inspired by Redux",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --history-api-fallback --watch",
+    "dist": "webpack -p --progress --colors",
+    "build": "webpack-dev-server -p --progress --colors  --history-api-fallback --watch",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test"
   },
   "keywords": [

@@ -5,6 +5,10 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 ## Features
 
 * A boilerplate for React/Mobx and a REST server
+  * npm start       => development mode
+  * npm run build   => production mode
+  * npm run test    => run mocha test
+  * npm run disp    => create distribution files
 * A full CRUD TODO example : view -> action -> middleware -> service(ajax call) ->  reducer -> store -> view
 * Authentification with a JWT token
 * Authorization (which actions the user can do)
@@ -14,7 +18,7 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
 * Form validation and abstraction (from Michel Weststrate)
 * Movable Popup modal form 
 * Tab Bar 
-* Dynamic widgets and dashboards
+* Dynamic widgets and dashboards with auto save profile
 * Unit test with mocha,chai,chai-jquery and enzyme  (only some tests for now)
   * test_helper from Stephen Grider
   * test_resolver to test action content and dispatch calls

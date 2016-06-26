@@ -1,4 +1,4 @@
-window.app = {
+export const app = {
   // output by server conditional
   'fr': {
     'welcome.welcome'   : 'Bienvenue au Portail React',
