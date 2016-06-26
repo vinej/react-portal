@@ -23,7 +23,10 @@ import { signupForm } from './forms/signup_form'
 import { qs } from './helpers/intl'
 
 require("./helpers/translation.js")
-const locale = qs["locale"] || 'en-US';
+var locale = qs["locale"] || 'en-US';
+if (locale !== 'en-US' && locale !== 'fr-CA') {
+  locale = "en-US"
+}
 const localePrefix = locale.slice(0, locale.indexOf('-'));
 const defaultApp = window.app['en'];
 import en from 'react-intl/locale-data/en';
