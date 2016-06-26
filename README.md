@@ -81,7 +81,7 @@ With React/Mobx/Dispatch
 
 ## Dashboard example
 
-![db](https://cloud.githubusercontent.com/assets/3254214/16101409/619ab15e-3333-11e6-8133-c9dd5eb27fd2.png)
+![db](https://cloud.githubusercontent.com/assets/3254214/16365277/89b6bf18-3bc9-11e6-900b-cfc2304921a5.png)
 
 JYV
 
