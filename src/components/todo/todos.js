@@ -30,7 +30,6 @@ class Todos extends Component {
   componentWillUnmount() {
     if (this.props.isRemoveStore === true) {
       TodoStore.remove(this.props.store)
-      this.props.store = null;
     }
   }
 

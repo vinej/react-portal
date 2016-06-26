@@ -25,7 +25,6 @@ export default class Users extends Component {
   componentWillUnmount() {
     if (this.props.isRemoveStore === true) {
       UserStore.remove(this.props.store)
-      this.props.store = null;
     }
   }
 
