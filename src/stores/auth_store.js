@@ -37,7 +37,7 @@ export default class AuthStore {
     if (mainComponentsToRender) {
       mainComponentsToRender()
     }
-    browserHistory.push('/main')
+    browserHistory.push('/main'+window.location.search)
     dispatch(crudGetAll(dashboardStore))
   }
 
@@ -55,7 +55,7 @@ export default class AuthStore {
       // render the main, but stay on root to 
       // SignUn or SignUp
       mainComponentsToRender()
-      browserHistory.push('/')
+      browserHistory.push('/'+window.location.search)
     }
   }
 
@@ -99,7 +99,7 @@ export default class AuthStore {
       // token is not good or an error with authentification
       // the first time don't show an error 
       mainComponentsToRender()
-      browserHistory.push('/')
+      browserHistory.push('/'+window.location.search)
     }
   }
 }
