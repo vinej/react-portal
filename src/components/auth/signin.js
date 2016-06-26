@@ -5,6 +5,7 @@ import { dispatch } from '../../helpers/dispatcher'
 import { authSignIn } from '../../actions/auth_actions'
 import Form from '../../forms/form'
 import AuthStore from '../../stores/auth_store'
+import { FormattedMessage } from 'react-intl'
 
 @observer
 export default class Signin extends Component {
@@ -28,9 +29,9 @@ export default class Signin extends Component {
     if (!form) { return <div />}
     return (
       <form className='rp-form-small'>
-        <div className='rp-popup-header'>Signin</div>
+        <div className='rp-popup-header'><FormattedMessage id="app.signin"/></div>
         <div>
-          <label required>Email</label>
+          <label required><FormattedMessage id="form.email"/></label>
           <input name="email" 
                  value={form.fields.email.value}
                  onChange={(e) => form.fields.email.value = e.target.value}/>
@@ -38,7 +39,7 @@ export default class Signin extends Component {
         </div>
 
         <div>
-          <label required>Password</label>
+          <label required><FormattedMessage id="form.password"/></label>
           <input name="password" 
                   type="password" 
                   value={form.fields.password.value}
@@ -49,7 +50,7 @@ export default class Signin extends Component {
           <button
             className='kna-btn'
               onClick={ (event) => this.handleSend(event,form) } 
-              disabled={!form.valid} >Sign in</button>
+              disabled={!form.valid} ><FormattedMessage id="app.signin"/></button>
         </div>
         {form.renderAlert(this.props.store.errorMessage)}
       </form>

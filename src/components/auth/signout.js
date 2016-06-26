@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { authSignOut } from '../../actions/auth_actions';
 import { dispatch } from '../../helpers/dispatcher';
+import { FormattedMessage } from 'react-intl'
 
 class Signout extends Component {
   componentWillMount() {
@@ -8,7 +9,7 @@ class Signout extends Component {
   }
 
   render() {
-    return <div>Sorry to see you go...</div>;
+    return <div><FormattedMessage id="app.sorry"/></div>;
   }
 }
 export default Signout;

@@ -10,6 +10,7 @@ import DashboardForm from './dashboard_form'
 import DashboardManage from './dashboard_manage'
 import { widgetStore } from '../../stores/widget_store'
 import { tabbarStore} from '../../stores/tabbar_store'
+import { FormattedMessage } from 'react-intl'
 
 class WidgetTool extends Component {
 
@@ -46,12 +47,12 @@ class WidgetTool extends Component {
     return (
       <div>
         <select className='rp-widget-tool' onChange={ this.handleOnChange } value='0'>
-          <option value='0' disabled="true">Dashboard</option>
-          <option value='create'>Create a new Dashboard</option>
-          <option value='rename'>Rename the current Dashboard</option>
-          <option value='delete'>Delete the current Dashboard</option>
-          <option value='show_hide'>Show/Hide Dashboards</option> 
-          <option value='add_widget'>Add Widgets to current Dashboard</option> 
+          <option value='0' disabled="true"><FormattedMessage id='db.dashboard'/></option>
+          <option value='create'><FormattedMessage id='db.create'/></option>
+          <option value='rename'><FormattedMessage id='db.rename'/></option>
+          <option value='delete'><FormattedMessage id='db.delete'/></option>
+          <option value='show_hide'><FormattedMessage id='db.showhide'/></option> 
+          <option value='add_widget'><FormattedMessage id='db.addwidgets'/></option> 
         </select>
       </div>
     )

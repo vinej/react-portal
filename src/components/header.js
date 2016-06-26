@@ -15,17 +15,17 @@ class Header extends Component {
       // show a link to sign out
       return [
         <span className='rp-rbar-item' key={1} >
-          <Link to={"/signout"+window.location.search}>Sign Out</Link>
+          <Link to={"/signout"+window.location.search}><FormattedMessage id='app.signout'/></Link>
         </span>
       ];
     } else {
       // show a link to sign in or sign up
       return [
         <span className='rp-rbar-item' key={2} >
-          <Link to={"/signup"+window.location.search}>Sign Up</Link>
+          <Link to={"/signup"+window.location.search}><FormattedMessage id='app.signup'/></Link>
         </span>,
         <span  className='rp-rbar-item' key={1} >
-          <Link to={"/signin"+window.location.search}>Sign In</Link>
+          <Link to={"/signin"+window.location.search}><FormattedMessage id='app.signin'/></Link>
         </span>
       ];
     }

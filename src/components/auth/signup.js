@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { authSignUp } from '../../actions/auth_actions'
 import { dispatch } from '../../helpers/dispatcher'
-
 import Form from '../../forms/form'
 import AuthStore from '../../stores/auth_store'
+import { FormattedMessage } from 'react-intl'
 
 @observer
 export default class Signup extends Component {
@@ -29,16 +29,16 @@ export default class Signup extends Component {
     const form = this.props.form
     return (
       <form className='rp-form-small'>
-        <div className='rp-popup-header'>Signup</div>
+        <div className='rp-popup-header'><FormattedMessage id="app.signup"/></div>
         <div>
-          <label required>Email</label>
+          <label required><FormattedMessage id="form.email"/></label>
           <input  name="email"
                   value={form.fields.email.value}
                   onChange={(e) => form.fields.email.value = e.target.value}/>
           { form.renderError(form.fields.email.errorMessage) }
         </div>
         <div>
-          <label required>Password</label>
+          <label required><FormattedMessage id="form.password"/></label>
           <input  name="password" 
                   type="password"
                   value={form.fields.password.value}
@@ -46,7 +46,7 @@ export default class Signup extends Component {
           { form.renderError(form.fields.password.errorMessage) }
         </div>
         <div>
-          <label required>Confirm Password</label>
+          <label required><FormattedMessage id="form.confirm"/></label>
           <input  name="passwordConfirm" 
                   type="password" 
                   value={form.fields.passwordConfirm.value}
@@ -54,7 +54,7 @@ export default class Signup extends Component {
           { form.renderError(form.fields.passwordConfirm.errorMessage) }
         </div>
         <div>
-          <label required>Name</label>
+          <label required><FormattedMessage id="form.name"/></label>
           <input  name="name"
                   value={form.fields.name.value}
                   onChange={(e) => form.fields.name.value = e.target.value}/>
@@ -63,7 +63,7 @@ export default class Signup extends Component {
         {form.renderAlert(this.props.store.errorMessage)}
         <div>
           <button onClick={ (event) => this.handleSend(event,form) } 
-                  disabled={!form.valid} >Sign Up</button>
+                  disabled={!form.valid} ><FormattedMessage id="app.signup"/></button>
         </div>
       </form>
     );
