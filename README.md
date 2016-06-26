@@ -26,6 +26,7 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
   * MockxxxxService to mock the service layer
 * Normalize CSS with knacss (normalize with steoride)
 * React-Intl setup for international support (en, fr by default)
+* ChartJS, AgGrid integration
 
 ## Installation
 * install nodejs

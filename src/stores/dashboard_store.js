@@ -14,6 +14,7 @@ import DashboardModel from '../models/dashboard_model'
 import UsersWidget from '../components/widgets/users_widget'
 import TodosWidget from '../components/widgets/todos_widget'
 import AgGridWidget from '../components/widgets/aggrid_widget'
+import LineChartWidget from '../components/widgets/linechart_widget'
 
 export default class DashboardStore extends CrudStore {
   constructor() {
@@ -146,6 +147,8 @@ export function getWidgetComponent(name, dashboardId, widgetId) {
       return <TodosWidget dashboardId={ dashboardId } id={ widgetId } />
     case 'UsersWidget':
       return <UsersWidget dashboardId={ dashboardId } id={ widgetId } />
+    case 'LineChartWidget':
+      return <LineChartWidget dashboardId={ dashboardId } id={ widgetId } />
     case 'AgGridWidget':
       return <AgGridWidget dashboardId={ dashboardId } id={ widgetId } />
   }
