@@ -18,6 +18,7 @@ class WidgetForm extends Component {
   render() {
     return (
       <div className='rp-form-small'>
+        <div className="rp-popup-header"><FormattedMessage id='db.addwidgets'/></div>
         { this.props.store.getWidgets().map( (widget) => 
             <div className='rp-widget-button' key={widget._id} onClick={ () => this.handleClick(widget.name)}>{widget.name}</div>
         )}
