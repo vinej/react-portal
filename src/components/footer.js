@@ -15,7 +15,7 @@ class Footer extends Component {
             <span style={{ float: 'left'}}>React Portal version 0.6</span>
           </div>
           <div>
-            <span style={{ float: 'right'}}>starts <FormattedRelative value={now}/></span>
+            <span style={{ float: 'right'}}> : <FormattedRelative value={now}/></span>
             <span style={{ float: 'right'}}>&nbsp;&nbsp;</span>
             <span style={{ float: 'right'}}><FormattedDate value={now}/></span>
           </div>
