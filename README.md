@@ -8,7 +8,7 @@ A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspire
   * npm start       => development mode
   * npm run build   => production mode
   * npm run test    => run mocha test
-  * npm run disp    => create distribution files
+  * npm run dist    => create distribution files
 * A full CRUD TODO example : view -> action -> middleware -> service(ajax call) ->  reducer -> store -> view
 * Authentification with a JWT token
 * Authorization (which actions the user can do)
