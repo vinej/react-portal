@@ -17,7 +17,7 @@ import testResolver               from '../resolvers/test_resolver';
  *   std  : std resolver are standard resolver
  *   post : post resolver are resolvers that run after all others
  *
- * We use pre fiiled dictionnary of resolver by action type 
+ * We use pre filled dictionnaries of resolvers by action type 
  * because we want to be sure that only resolvers that want to do
  * something with the action will going to be called.
  *
