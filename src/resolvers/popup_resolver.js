@@ -7,7 +7,7 @@ export function popupResolver(action, next) {
       popupStore.close()
       break;
     case t.POPUP_SHOW :
-      popupStore.show(action.payload)
+      popupStore.show(action.payload.component)
       break;
   }
   return next(null, action);

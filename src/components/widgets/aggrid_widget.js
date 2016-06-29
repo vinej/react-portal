@@ -19,7 +19,7 @@ export default class AgGridWidget extends Component {
   }
 
   render() {
-    var component = <AgGrid store={this.store} isRemoveStore={ true } />
+    var component = () => <AgGrid store={this.store} isRemoveStore={ true } />
     return (
       <Widget title="ag-Grid" 
         onOpenWidgetInTab={() => dispatch(tabbarShow(component,'aggrid',"AgGrid", 'page'))}

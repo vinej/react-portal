@@ -25,10 +25,9 @@ export default class DashboardStore extends CrudStore {
   }
 
   showAllUserDashboard() {
-    console.log("show all")
     this.records.forEach( (dashboard, idx) => {
       if (dashboard.isHidden === false) {
-        var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
+        var component = () => <Dashboard title={ dashboard.title } id={ dashboard._id } />
         dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
       }
     })
@@ -36,7 +35,7 @@ export default class DashboardStore extends CrudStore {
 
   showLastDashboard() {
     const dashboard = this.records[this.records.length - 1]
-    var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
+    var component = () => <Dashboard title={ dashboard.title } id={ dashboard._id } />
     dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
   }
 
@@ -46,7 +45,7 @@ export default class DashboardStore extends CrudStore {
       const dashboard = this.records[idx]
       dashboard.isHidden = false
       dispatch(crudUpdate(this, dashboard))
-      var component = <Dashboard title={ dashboard.title } id={ dashboard._id } />
+      var component = () => <Dashboard title={ dashboard.title } id={ dashboard._id } />
       dispatch(tabbarShow(component, dashboard._id, dashboard.title, 'dashboard'))
     }
   }

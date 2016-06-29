@@ -21,7 +21,7 @@ class TodosWidget extends Component {
   }
 
   render() {
-    var component = <Todos store={this.store} isRemoveStore={ true } />
+    var component = () => <Todos store={this.store} isRemoveStore={ true } />
     return (
       <Widget title={ <FormattedMessage id='todo.mytodo'/> }
         onOpenWidgetInTab={() => dispatch(tabbarShow(component,'todo',"Todo", 'page'))}

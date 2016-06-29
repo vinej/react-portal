@@ -1,4 +1,5 @@
 // from the Michel Weststrate code
+require("babel-polyfill")
 import { observable, computed, extendObservable, autorunAsync } from 'mobx'
 import { observer } from 'mobx-react'
 import React, { Component } from 'react'

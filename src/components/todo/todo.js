@@ -33,7 +33,7 @@ class Todo extends Component {
   }     
 
   handleEdit(todo) {
-    var component = <TodoView store={this.props.store} form={todoForm} todo={todo} />
+    var component = () => <TodoView store={this.props.store} form={todoForm} todo={todo} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()));
   }
 

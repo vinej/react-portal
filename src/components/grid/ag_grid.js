@@ -24,7 +24,7 @@ export default class AgGrid extends Component {
   }
 
   handleAdd() {
-    var component = <TodoView store={this.props.store} todo={TodoModel.create()} form={todoForm} />
+    var component = () => <TodoView store={this.props.store} todo={TodoModel.create()} form={todoForm} />
     dispatch(popupShow(component, TodoStore.getEditFormDimension()))
   }
 

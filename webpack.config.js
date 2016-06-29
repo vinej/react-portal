@@ -21,6 +21,7 @@ function getPlugins() {
   //else {
   //  // ...
   //}
+  ////externals: {'react': 'React', 'react-dom': 'ReactDOM'},   
 
   return plugins;
 }
@@ -31,6 +32,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
   },
+   
   module: {
     loaders: [
     {
@@ -41,6 +43,10 @@ module.exports = {
         path.join(__dirname, 'test')
       ],
       loader: 'babel'
+    },
+    {
+        test: /\.less$/,
+        loader: "style!css!less"
     },
     {
       // SASS transpiler

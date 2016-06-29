@@ -14,7 +14,7 @@ class App extends Component {
       <div>
         { popupStore.getStores().map( store => 
           <Popup _id={store.id} key={store.id} store={store}>
-            { store.component }
+            { store.component() }
           </Popup>
           )
         }

@@ -19,7 +19,7 @@ export default class UsersWidget extends Component {
   }
 
   render() {
-    var component = <Users store={ this.store } isRemoveStore={ true } />
+    var component = () => <Users store={ this.store } isRemoveStore={ true } />
     return (
       <Widget title={ <FormattedMessage id='user.userlist'/> }
         onOpenWidgetInTab={ () => dispatch(tabbarShow(component , "user", "Users", "page"))}

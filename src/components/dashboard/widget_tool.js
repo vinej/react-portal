@@ -26,23 +26,21 @@ class WidgetTool extends Component {
   handleOnChange(e) {
     switch(e.target.value) {
       case 'create' :
-        dispatch(popupShow( <DashboardForm action="add" dashboard_name="" /> ))
+        dispatch(popupShow( () => <DashboardForm action="add" dashboard_name="" /> ))
         break;
       case 'rename' :
-        dispatch(popupShow( <DashboardForm  action="rename" dashboard_name={dashboardStore.getDashboardTitle()} /> ))
+        dispatch(popupShow( () => <DashboardForm  action="rename" dashboard_name={dashboardStore.getDashboardTitle()} /> ))
         break;
       case 'show_hide' :
-        dispatch(popupShow( <DashboardManage store={dashboardStore} />))
+        dispatch(popupShow( () => <DashboardManage store={dashboardStore} />))
         break;
       case 'delete' :
-        dispatch(popupShow( <PopupYesNo 
-          title={ <FormattedMessage id="db.delete"/> }
-          msg={ this.getAskDeleteMsg() }
-          yesAction={ dashboardDelete }
+        dispatch(popupShow( () => <PopupYesNo title={ <FormattedMessage id="db.delete"/> }
+          msg={ this.getAskDeleteMsg() } yesAction={ dashboardDelete }
           />))
         break;
       case 'add_widget' :
-        dispatch(popupShow( <WidgetForm store={widgetStore} />))
+        dispatch(popupShow( () => <WidgetForm store={widgetStore} />))
         break;
     }
   }

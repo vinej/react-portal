@@ -7,7 +7,7 @@ import LineChart from '../charts/line_chart'
 
 export default class LineChartWidget extends Component {
   render() {
-    var component = <LineChart />
+    var component = () => <LineChart />
     return (
       <Widget title="LineChart : ChartJS"
         onOpenWidgetInTab={() => dispatch(tabbarShow(component,'linechart',"LineChart", 'page'))}

@@ -43,6 +43,8 @@
     "file-loader": "^0.8.5",
     "jquery": "^3.0.0",
     "jsdom": "^9.2.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
     "mocha": "^2.5.3",
     "mocha-phantomjs": "^4.0.2",
     "node-sass": "^3.7.0",
