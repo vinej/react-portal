@@ -45,10 +45,6 @@ module.exports = {
       loader: 'babel'
     },
     {
-        test: /\.less$/,
-        loader: "style!css!less"
-    },
-    {
       // SASS transpiler
       test: /(\.css|\.scss)$/,
       loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
