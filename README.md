@@ -3,8 +3,7 @@
 A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspired by Redux
 
 History: Version 0.6.14
- - This version is now compatable with the minimized version of React. From now, I will stabilized the main version
-   with the current features because this is the minimum to start a new real project. 
+ - First stable beta version
 
 ## Features
 
