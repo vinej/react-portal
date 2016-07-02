@@ -1,6 +1,8 @@
 # react-portal
 
-A full cycle example of a Dashboard using React, Mobx and a Flux pattern inspired by Redux
+A full cycle example of a Dashboard using React, Mobx and a ReMux, a Flux pattern inspired by Redux
+
+ReMux stand for **Re**solver **M**obx Fl**ux** pattern
 
 History: Version 0.6.14
  - First stable beta version
