@@ -68,9 +68,9 @@ The first goal is to experiment using React/Mobx and a Flux pattern like Redux. 
 
 There is no obligation to use a Flux pattern with Mobx if your application is simple. During the last year, I worked on a Dashboard implementation and the customer asked me to audit all actions from the users. If you have a Flux pattern, it's very easy to do : you just add a resolver (middleware). Without it, it could become complexe to implement it. So, you must use a Flux pattern when you know that you will deal with this kind of feature.
 
-## Compare  React/Redux with React/Mobx/Dispatch
+## Compare  React/Redux with React/ReMux
 
-With React/Mobx/Dispatch
+With React/ReMux
 
 * Stores use mutable data
 * Stores contain actions with Mobx @action decorator
