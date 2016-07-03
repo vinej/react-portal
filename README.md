@@ -7,6 +7,8 @@ ReMux stand for **Re**solver **M**obx Fl**ux** pattern
 History: Version 0.6.14
  - First stable beta version
 
+For a simple starter see : https://github.com/vinej/ReMux
+
 ## Features
 
 * A boilerplate for React/Mobx and a REST server
