@@ -38,11 +38,26 @@ class Dashboard extends Component {
     return isDiff
   }
 
+  updateWidget(old, nw) {
+    for(var i = 0; i < old.length; i++) {
+      for(var j = 0; j < nw.length; j++) {
+        if (old[i].i == nw[j].i) {
+          old[i].x = nw[i].x
+          old[i].y = nw[i].y
+          old[i].w = nw[i].w
+          old[i].h = nw[i].h
+          break;
+        }
+      }
+    }
+  }
+
   handleOnLayoutChange(layout) {
     const id = this.props.id
     if (!id) return
     if (this.isDifferent(layout, dashboardStore.getWidgets(id)) === true) {
-      dashboardStore.getDashboard(id).widgets = layout
+      this.updateWidget(dashboardStore.getWidgets(id), layout) 
+      //dashboardStore.getDashboard(id).widgets = layout
       dispatch(crudUpdate(dashboardStore, dashboardStore.getDashboard(id)))
     }
   }

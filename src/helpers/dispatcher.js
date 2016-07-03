@@ -73,47 +73,17 @@ class Dispatcher {
   dispatch(action) {
     const action_type = action.type.substring(0, action.type.indexOf("_"));
 
-    // do pre resolvers with filter *
-    for(let resolver of this.preResolversAll) {
+    var all = [ ...this.preResolversAll,
+                ...this.preResolvers[action_type] || [],
+                ...this.stdResolversAll,
+                ...this.stdResolvers[action_type] || [],
+                ...this.postResolversAll,
+                ...this.postResolvers[action_type] || [] ]
+
+    for(let resolver of all) {
       action = resolver(action, this.next);
       if (!action) return;
     }    
-
-    // do pre resolvers with others filters 
-    if (this.preResolvers[action_type]) {
-      for(let resolver of this.preResolvers[action_type]) {
-        action = resolver(action, this.next);
-        if (!action) return;
-      }    
-    }
-
-    // do standard resolvers with filter *
-    for(let resolver of this.stdResolversAll) {
-      action = resolver(action, this.next);
-      if (!action) return;
-    }    
-
-    // do standard resolvers with others filters
-    if (this.stdResolvers[action_type]) {
-      for(let resolver of this.stdResolvers[action_type]) {
-        action = resolver(action, this.next);
-        if (!action) return;
-      }    
-    }
-
-    // do post resolvers for filter *
-    for(let resolver of this.postResolversAll) {
-      action = resolver(action, this.next);
-      if (!action) return;
-    }    
-
-    // do post resolvers for others filters
-    if (this.postResolvers[action_type]) {
-      for(let resolver of this.postResolvers[action_type]) {
-        action = resolver(action, this.next);
-        if (!action) return;
-      } 
-    }
   }
 }
 

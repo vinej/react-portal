@@ -4,8 +4,10 @@ A full cycle example of a Dashboard using React, Mobx and ReMux, a Flux pattern 
 
 ReMux stand for **Re**solver **M**obx Fl**ux** pattern
 
-History: Version 0.6.14
- - First stable beta version
+History: 
+
+* 0.6.14 - First stable beta version
+* 0.6.15 - Dispatcher optimization, react-grid resize
 
 For a simple starter see : https://github.com/vinej/ReMux
 

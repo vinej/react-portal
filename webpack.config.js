@@ -12,10 +12,17 @@ function getPlugins() {
   // drop any unreachable code.
 
   // Conditionally add plugins for Production builds.
-  //if (isProd) {
-  //  plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }));
-  //  plugins.push(new webpack.DefinePlugin({ "process.env": { NODE_ENV: JSON.stringify('production') } }) );
-  //}
+  if (isProd === true) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin(
+      {  
+        compressor: { 
+          screw_ie8: true, 
+          warnings: false 
+        }, 
+        minimize: true
+      }
+    ));  //  plugins.push(new webpack.DefinePlugin({ "process.env": { NODE_ENV: JSON.stringify('production') } }) );
+  }
 
   // Conditionally add plugins for Development
   //else {

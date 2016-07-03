@@ -33,8 +33,8 @@ class TabBarItem extends Component {
 
   render() {
     return (
-      <li onClick={ this.handleOnClick }
-          _id={this.props.componentId} key={this.props.componentId} value={this.props.componentId}>{this.props.title}
+      <li onClick={ this.handleOnClick } key={this.props.componentId} value={this.props.componentId} >
+        {this.props.title}
         { this.renderClose(this.props.visible) }
       </li>
     )
