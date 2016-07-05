@@ -9,7 +9,7 @@ History:
 * 0.6.14 - First stable beta version
 * 0.6.15 - Dispatcher optimization, react-grid-layout resize bug
 
-For a simple starter see : https://github.com/vinej/ReMux
+For a simple starter see : https://github.com/vinej/remux
 
 ## Features
 
