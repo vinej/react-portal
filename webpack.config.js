@@ -49,12 +49,12 @@ module.exports = {
         path.join(__dirname, 'src'),
         path.join(__dirname, 'test')
       ],
-      loader: 'babel'
+      loader: 'babel-loader'
     },
     {
       // SASS transpiler
       test: /(\.css|\.scss)$/,
-      loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+      loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
     },
     // file loaders
     {test: /.eot(\?v=\d+.\d+.\d+)?$/, loader: "file"},
@@ -66,4 +66,5 @@ module.exports = {
    ]
   },
   plugins: getPlugins()
-}
+} 
+
